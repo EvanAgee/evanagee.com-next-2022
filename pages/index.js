@@ -1,6 +1,7 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Link from "next/link";
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -10,14 +11,18 @@ export default function Home() {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">
-          Welcome to{' '}
+          Welcome to{" "}
           <a className="text-blue-600" href="https://nextjs.org">
             Next.js!
           </a>
         </h1>
 
+        <ul>
+          {posts.map(post => (<li><Link href={`/blog/${post.slug}`}>{post.title.rendered}</Link></li>))}
+        </ul>
+
         <p className="mt-3 text-2xl">
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
             pages/index.js
           </code>
@@ -73,10 +78,20 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
         </a>
       </footer>
     </div>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  const posts = await fetch('https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50');
+  const res = await posts.json();
+  return {
+    props: {
+      posts: res
+    },
+  };
 }
