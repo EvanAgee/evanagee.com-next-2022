@@ -93,13 +93,13 @@ export default function HeaderNav() {
                   className={classNames("flex min-h-full")}
                 >
                   <Link
-                    href={p.path}
+                    href={p?.path}
                   >
                     <a
                       className={classNames(
                         "flex items-center min-h-full px-4 lg:px-4 xl:px-8",
                         {
-                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active": currentPage.path === p.path || currentPage.parentLink === p.path
+                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active": currentPage?.path === p?.path || currentPage?.parentLink === p?.path
                         }
                       )}
                     >

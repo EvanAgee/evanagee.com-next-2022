@@ -43,7 +43,7 @@ export const HeaderProvider = ({ children }) => {
   React.useEffect(() => {
     setPageTitle(false);
     setOgData(ogDefaults);
-  }, [location]);
+  }, [location, children]);
 
   React.useEffect(() => {
     if (!currentPage) return;

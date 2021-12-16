@@ -22,12 +22,20 @@ export default function Photo({ photo, catPosts }) {
   const { breakpoint } = useBreakpoints();
   const { setPageTitle, setOgData } = useContext(HeaderContext);
 
-  useEffect(() => {
+  function updateMeta() {
     setPageTitle(`${helpers.decodeHtml(photo?.title?.rendered)}`);
     setOgData({
       ...photo?.yoast_head_json,
     });
-  }, [router]);
+  }
+
+  useEffect(() => {
+    updateMeta();
+  }, []);
+
+  useEffect(() => {
+    updateMeta();
+  }, [photo, router]);
 
   return (
     <>

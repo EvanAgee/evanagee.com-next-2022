@@ -23,6 +23,15 @@ const settings = {
       disabledInNav: true,
     },
     {
+      path: "/blog/tags/[filterTerm]",
+      component: "Blog",
+      linkText: "BlogFilters",
+      title: "Blog",
+      parentLink: "/blog",
+      exact: true,
+      disabledInNav: true,
+    },
+    {
       path: "/blog/[slug]",
       component: "BlogDetail",
       linkText: "BlogDetail",
