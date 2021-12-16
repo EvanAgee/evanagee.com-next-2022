@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/pages/*": ["pages/*"],
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"],
+      "@/context/*": ["context/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/settings": ["./settings.js"],
+      "@/content": ["./content.js"],
+      "@/helpers": ["./helpers.js"],
+    }
+  }
+}

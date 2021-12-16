@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+      @apply bg-gray-500;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-primary-500;
+    }
+  }
+
+  body {
+    ::selection {
+      @apply bg-primary-500;
+    }
+
+    ::-moz-selection {
+      @apply bg-primary-500;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-extrabold;
+  }
+
+  h6 {
+    @apply uppercase tracking-widest text-xs lg:text-sm mb-3;
+  }
+
+  .text-shadow {
+    text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.25);
+  }
+
+  .up-title {
+    @apply uppercase font-display text-xl lg:text-2xl leading-none lg:leading-tight my-6 font-extrabold tracking-widest;
+
+    &-lg {
+      @apply lg:text-7xl;
+    }
+
+    &-sm {
+      @apply text-xs lg:text-sm;
+    }
+  }
+
+  .button {
+    @apply inline-flex w-auto px-4 py-3 text-white bg-primary-500 border-2 border-opacity-0 font-extrabold tracking-widest uppercase text-center justify-center font-display text-sm no-underline rounded-md lg:inline-flex lg:w-auto lg:px-6 shadow-lg shadow-primary-500/40;
+
+    &:focus {
+      @apply outline-none;
+    }
+
+    &:hover:not(:disabled) {
+      @apply bg-primary-600;
+    }
+
+    &-reversed,
+    &--reversed {
+      @apply bg-opacity-0 border-primary-500 text-primary-500;
+
+      &:hover:not(:disabled) {
+        @apply bg-primary-500 bg-opacity-100 text-white;
+      }
+    }
+
+    &-secondary,
+    &--secondary {
+      @apply bg-secondary-500 text-secondary-200 shadow-secondary-500/40 hover:bg-secondary-600 hover:text-secondary-200;
+
+      &:hover:not(:disabled) {
+        @apply bg-secondary-600 text-secondary-200;
+      }
+
+      &.button-reversed,
+      &.button--reversed {
+        @apply bg-black bg-opacity-0 border-primary-500 text-primary-500;
+      }
+    }
+
+    &-white,
+    &--white {
+      @apply bg-white;
+
+      &.button-reversed,
+      &.button--reversed {
+        @apply bg-black bg-opacity-0 border-white text-white;
+
+        &:hover:not(:disabled) {
+          @apply bg-white text-primary-500;
+        }
+      }
+    }
+
+    &-black,
+    &--black {
+      @apply bg-black text-white shadow-none;
+
+      &:hover:not(:disabled) {
+        @apply bg-white bg-opacity-0 border-black text-black;
+      }
+
+      &.button-reversed,
+      &.button--reversed {
+        @apply bg-white bg-opacity-0 border-2 border-solid border-black text-black;
+
+        &:hover:not(:disabled) {
+          @apply bg-black text-white border-black;
+        }
+      }
+    }
+
+    &--xsmall,
+    &-xs {
+      @apply px-3 py-1 text-xs;
+    }
+
+    &--small,
+    &-sm {
+      @apply px-3 py-2 text-sm;
+    }
+
+    &-rounded,
+    &--rounded {
+      @apply rounded;
+    }
+
+    &:disabled {
+      @apply cursor-not-allowed opacity-25;
+    }
+  }
+
+  .pb-16x9 {
+    padding-bottom: 56.25%;
+  }
+
+  .photo-data-grid {
+    @apply rounded-lg overflow-hidden;
+    box-shadow: 0 0 0 1px var(--color-gray-600);
+
+    &__items {
+      @apply m-0 p-0 mb-0;
+      margin-right: -1px;
+      margin-bottom: -1px;
+      margin-bottom: -1px !important;
+
+      &__item {
+        @apply border-b border-r border-gray-600 px-4 py-3 relative dark:hover:bg-gray-800 lg:px-4 lg:py-4;
+        line-height: 1;
+        margin-right: -1px;
+
+        &:after {
+          @apply border-r border-gray-600 absolute right-0 top-0 h-full;
+        }
+
+        & > strong {
+          @apply block font-display text-gray-300 text-xs tracking-widest uppercase mb-2;
+        }
+
+        & > div {
+          @apply leading-tight text-lg;
+        }
+
+        & .taglist {
+          @apply mt-2;
+        }
+      }
+    }
+  }
+}
