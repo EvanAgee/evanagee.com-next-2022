@@ -19,47 +19,6 @@ const helpers = {
     return wrapper.appendChild(toWrap);
   },
 
-  getJson: function () {
-    return;
-
-    let photoQuery = db.collection("photos").orderBy("date_taken");
-
-    photoQuery.get().then((documentSnapshots) => {
-      let photoData = [];
-      documentSnapshots.forEach((doc) => {
-        // photos.push(doc.data());
-        let photo = doc.data();
-        console.log(photo.exif);
-        photoData.push({
-          ...photo,
-          exposure: "",
-          shutterSpeed: photo.exif.ExposureTime
-            ? photo.exif.ExposureTime
-            : photo.exif["ExifIFD:ExposureTime"]
-            ? photo.exif["ExifIFD:ExposureTime"].value
-            : "",
-          aperture: photo.exif.FNumber
-            ? photo.exif.FNumber
-            : photo.exif["ExifIFD:FNumber"]
-            ? photo.exif["ExifIFD:FNumber"].value
-            : "",
-          model: photo.exif.Model ? photo.exif.Model : "",
-          exif:
-            "exif" in photo
-              ? Object.keys(photo.exif).map((e) => {
-                  return {
-                    key: e,
-                    value: photo.exif[e],
-                  };
-                })
-              : [],
-        });
-      });
-
-      console.log(JSON.stringify(photoData));
-    });
-  },
-
   toFraction: (x, tolerance) => {
     if (x == 0) return [0, 1];
     if (x < 0) x = -x;

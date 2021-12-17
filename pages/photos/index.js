@@ -10,6 +10,7 @@ import helpers from "@/helpers";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Meta from "@/components/Meta";
 const Filters = dynamic(() => import("@/components/Photos/Filters"));
 
 function Photos() {
@@ -44,7 +45,6 @@ function Photos() {
 
   React.useEffect(() => {
     if (!filterType || !filterTerm) return;
-    setTimeout(() => {
     setPageTitle(
       `Photos ${
         filterType === "photo_album"
@@ -52,13 +52,17 @@ function Photos() {
           : `tagged with ${filterTerm.split("|")[1]}`
       }`
     );
-    }, 500);
   }, [filterType, filterTerm, location]);
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <>
+      <Meta title={filterType ? `Photos ${
+        filterType === "photo_album"
+          ? `in the ${filterTerm.split("|")[1]} album`
+          : `tagged with ${filterTerm.split("|")[1]}`
+      }` : false}  />
       <div className="" data-test-id="photo-index">
       <Filters
             filters={filters}

@@ -29,6 +29,10 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
     if (router.pathname === '/photos/photo_tags/[filterTerm]') {
       return setFilterType("photo_tags");
     }
+
+    if (router.pathname === '/portfolio/tags/[filterTerm]') {
+      return setFilterType("tags");
+    }
   }, [router]);
 
   const fetchItems = async function ({ pageParam = 0 }) {
@@ -52,11 +56,13 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
     if (queryID === "searchIndex" && "data" in data) {
       await Promise.all(
         data.data.map(async (d, i) => {
-          const additionalData = await axios.get(d._links.self[0].href, {
+          const additionalData = await axios.get(`${settings.apiBase}/${d.subtype}s/${d.id}`, {
             params: {
               per_page: 1,
             },
           });
+
+         
 
           data.data[i] = {
             ...data.data[i],

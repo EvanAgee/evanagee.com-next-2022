@@ -42,7 +42,7 @@ const postTypeDisplay = {
   photo: "Photo",
 };
 
-function Search() {
+export default function Search() {
   const search = React.useRef(null);
   const {
     loadMoreButtonRef,
@@ -203,5 +203,3 @@ function Search() {
     </div>
   );
 }
-
-export default Search;

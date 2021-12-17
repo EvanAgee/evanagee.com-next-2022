@@ -9,6 +9,7 @@ import BadgeWrapper from "@/components/BadgeWrapper";
 import { motion } from "framer-motion";
 import { pageVariants } from "@/lib/animations";
 import dynamic from 'next/dynamic'
+import Meta from "@/components/Meta";
 
 const RecentPosts = dynamic(() => import('../components/RecentPosts.jsx'))
 
@@ -47,7 +48,8 @@ export default function Home({ posts }) {
     return () => clearInterval(timer);
   }, []);
 
-  return (
+  return (<>
+    <Meta />
     <motion.div
       variants={pageVariants}
       initial="hidden"
@@ -145,7 +147,7 @@ export default function Home({ posts }) {
         </BadgeWrapper>
       </motion.section>
     </motion.div>
-  );
+  </>);
 }
 
 export async function getStaticProps() {

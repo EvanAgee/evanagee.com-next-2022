@@ -46,11 +46,15 @@ function App({ children }) {
                 hr,
                 ol,
                 p:not(:last-child) {
-                  margin-bottom: 1.25rem;
+                  // margin-bottom: 1.25rem;
                 }
 
                 a:not([class]) {
                   color: var(--color-primary-500);
+                }
+
+                a {
+                  cursor: pointer;
                 }
               `
             )}

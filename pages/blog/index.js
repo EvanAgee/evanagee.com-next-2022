@@ -1,5 +1,5 @@
 import React, { Suspense, useContext } from "react";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Post from "@/components/Blog/Post";
 import classNames from "classnames";
@@ -8,6 +8,7 @@ import { HeaderContext } from "@/context/HeaderContext";
 import Loader from "@/components/Loaders/Loader";
 import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import GridWrapper from "@/components/GridWrapper";
+import Meta from "@/components/Meta";
 const Filters = dynamic(() => import("@/components/Blog/Filters/Filters"));
 
 export default function BlogIndex() {
@@ -15,7 +16,6 @@ export default function BlogIndex() {
   const { setPageTitle } = useContext(HeaderContext);
   const { breakpoint } = useBreakpoints();
   const {
-    status,
     loadMoreButtonRef,
     filters,
     filterType,
@@ -27,7 +27,6 @@ export default function BlogIndex() {
     isFetchingNextPage,
     hasNextPage,
     error,
-    goodToGo,
   } = useInfiniteScroller({
     initialFilters: {
       categories: { value: null },
@@ -40,27 +39,27 @@ export default function BlogIndex() {
     apiPath: "/posts",
   });
 
-  React.useEffect(() => {
-    if (!filterType || !filterTerm) return;
-    setPageTitle(
-      `Blog posts ${
-        filterType === "categories"
-          ? `in the ${filterTerm.split("|")[1]} category`
-          : `tagged with ${filterTerm.split("|")[1]}`
-      }`
-    );
-  }, [filterType, filterTerm, location]);
-
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <div data-test-id="blog-index">
+      <Meta
+        title={
+          filterType
+            ? `Blog posts ${
+                filterType === "categories"
+                  ? `in the ${filterTerm.split("|")[1]} category`
+                  : `tagged with ${filterTerm.split("|")[1]}`
+              }`
+            : false
+        }
+      />
       <Filters
-          filters={filters}
-          onChange={setFilters}
-          results={resultCount}
-          className="sticky top-0 z-10"
-        />
+        filters={filters}
+        onChange={setFilters}
+        results={resultCount}
+        className="sticky top-0 z-10"
+      />
       {isLoading ? (
         <GridWrapper largeFirst={true}>
           {[1, 2, 3].map((d, ii) => (

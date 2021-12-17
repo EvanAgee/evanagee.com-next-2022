@@ -40,8 +40,8 @@ export const HeaderProvider = ({ children }) => {
   };
 
   React.useEffect(() => {
-    setPageTitle(false);
-    setOgData(ogDefaults);
+    // setPageTitle(false);
+    // setOgData(ogDefaults);
   }, [location, children]);
 
   React.useEffect(() => {

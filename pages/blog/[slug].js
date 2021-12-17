@@ -1,11 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import Head from "next/head";
-import axios from "axios";
 import { fetchAPI } from "@/lib/api";
 import helpers from "@/helpers";
 import PostDetail from "@/components/Blog/Post";
-import { useRouter } from "next/router";
-import { HeaderContext } from "@/context/HeaderContext";
 import Discussion from "@/components/Discussion";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PrevNext from "@/components/PrevNext";
@@ -15,25 +11,21 @@ import BadgeWrapper from "@/components/BadgeWrapper";
 import Carousel from "@/components/Carousel";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import PostGridWrapper from "@/components/Blog/PostGridWrapper";
+import Meta from "@/components/Meta";
 
 export default function Post({ post, catPosts }) {
-  const router = useRouter();
   const { breakpoint } = useBreakpoints();
   const { updateMatchedHeights } = useMatchHeight();
-  const { setPageTitle, setOgData } = useContext(HeaderContext);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPageTitle(`${helpers.decodeHtml(post?.title?.rendered)}`);
-      setOgData({
-        ...post?.yoast_head_json,
-        ogImage: helpers.postImage(post, "large")[0]
-      });
-    }, 500)
-  }, [router]);
 
   return (
     <>
+      <Meta
+        title={`${helpers.decodeHtml(post?.title?.rendered)}`}
+        ogData={{
+          ...post?.yoast_head_json,
+          ogImage: helpers.postImage(post, "large")[0]
+        }}
+      />
       <div className="pl-6 pt-6"><Breadcrumbs /></div>
       <PostDetail data={post} style="full" />
       {/* <div className="bg-primary-50"><Discussion /></div> */}

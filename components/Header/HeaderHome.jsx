@@ -2,11 +2,7 @@ import { css } from "@emotion/css";
 import { motion, AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import settings from "@/settings";
 import useBreakpoints from "@/hooks/useBreakpoints";
-import { HeaderContext } from "@/context/HeaderContext";
-import { ThemeContext } from "@/context/ThemeContext";
 import CurrentLocation from "@/components/CurrentLocation";
 
 export default function HeaderHome() {
@@ -24,7 +20,7 @@ export default function HeaderHome() {
   >
     {breakpoint.isLgUp && (
       <div className="relative w-full flex justify-center">
-        <CurrentLocation className="mx-auto lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
+        <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
       </div>
     )}
     <div

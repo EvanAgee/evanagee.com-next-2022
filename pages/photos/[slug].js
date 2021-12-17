@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
+import Head from "next/head";
 import moment from "moment";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import settings from "@/settings";
 import helpers from "@/helpers";
 import WpApiContent from "@/components/WpApiContent";
-import { HeaderContext } from "@/context/HeaderContext";
 import PhotoSpecs from "@/components/Photos/PhotoSpecs";
 import PrevNext from "@/components/PrevNext";
 import Discussion from "@/components/Discussion";
@@ -15,24 +15,20 @@ import BadgeWrapper from "@/components/BadgeWrapper";
 import Carousel from "@/components/Carousel";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import Meta from "@/components/Meta";
 
 export default function Photo({ photo, catPosts }) {
-  const router = useRouter();
   const { breakpoint } = useBreakpoints();
-  const { setPageTitle, setOgData } = useContext(HeaderContext);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPageTitle(`${helpers.decodeHtml(photo?.title?.rendered)}`);
-      setOgData({
-        ...photo?.yoast_head_json,
-        ogImage: helpers.postImage(photo, "large")[0],
-      });
-    }, 500);
-  }, [router]);
 
   return (
     <>
+      <Meta
+        title={`${helpers.decodeHtml(photo?.title?.rendered)}`}
+        ogData={{
+          ...photo?.yoast_head_json,
+          ogImage: helpers.postImage(photo, "large")[0],
+        }}
+      />
       <div className="pl-6 pt-6">
         <Breadcrumbs />
       </div>

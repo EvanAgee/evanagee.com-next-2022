@@ -32,7 +32,7 @@ module.exports = {
           800: "#712424",
           900: "#4C1818",
         },
-        primary: primaryColor,
+        primary: colors.cyan,
         secondary: colors.neutral
       },
       typography: {
