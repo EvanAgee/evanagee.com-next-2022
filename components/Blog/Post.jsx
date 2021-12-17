@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { css } from "@emotion/css";
-// import { Link } from "react-router-dom";
+import Image from 'next/image'
 import Link from "next/link"
 import helpers from "@/helpers";
 import TagList from "@/components/TagList";

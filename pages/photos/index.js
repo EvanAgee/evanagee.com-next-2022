@@ -44,6 +44,7 @@ function Photos() {
 
   React.useEffect(() => {
     if (!filterType || !filterTerm) return;
+    setTimeout(() => {
     setPageTitle(
       `Photos ${
         filterType === "photo_album"
@@ -51,6 +52,7 @@ function Photos() {
           : `tagged with ${filterTerm.split("|")[1]}`
       }`
     );
+    }, 500);
   }, [filterType, filterTerm, location]);
 
   if (error) return "An error has occurred: " + error.message;

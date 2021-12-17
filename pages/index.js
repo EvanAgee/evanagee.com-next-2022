@@ -85,9 +85,8 @@ export default function Home({ posts }) {
                 developer. My wife Crys our daughter Liliana and I{" "}
                 <Link
                   href="/blog/were-moving-into-a-5th-wheel"
-                  className="text-primary-500"
                 >
-                  live full-time in a fifth wheel trailer
+                  <a className="text-primary-500">live full-time in a fifth wheel trailer</a>
                 </Link>{" "}
                 and travel the country. Currently we're camping in{" "}
                 <span className="text-primary-500">
@@ -104,13 +103,12 @@ export default function Home({ posts }) {
 
           <div className="flex flex-wrap justify-center gap-4 mt-12">
             <Link
-              className="button"
               href="/portfolio"
             >
-              View My Portfolio
+              <a className="button">View My Portfolio</a>
             </Link>
-            <Link className="button button-secondary" href="/resume">
-              My Resume
+            <Link href="/resume">
+              <a  className="button button-secondary">My Resume</a>
             </Link>
           </div>
         </div>

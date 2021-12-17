@@ -20,8 +20,10 @@ function Breadcrumbs({ className }) {
       >
         <li>
           <div>
-            <Link href="/" className="text-inherit hover:text-gray-200">
+            <Link href="/">
+              <a  className="text-inherit hover:text-gray-200">
               <FontAwesomeIcon icon={["fas", "home"]} />
+              </a>
             </Link>
           </div>
         </li>

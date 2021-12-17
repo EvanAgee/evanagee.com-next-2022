@@ -1,46 +1,96 @@
 import React, { useEffect, useContext } from "react";
 import Head from "next/head";
 import axios from "axios";
-import { fetchAPI } from "@/lib/api"
-import helpers from "@/helpers"
-import PostDetail from "@/components/Blog/Post"
+import { fetchAPI } from "@/lib/api";
+import helpers from "@/helpers";
+import PostDetail from "@/components/Blog/Post";
 import { useRouter } from "next/router";
 import { HeaderContext } from "@/context/HeaderContext";
+import Discussion from "@/components/Discussion";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import PrevNext from "@/components/PrevNext";
+import settings from "@/settings";
+import useMatchHeight from "@/hooks/useMatchHeight";
+import BadgeWrapper from "@/components/BadgeWrapper";
+import Carousel from "@/components/Carousel";
+import useBreakpoints from "@/hooks/useBreakpoints";
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 
-export default function Post({ post }) {
+export default function Post({ post, catPosts }) {
   const router = useRouter();
+  const { breakpoint } = useBreakpoints();
+  const { updateMatchedHeights } = useMatchHeight();
   const { setPageTitle, setOgData } = useContext(HeaderContext);
-  
+
   useEffect(() => {
-    setPageTitle(`${helpers.decodeHtml(post?.title?.rendered)}`);
-    setOgData({
-      ...post?.yoast_head_json,
-    });
+    setTimeout(() => {
+      setPageTitle(`${helpers.decodeHtml(post?.title?.rendered)}`);
+      setOgData({
+        ...post?.yoast_head_json,
+        ogImage: helpers.postImage(post, "large")[0]
+      });
+    }, 500)
   }, [router]);
 
   return (
-    <PostDetail data={post} style="full" />
+    <>
+      <div className="pl-6 pt-6"><Breadcrumbs /></div>
+      <PostDetail data={post} style="full" />
+      {/* <div className="bg-primary-50"><Discussion /></div> */}
+      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
+        <BadgeWrapper title={`More Posts in '${post.ea_categories[0].name}'`}>
+          <Carousel
+            slidesToShow={breakpoint.isLgUp ? 3 : 1}
+            className="bg-primary-50 bg-opacity-75"
+          >
+            {catPosts
+              .filter((c) => c.id !== post.id)
+              .map((c, i) => (
+                <PostGridWrapper
+                  key={i}
+                  className="pt-16 pb-20 w-full"
+                  counter={i}
+                  largeFirst={false}
+                >
+                  <PostDetail data={c} style="teaser" />
+                </PostGridWrapper>
+              ))}
+          </Carousel>
+        </BadgeWrapper>
+      )}
+
+      <PrevNext data={post} />
+    </>
   );
 }
 
 export async function getStaticProps(context) {
-  const posts = await fetch(`https://blog.evanagee.com/wp-json/wp/v2/posts?slug=${context.params.slug}`);
-  const res = await posts.json();
+  let post = await fetch(
+    `${settings.apiBase}/posts?slug=${context.params.slug}&per_page=1`
+  );
+  post = await post.json();
 
-  if (!res) {
+  if (!post) {
     return {
       notFound: true,
-    }
+    };
+  }
+
+  // Get posts that are in the same category
+  let catPosts = false;
+  if (post[0]?.categories && post[0]?.categories?.length > 0) {
+    let posts = await fetch(
+      `${settings.apiBase}/posts?categories=${post[0]?.categories[0]}&per_page=20`
+    );
+    catPosts = await posts.json();
   }
 
   return {
     props: {
-      post: res[0]
+      post: post[0],
+      catPosts,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 100, // In seconds
+    revalidate: 1
   };
 }
 
@@ -48,15 +98,18 @@ export async function getStaticProps(context) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
+  console.time("Getting static paths for posts");
   const allPosts = [];
   let page = 1;
   let keepGoing = true;
 
   while (keepGoing) {
-    const res = await fetch(`https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=100&page=${page}`)
-    const posts = await res.json()
+    const res = await fetch(
+      `https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50&page=${page}`
+    );
+    const posts = await res.json();
     if (posts.length > 0) {
-      posts.map(p => allPosts.push(p.slug))
+      posts.map((p) => allPosts.push(p.slug));
       page++;
     } else {
       keepGoing = false;
@@ -66,10 +119,11 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on posts
   const paths = allPosts.map((slug) => ({
     params: { slug: `${slug}` },
-  }))
+  }));
 
+  console.timeEnd("Getting static paths for posts");
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: false };
 }

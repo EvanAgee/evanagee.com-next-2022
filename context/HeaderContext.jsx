@@ -2,7 +2,6 @@ import React, { useState, createContext } from "react";
 import settings from "@/settings";
 import helpers from "@/helpers";
 import { useRouter } from "next/router";
-// import { useRouteMatch, useLocation } from "react-router-dom";
 export const HeaderContext = createContext();
 
 const ogDefaults = {

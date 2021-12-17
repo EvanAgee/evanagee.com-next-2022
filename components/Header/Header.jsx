@@ -94,7 +94,7 @@ export default function Header() {
         />
         <link
           rel="canonical"
-          href={`https://evanagee.com${location.pathname}`}
+          href={`https://evanagee.com${location.asPath}`}
         />
         <title>
           {ogData.title ? ogData.title : metaData?.title + " - Evan Agee"}
