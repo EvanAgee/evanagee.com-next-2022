@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
     const pageProps = this.props?.__NEXT_DATA__?.props?.pageProps;
 
     return (
-      <Html>
+      <Html className="scroll-smooth">
         <Head />
         <body
           className={classNames(

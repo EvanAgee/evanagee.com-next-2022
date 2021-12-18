@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { pageVariants } from "@/lib/animations";
 import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
+import Button from "@/components/Button";
 
 const RecentPosts = dynamic(() => import("../components/RecentPosts.jsx"));
 
@@ -104,12 +105,12 @@ export default function Home({ posts }) {
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Link href="/portfolio">
-                <a className="button">View My Portfolio</a>
-              </Link>
-              <Link href="/resume">
-                <a className="button button-secondary">My Resume</a>
-              </Link>
+              <Button href="/portfolio">
+                View My Portfolio
+              </Button>
+              <Button href="/resume" variant="secondary">
+                My Resume
+              </Button>
             </div>
           </div>
         </motion.section>
@@ -138,12 +139,12 @@ export default function Home({ posts }) {
         <motion.section variants={pageVariants.section}>
           <BadgeWrapper title="Recent Photos">
             <RecentPosts
-              containerClassName="grid-cols-2 lg:grid-cols-4"
+              containerClassName="grid-cols-2 lg:!grid-cols-4"
               postType="photos"
               style="grid"
               cardStyle="teaser"
-              count={breakpoint.isLgUp ? 4 : 2}
-              columns={breakpoint.isLgUp ? 4 : 2}
+              count={breakpoint.isMdDown ? 2 : 4}
+              columns={breakpoint.isMdDown ? 2 : 4}
             />
           </BadgeWrapper>
         </motion.section>

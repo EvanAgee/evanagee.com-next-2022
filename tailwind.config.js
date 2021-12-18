@@ -2,16 +2,27 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 const randomColors = Object.keys(colors).filter(
   (c) =>
-    c !== "black" &&
-    c !== "white" &&
-    c !== "gray" &&
-    c !== "coolGray" &&
-    c !== "neutral" &&
-    c !== "blueGray" &&
-    c !== "warmGray"
+    c === "amber" ||
+    c === "blue" ||
+    c === "green" ||
+    c === "indigo" ||
+    c === "orange" ||
+    c === "pink" ||
+    c === "purple" ||
+    c === "red" ||
+    c === "teal" ||
+    c === "lime" ||
+    c === "emerald" ||
+    c === "cyan" ||
+    c === "sky" ||
+    c === "violet" ||
+    c === "fuchsia" ||
+    c === "rose" ||
+    c === "lightBlue" ||
+    c === "yellow"
 );
-const primaryColor =
-  colors[randomColors[Math.floor(Math.random() * randomColors.length)]];
+const rando = Math.floor(Math.random() * randomColors.length);
+const primaryColor = colors[randomColors[rando]];
 
 module.exports = {
   content: [
@@ -42,7 +53,7 @@ module.exports = {
           800: "#712424",
           900: "#4C1818",
         },
-        primary: colors.cyan,
+        primary: primaryColor,
         secondary: colors.neutral,
       },
       typography: {

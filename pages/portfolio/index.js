@@ -7,6 +7,7 @@ import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import Filters from "@/components/Projects/Filters";
 import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
+import Button from "@/components/Button";
 
 function Portfolio() {
   const {
@@ -63,17 +64,16 @@ function Portfolio() {
             controls above.
           </p>
           <div className="flex gap-6 justify-center">
-            <Link href="/resume">
-              <a className="button">View My Resume</a>
-            </Link>
-            <a
+            <Button href="/resume">
+              View My Resume
+            </Button>
+            <Button
+              variant="secondary"
               href="https://vuewp.com"
-              rel="noopener noreferrer"
               target="_blank"
-              className="button"
             >
               Vue WordPress Training
-            </a>
+            </Button>
           </div>
         </header>
 

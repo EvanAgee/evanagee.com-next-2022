@@ -58,6 +58,15 @@
     }
   }
 
+  .gradient-text,
+  .primary-gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-primary-200 to-primary-800;
+  }
+
+  .secondary-gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-secondary-200 to-secondary-800;
+  }
+
   .button {
     @apply inline-flex w-auto px-4 py-3 text-white bg-primary-500 border-2 border-opacity-0 font-extrabold tracking-widest uppercase text-center justify-center font-display text-sm no-underline rounded-md lg:inline-flex lg:w-auto lg:px-6 shadow-lg shadow-primary-500/40;
 

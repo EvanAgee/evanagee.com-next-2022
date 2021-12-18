@@ -29,7 +29,7 @@ export default function HeaderNav() {
     };
     return (navRef.current.scrollLeft =
       d.percentage * d.navWidth -
-      window.screen.width * 0.5 +
+      window.outerWidth * 0.5 +
       d.activeWidth * 0.5);
   }, [location]);
 
@@ -106,7 +106,7 @@ export default function HeaderNav() {
                   </Link>
                 </li>
               ))}
-            <li>
+            <li className="lg:ml-auto">
               <a
                 href="https://twitter.com/EvanAgee"
                 target="_blank"

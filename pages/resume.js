@@ -9,6 +9,7 @@ import BadgeWrapper from "@/components/BadgeWrapper";
 import GenericCard from "@/components/GenericCard";
 import GridWrapper from "@/components/GridWrapper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@/components/Button";
 import * as Scroll from "react-scroll";
 
 function Resume() {
@@ -42,17 +43,12 @@ function Resume() {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center py-6">
-              <Link href="/portfolio">
-                <a className="button button-sm mr-2">View My Portfolio</a>
-              </Link>
-              <Scroll.Link
-                className="button button-sm"
-                to="history"
-                smooth={true}
-                offset={-50}
-              >
+              <Button href="/portfolio" className="mr-2">
+                View My Portfolio
+              </Button>
+              <Button href="#history" variant="secondary" smooth>
                 Employment History
-              </Scroll.Link>
+              </Button>
             </div>
           </div>
 
@@ -130,11 +126,13 @@ function Resume() {
         </section>
 
         <p className="text-center py-16">
-          <a href="mailto:evanagee@gmail.com" className="button">
+          <Button href="mailto:evanagee@gmail.com">
             Want to get in touch?
-          </a>
+          </Button>
         </p>
-        <Scroll.Element name="history">
+
+        <div></div>
+        <Scroll.Element id="history" name="history" className="scroll-mt-12">
           <div className="-mx-6 lg:-mx-12">
             <BadgeWrapper title={`Employment History`}>
               <GridWrapper wrapItems={false}>

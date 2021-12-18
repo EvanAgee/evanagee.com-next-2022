@@ -26,7 +26,7 @@ function Films({ feed, error }) {
           <a
             href="https://letterboxd.com/evanagee/"
             target="_blank"
-            className="w-auto flex items-center mx-auto font-display font-bold tracking-tighter text-lg justify-center not-prose"
+            className="w-auto flex items-center mx-auto font-display font-bold tracking-tighter text-lg justify-center not-prose decoration-transparent border-none"
           >
             <img
               src="assets/images/letterboxd-mac-icon.png"

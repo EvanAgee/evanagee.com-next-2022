@@ -1,5 +1,4 @@
 import React from "react";
-import helpers from "@/helpers";
 import WpApiContent from "@/components/WpApiContent";
 
 function Badge({ children }) {

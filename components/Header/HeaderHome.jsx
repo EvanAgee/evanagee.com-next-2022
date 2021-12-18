@@ -46,7 +46,7 @@ export default function HeaderHome() {
               delay: 0,
               duration: 0.5,
             }}
-            className="text-sm lg:text-lg leading-6 text-primary-500 font-semibold tracking-wide uppercase"
+            className="text-sm lg:text-lg leading-6 gradient-text font-semibold tracking-wide uppercase mb-6"
           >
             Creating killer web apps with
             <br />
@@ -65,9 +65,9 @@ export default function HeaderHome() {
               delay: 0.5,
               duration: 0.5,
             }}
-            className="mt-2 text-3xl lg:text-7xl font-extrabold text-gray-100 "
+            className="mt-2 text-3xl lg:text-7xl font-extrabold text-gray-100 !leading-none decoration-clone"
           >
-            I’m a web developer who specializes in JavaScript.
+            I’m a <span className="text-primary-500">web developer</span> who specializes in <span className="text-primary-500">JavaScript</span>.
           </motion.h1>
           <motion.p
             initial={{
@@ -96,7 +96,7 @@ export default function HeaderHome() {
             <a
               href="https://github.com/EvanAgee/vuejs-wordpress-theme-starter"
               target="_blank"
-              className="text-primary-500"
+              className="bg-primary-500 bg-opacity-30 text-white px-3 rounded-xl decoration-clone text-shadow py-0"
               rel="noreferrer"
             >
               Vuejs WordPress Theme Starter
@@ -105,7 +105,7 @@ export default function HeaderHome() {
             <a
               href="https://vuewp.com"
               target="_blank"
-              className={`text-primary-500`}
+              className={`bg-primary-500 bg-opacity-30 text-white px-3 rounded-xl decoration-clone text-shadow py-0`}
               rel="noreferrer"
             >
               VueWordPress

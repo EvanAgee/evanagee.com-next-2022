@@ -30,12 +30,12 @@ export default function Post({ post, catPosts }) {
         <Breadcrumbs />
       </div>
       <PostDetail data={post} style="full" />
-      {/* <div className="bg-primary-50"><Discussion /></div> */}
+      <div className="bg-primary-50"><Discussion /></div>
       {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
         <BadgeWrapper title={`More Posts in '${post.ea_categories[0].name}'`}>
           <Carousel
             slidesToShow={breakpoint.isLgUp ? 3 : 1}
-            className="bg-primary-50 bg-opacity-75"
+            className=" bg-opacity-75"
           >
             {catPosts
               .filter((c) => c.id !== post.id)

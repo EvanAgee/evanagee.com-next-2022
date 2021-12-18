@@ -10,6 +10,7 @@ import WpApiContent from "@/components/WpApiContent";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import PostMap from "@/components/Blog/PostMap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@/components/Button";
 
 function Post({ data, style, showImage }) {
   const { breakpoint, mediaQueries } = useBreakpoints();
@@ -338,13 +339,15 @@ function Post({ data, style, showImage }) {
             )}
 
             {style === "full" && process.env.NODE_ENV === "development" && (
-              <a
-                className="mt-16 button button-reversed button-black"
-                href={`https://blog.evanagee.com/wp-admin/post.php?post=${data.id}&action=edit`}
-                target="_blank"
-              >
-                Edit Post
-              </a>
+              <div className="mt-16">
+                <Button
+                  href={`https://blog.evanagee.com/wp-admin/post.php?post=${data.id}&action=edit`}
+                  target="_blank"
+                  variant="secondary"
+                >
+                  Edit Post
+                </Button>
+              </div>
             )}
           </main>
         )}
@@ -352,12 +355,12 @@ function Post({ data, style, showImage }) {
         {(style === "small" || style === "large") && (
           <div
             className={classNames("flex justify-center pt-8", {
-              "pt-16": style === "large",
+              "mt-16": style === "large",
             })}
           >
-            <Link href={`/blog/${data.slug}`}>
-              <a className="button">READ MORE</a>
-            </Link>
+            <Button href={`/blog/${data.slug}`} variant="secondary" hollow>
+              READ MORE
+            </Button>
           </div>
         )}
       </article>

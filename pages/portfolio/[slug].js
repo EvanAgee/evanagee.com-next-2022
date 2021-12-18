@@ -17,6 +17,7 @@ import ReactGA from "react-ga4";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { scroller } from "react-scroll";
 import Meta from "@/components/Meta";
+import Button from "@/components/Button";
 
 function Project({ project }) {
   const featuredImageRef = React.useRef();
@@ -200,29 +201,29 @@ function Project({ project }) {
 
         <div className="flex items-center justify-center gap-6">
           {"project_url" in project.acf && project.acf.project_url !== "" && (
-            <a
+            <Button
+              variant="secondary"
               href={project.acf.project_url}
               target="_blank"
               rel="external"
-              className="button button-sm"
             >
               View Project
-            </a>
+            </Button>
           )}
 
           {breakpoint.isLgUp && process.env.NODE_ENV !== "production" && (
-            <a
-              className="button button-black button-sm"
+            <Button
+              variant="secondary"
               href={`https://blog.evanagee.com/wp-admin/post.php?post=${project.id}&action=edit`}
               target="_blank"
             >
               Edit Project
-            </a>
+            </Button>
           )}
 
-          <Link href="/portfolio">
-            <a className="button button-sm">Back to Portfolio</a>
-          </Link>
+          <Button href="/portfolio">
+            Back to Portfolio
+          </Button>
         </div>
 
         <div className="text-xs text-center my-6 font-display">
