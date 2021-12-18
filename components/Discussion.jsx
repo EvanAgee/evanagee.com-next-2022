@@ -13,7 +13,9 @@ function Discussion() {
   React.useEffect(() => {
     const interval = setInterval(() => {
       if (!ref?.current) return;
-      const iframes = Array.from(ref.current.querySelectorAll("#disqus_thread iframe"));
+      const iframes = Array.from(
+        ref.current.querySelectorAll("#disqus_thread iframe")
+      );
       if (iframes.length > 1) iframes[0].classList.add("hidden");
       if (iframes.length > 0) clearInterval(interval);
     }, 1000);

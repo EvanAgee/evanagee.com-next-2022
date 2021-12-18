@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import classNames from "classnames";
 import Header from "@/components/Header/Header";
-import Head from 'next/head'
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { HeaderProvider } from "@/context/HeaderContext";
 import { ThemeContext } from "@/context/ThemeContext";
@@ -23,13 +23,16 @@ function App({ children }) {
   return (
     <HeaderProvider>
       <Head>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:400,900|Montserrat:400,500,600,700,800&display=swap"
-        rel="stylesheet"
-      />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:400,900|Montserrat:400,500,600,700,800&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <QueryClientProvider client={queryClient}>
         <div

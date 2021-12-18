@@ -1,2 +1,2 @@
 import PhotoIndex from "@/pages/photos/index";
-export default PhotoIndex
+export default PhotoIndex;

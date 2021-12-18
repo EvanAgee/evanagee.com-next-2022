@@ -78,7 +78,8 @@ function Filters({ filters, onChange, results, className }) {
               "mr-6": breakpoint.isLgUp || filtersVisible,
             })}
           >
-            <strong className="text-black dark:text-white">{results}</strong> Posts Found
+            <strong className="text-black dark:text-white">{results}</strong>{" "}
+            Posts Found
           </div>
         )}
 

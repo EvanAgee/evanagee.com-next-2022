@@ -1,2 +1,2 @@
 import BlogIndex from "@/pages/blog/index";
-export default BlogIndex
+export default BlogIndex;

@@ -10,7 +10,7 @@
       "@/layouts/*": ["layouts/*"],
       "@/settings": ["./settings.js"],
       "@/content": ["./content.js"],
-      "@/helpers": ["./helpers.js"],
+      "@/helpers": ["./helpers.js"]
     }
   }
 }

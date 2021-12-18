@@ -1,2 +1,2 @@
-import Portfolio from "@/pages/portfolio/index"
-export default Portfolio
+import Portfolio from "@/pages/portfolio/index";
+export default Portfolio;

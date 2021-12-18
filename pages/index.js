@@ -8,10 +8,10 @@ import WpApiContent from "@/components/WpApiContent";
 import BadgeWrapper from "@/components/BadgeWrapper";
 import { motion } from "framer-motion";
 import { pageVariants } from "@/lib/animations";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
 
-const RecentPosts = dynamic(() => import('../components/RecentPosts.jsx'))
+const RecentPosts = dynamic(() => import("../components/RecentPosts.jsx"));
 
 const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426991/evanagee.com/27E4E7A7-CC69-4D72-B18E-9385B1072840.jpg",
@@ -23,11 +23,10 @@ const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426981/evanagee.com/8C574DF9-8924-4EBD-A03A-5FA2450B1E82_1_105_c.jpg",
 ];
 
-
 export default function Home({ posts }) {
   const { breakpoint } = useBreakpoints();
   const [randomImage, setRandomImage] = React.useState(myImages[0]);
-  const [name, setName] = React.useState("")
+  const [name, setName] = React.useState("");
 
   React.useEffect(() => {
     let counter = 0;
@@ -48,114 +47,119 @@ export default function Home({ posts }) {
     return () => clearInterval(timer);
   }, []);
 
-  return (<>
-    <Meta />
-    <motion.div
-      variants={pageVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      data-test-id="home-page"
-    >
-      <motion.section
-        variants={pageVariants.section}
-        id="about"
-        className="px-6 py-12 lg:px-16 lg:py-16"
+  return (
+    <>
+      <Meta />
+      <motion.div
+        variants={pageVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        data-test-id="home-page"
       >
-        <div className="relative mb-16 text-center max-w-md mx-auto">
-          <div
-            className={classNames(
-              "absolute inset-0 bg-gradient-to-r from-secondary-700 to-primary-500 shadow-lg transition-transform transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl",
-            )}
-          ></div>
-          <img
-            loading="lazy"
-            src={randomImage}
-            alt="Evan Agee"
-            width="366"
-            height="366"
-            className="relative border-8 border-gray-200 mx-auto"
-          />
-        </div>
+        <motion.section
+          variants={pageVariants.section}
+          id="about"
+          className="px-6 py-12 lg:px-16 lg:py-16"
+        >
+          <div className="relative mb-16 text-center max-w-md mx-auto">
+            <div
+              className={classNames(
+                "absolute inset-0 bg-gradient-to-r from-secondary-700 to-primary-500 shadow-lg transition-transform transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
+              )}
+            ></div>
+            <img
+              loading="lazy"
+              src={randomImage}
+              alt="Evan Agee"
+              width="366"
+              height="366"
+              className="relative border-8 border-gray-200 mx-auto"
+            />
+          </div>
 
-        <div className=" mt-20 lg:mt-0 mx-auto">
-          <div className="prose lg:prose-xl mx-auto">
-            <div className="up-title">A little about me...</div>
-            <p>
-              <strong className="font-semibold font-display">
-                Hey, I'm Evan Agee (pronounced A.G.) and I'm a full-stack web
-                developer. My wife Crys our daughter Liliana and I{" "}
-                <Link
-                  href="/blog/were-moving-into-a-5th-wheel"
-                >
-                  <a className="text-primary-500">live full-time in a fifth wheel trailer</a>
-                </Link>{" "}
-                and travel the country. Currently we're camping in{" "}
-                <span className="text-primary-500">
-                  {content.currentLocation}
-                </span>
-                .
-              </strong>
-            </p>
+          <div className=" mt-20 lg:mt-0 mx-auto">
+            <div className="prose lg:prose-xl mx-auto">
+              <div className="up-title">A little about me...</div>
+              <p>
+                <strong className="font-semibold font-display">
+                  Hey, I'm Evan Agee (pronounced A.G.) and I'm a full-stack web
+                  developer. My wife Crys our daughter Liliana and I{" "}
+                  <Link href="/blog/were-moving-into-a-5th-wheel">
+                    <a className="text-primary-500">
+                      live full-time in a fifth wheel trailer
+                    </a>
+                  </Link>{" "}
+                  and travel the country. Currently we're camping in{" "}
+                  <span className="text-primary-500">
+                    {content.currentLocation}
+                  </span>
+                  .
+                </strong>
+              </p>
 
-            <div className="columns-1">
-              <WpApiContent content={content.bioBlurb} />
+              <div className="columns-1">
+                <WpApiContent content={content.bioBlurb} />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
+              <Link href="/portfolio">
+                <a className="button">View My Portfolio</a>
+              </Link>
+              <Link href="/resume">
+                <a className="button button-secondary">My Resume</a>
+              </Link>
             </div>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-4 mt-12">
-            <Link
-              href="/portfolio"
-            >
-              <a className="button">View My Portfolio</a>
-            </Link>
-            <Link href="/resume">
-              <a  className="button button-secondary">My Resume</a>
-            </Link>
-          </div>
-        </div>
-      </motion.section>
-      <motion.section variants={pageVariants.section} className="bg-primary-50 pb-6">
-        <BadgeWrapper title="Recent Blog Posts">
-          <RecentPosts
-            style="grid"
-            cardStyle="teaser"
-            count={breakpoint.isLgUp ? 2 : 2}
-          />
-        </BadgeWrapper>
-      </motion.section>
-      <motion.section variants={pageVariants.section}>
-        <BadgeWrapper title="Recent Projects" className="">
-          <RecentPosts
-            style="grid"
-            postType="projects"
-            cardStyle="teaser"
-            count={breakpoint.isLgUp ? 2 : 1}
-          />
-        </BadgeWrapper>
-      </motion.section>
-      <motion.section variants={pageVariants.section}>
-        <BadgeWrapper title="Recent Photos">
-          <RecentPosts
-            containerClassName="grid-cols-2 lg:grid-cols-4"
-            postType="photos"
-            style="grid"
-            cardStyle="teaser"
-            count={breakpoint.isLgUp ? 4 : 2}
-            columns={breakpoint.isLgUp ? 4 : 2}
-          />
-        </BadgeWrapper>
-      </motion.section>
-    </motion.div>
-  </>);
+        </motion.section>
+        <motion.section
+          variants={pageVariants.section}
+          className="bg-primary-50 pb-6"
+        >
+          <BadgeWrapper title="Recent Blog Posts">
+            <RecentPosts
+              style="grid"
+              cardStyle="teaser"
+              count={breakpoint.isLgUp ? 2 : 2}
+            />
+          </BadgeWrapper>
+        </motion.section>
+        <motion.section variants={pageVariants.section}>
+          <BadgeWrapper title="Recent Projects" className="">
+            <RecentPosts
+              style="grid"
+              postType="projects"
+              cardStyle="teaser"
+              count={breakpoint.isLgUp ? 2 : 1}
+            />
+          </BadgeWrapper>
+        </motion.section>
+        <motion.section variants={pageVariants.section}>
+          <BadgeWrapper title="Recent Photos">
+            <RecentPosts
+              containerClassName="grid-cols-2 lg:grid-cols-4"
+              postType="photos"
+              style="grid"
+              cardStyle="teaser"
+              count={breakpoint.isLgUp ? 4 : 2}
+              columns={breakpoint.isLgUp ? 4 : 2}
+            />
+          </BadgeWrapper>
+        </motion.section>
+      </motion.div>
+    </>
+  );
 }
 
 export async function getStaticProps() {
-  const posts = await fetch('https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50');
+  const posts = await fetch(
+    "https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50"
+  );
   const res = await posts.json();
   return {
     props: {
-      posts: res
+      posts: res,
     },
   };
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { css } from "@emotion/css";
-import Image from 'next/image'
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 import helpers from "@/helpers";
 import TagList from "@/components/TagList";
 import Categories from "@/components/Blog/Meta/Categories";
@@ -12,7 +12,6 @@ import PostMap from "@/components/Blog/PostMap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Post({ data, style, showImage }) {
-  if (!data) return;
   const { breakpoint, mediaQueries } = useBreakpoints();
   const image = React.useMemo(() => {
     return helpers.postImage(
@@ -76,12 +75,9 @@ function Post({ data, style, showImage }) {
               }
             )}
           >
-            <Link
-              href={`/blog/${data.slug}`}
-              
-            >
+            <Link href={`/blog/${data.slug}`}>
               <a className="text-inherit flex items-center justify-center">
-              <WpApiContent content={data.title.rendered} />
+                <WpApiContent content={data.title.rendered} />
               </a>
             </Link>
           </h3>
@@ -142,7 +138,7 @@ function Post({ data, style, showImage }) {
                   />
                 ) : (
                   <div className="inset-0 absolute object-cover w-full h-full object-center shadow-lg rounded-2xl bg-gray-200 flex items-center justify-center text-gray-300">
-                    <FontAwesomeIcon size="2x" icon={['fal', 'images']} />
+                    <FontAwesomeIcon size="2x" icon={["fal", "images"]} />
                   </div>
                 )}
               </Link>
@@ -181,7 +177,9 @@ function Post({ data, style, showImage }) {
                 className={classNames(
                   "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none",
                   css`
-                    h2,h3,h4 {
+                    h2,
+                    h3,
+                    h4 {
                       position: relative;
                       display: inline-block;
 
@@ -258,7 +256,7 @@ function Post({ data, style, showImage }) {
                           width: 100%;
                         }
                       }
-                      
+
                       &.size-full {
                         margin: var(--p-6) calc(-1 * var(--p-6));
 
@@ -357,9 +355,7 @@ function Post({ data, style, showImage }) {
               "pt-16": style === "large",
             })}
           >
-            <Link
-              href={`/blog/${data.slug}`}
-            >
+            <Link href={`/blog/${data.slug}`}>
               <a className="button">READ MORE</a>
             </Link>
           </div>

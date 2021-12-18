@@ -166,7 +166,7 @@ const settings = {
       title: "NotFound",
       disabledInNav: true,
     },
-  ]
+  ],
 };
 
 export default settings;

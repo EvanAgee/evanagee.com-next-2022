@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import ReactGA from "react-ga4";
 import TagManager from "react-gtm-module";
 import LogRocket from "logrocket";
-import App from "@/layouts/App"
+import App from "@/layouts/App";
 
 const tagManagerArgs = {
   gtmId: settings.gtmID,

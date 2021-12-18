@@ -31,13 +31,12 @@ function TagList({
       )}
       {items.map((t, i) => (
         <li className={classNames("leading-none  list-none")} key={i}>
-          <Link
-            href={isCurrentLink(t) ? resetPath : t.link}
-          ><a className="text-primary-500 bg-primary-100 dark:bg-primary-700 dark:text-primary-100 px-2 py-1 block leading-none rounded-md flex items-center">
-            {helpers.decodeHtml(t.name)}
-            {isCurrentLink(t) && (
-              <FontAwesomeIcon className="ml-2" icon={["fal", "times"]} />
-            )}
+          <Link href={isCurrentLink(t) ? resetPath : t.link}>
+            <a className="text-primary-500 bg-primary-100 dark:bg-primary-700 dark:text-primary-100 px-2 py-1 block leading-none rounded-md flex items-center">
+              {helpers.decodeHtml(t.name)}
+              {isCurrentLink(t) && (
+                <FontAwesomeIcon className="ml-2" icon={["fal", "times"]} />
+              )}
             </a>
           </Link>
         </li>

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { css } from "@emotion/css";
 import classNames from "classnames";
-import Img from "next/image"
+import Img from "next/image";
 import Loader from "@/components/Loaders/Loader";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -21,7 +21,9 @@ import Meta from "@/components/Meta";
 function Project({ project }) {
   const featuredImageRef = React.useRef();
   const { breakpoint, mediaQueries } = useBreakpoints();
-  const [featuredImage, setFeaturedImage] = useState(helpers.postImage(project, "large"));
+  const [featuredImage, setFeaturedImage] = useState(
+    helpers.postImage(project, "large")
+  );
 
   React.useEffect(() => {
     if (!project) return;
@@ -46,8 +48,7 @@ function Project({ project }) {
     });
 
     image.addEventListener("load", () => {
-      setFeaturedImage([url,
-      image.naturalWidth, image.naturalHeight]);
+      setFeaturedImage([url, image.naturalWidth, image.naturalHeight]);
     });
   };
 

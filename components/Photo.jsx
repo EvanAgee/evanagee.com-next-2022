@@ -65,9 +65,7 @@ function Photos({
     if (!isLoading && !error && data && "data" in data) {
       loadNewImage();
 
-      interval = cycle
-        ? setInterval(loadNewImage, cycleInterval)
-        : false;
+      interval = cycle ? setInterval(loadNewImage, cycleInterval) : false;
     }
 
     return () => (interval ? clearInterval(interval) : null);

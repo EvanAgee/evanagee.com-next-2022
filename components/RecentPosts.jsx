@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import settings from "@/settings";
 // import { Link, useHistory } from "react-router-dom";
-import Link from "next/link"
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Post from "@/components/Blog/Post";
 import helpers from "@/helpers";
@@ -19,7 +19,7 @@ const RecentPosts = ({
   count,
   cardStyle,
   containerClassName,
-  columns
+  columns,
 }) => {
   let history = useRouter();
   const { isLoading, error, data } = useQuery(
@@ -46,7 +46,7 @@ const RecentPosts = ({
             >
               <Link href={`blog/${d.slug}`}>
                 <a>
-                <WpApiContent content={d.title.rendered} />
+                  <WpApiContent content={d.title.rendered} />
                 </a>
               </Link>
             </li>
@@ -98,7 +98,7 @@ RecentPosts.defaultProps = {
   cardStyle: "small",
   postType: "posts",
   useRef: false,
-  columns: 2
+  columns: 2,
 };
 
 export default React.memo(RecentPosts);

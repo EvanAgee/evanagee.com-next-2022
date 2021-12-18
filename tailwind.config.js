@@ -1,17 +1,27 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
-const randomColors = Object.keys(colors).filter(c => c !== 'black' && c !== 'white' && c !== 'gray' && c !== 'coolGray' && c !== 'neutral' && c !== 'blueGray' && c !== 'warmGray');
-const primaryColor = colors[randomColors[Math.floor(Math.random()*randomColors.length)]];
+const randomColors = Object.keys(colors).filter(
+  (c) =>
+    c !== "black" &&
+    c !== "white" &&
+    c !== "gray" &&
+    c !== "coolGray" &&
+    c !== "neutral" &&
+    c !== "blueGray" &&
+    c !== "warmGray"
+);
+const primaryColor =
+  colors[randomColors[Math.floor(Math.random() * randomColors.length)]];
 
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './hooks/**/*.{js,ts,jsx,tsx}',
-    './context/**/*.{js,ts,jsx,tsx}',
-    './layouts/**/*.{js,ts,jsx,tsx}',
-    './hooks/**/*.{js,ts,jsx,tsx}',
-    './css/*.{css}'
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./hooks/**/*.{js,ts,jsx,tsx}",
+    "./context/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./hooks/**/*.{js,ts,jsx,tsx}",
+    "./css/*.{css}",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -33,7 +43,7 @@ module.exports = {
           900: "#4C1818",
         },
         primary: colors.cyan,
-        secondary: colors.neutral
+        secondary: colors.neutral,
       },
       typography: {
         xl: {
@@ -71,4 +81,4 @@ module.exports = {
       }
     ),
   ],
-}
+};

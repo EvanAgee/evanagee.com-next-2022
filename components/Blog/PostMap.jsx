@@ -18,96 +18,96 @@ function PostMap({ lat, lng, zoom, title }) {
   });
 
   return (
-      <div className="h-96 max-w-screen-md mx-auto rounded-lg overflow-hidden shadow-xl relative">
-        <ReactMapGL
-          {...viewport}
-          width="100%"
-          attributionControl={false}
-          height="100%"
-          onViewportChange={(viewport) => setViewport(viewport)}
-          mapboxApiAccessToken="pk.eyJ1IjoiZXZhbmFnZWUiLCJhIjoiY2p3dTIxcGUzMHBiMjRhbXFwcHZ3aDd3dSJ9.Em5VUywB66v7GShAIRyYmw"
-          className={css`
-            .mapboxgl-ctrl {
-              display: none !important;
-            }
-          `}
-        >
-          <Marker longitude={Number(lng)} latitude={Number(lat)}>
-            <svg
-              height={SIZE}
-              viewBox="0 0 24 24"
-              style={{
-                cursor: "pointer",
-                fill: `var(--color-primary-500)`,
-                stroke: "none",
-                transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
-              }}
-              onClick={() => onClick(city)}
-            >
-              <path d={ICON} />
-            </svg>
-          </Marker>
-
-          <Popup
-            tipSize={5}
-            anchor="top"
-            longitude={Number(lng)}
-            latitude={Number(lat)}
-            closeOnClick={false}
-            offsetTop={5}
-            className={
-              ("text-gray-500 ",
-              css`
-                pointer-events: none;
-                .mapboxgl-popup-content {
-                  border-radius: 0.5rem;
-                  padding: 1.5rem;
-                  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.2);
-                  background-color: rgb(255, 255, 255);
-                  color: #414042;
-                }
-
-                .mapboxgl-popup-close-button {
-                  color: inherit;
-                  margin-top: 0;
-                  margin-right: 5px;
-                  display: none;
-                }
-
-                &.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
-                &.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
-                &.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-                  border-bottom-color: rgb(255, 255, 255);
-                }
-
-                &.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-                  border-left-color: rgb(255, 255, 255);
-                }
-
-                &.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-                  border-top-color: rgb(255, 255, 255);
-                }
-
-                &.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-                  border-right-color: rgb(255, 255, 255);
-                }
-              `)
-            }
+    <div className="h-96 max-w-screen-md mx-auto rounded-lg overflow-hidden shadow-xl relative">
+      <ReactMapGL
+        {...viewport}
+        width="100%"
+        attributionControl={false}
+        height="100%"
+        onViewportChange={(viewport) => setViewport(viewport)}
+        mapboxApiAccessToken="pk.eyJ1IjoiZXZhbmFnZWUiLCJhIjoiY2p3dTIxcGUzMHBiMjRhbXFwcHZ3aDd3dSJ9.Em5VUywB66v7GShAIRyYmw"
+        className={css`
+          .mapboxgl-ctrl {
+            display: none !important;
+          }
+        `}
+      >
+        <Marker longitude={Number(lng)} latitude={Number(lat)}>
+          <svg
+            height={SIZE}
+            viewBox="0 0 24 24"
+            style={{
+              cursor: "pointer",
+              fill: `var(--color-primary-500)`,
+              stroke: "none",
+              transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
+            }}
+            onClick={() => onClick(city)}
           >
-            <h3>{title}</h3>
-          </Popup>
-          <NavigationControl
-            showCompass={false}
-            className={css`
-              position: absolute;
-              bottom: 1rem;
-              right: 1rem;
-              max-width: 29px;
-              z-index: 10000;
-            `}
-          />
-        </ReactMapGL>
-      </div>
+            <path d={ICON} />
+          </svg>
+        </Marker>
+
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={Number(lng)}
+          latitude={Number(lat)}
+          closeOnClick={false}
+          offsetTop={5}
+          className={
+            ("text-gray-500 ",
+            css`
+              pointer-events: none;
+              .mapboxgl-popup-content {
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.2);
+                background-color: rgb(255, 255, 255);
+                color: #414042;
+              }
+
+              .mapboxgl-popup-close-button {
+                color: inherit;
+                margin-top: 0;
+                margin-right: 5px;
+                display: none;
+              }
+
+              &.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+              &.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
+              &.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+                border-bottom-color: rgb(255, 255, 255);
+              }
+
+              &.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+                border-left-color: rgb(255, 255, 255);
+              }
+
+              &.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+                border-top-color: rgb(255, 255, 255);
+              }
+
+              &.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+                border-right-color: rgb(255, 255, 255);
+              }
+            `)
+          }
+        >
+          <h3>{title}</h3>
+        </Popup>
+        <NavigationControl
+          showCompass={false}
+          className={css`
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            max-width: 29px;
+            z-index: 10000;
+          `}
+        />
+      </ReactMapGL>
+    </div>
   );
 }
 

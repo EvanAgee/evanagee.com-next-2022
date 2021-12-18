@@ -66,13 +66,14 @@ function Filter({
       }),
       option: (provided, state) => ({
         ...provided,
-        backgroundColor: state.isSelected || state.isFocused
-          ? pageTheme === "dark"
-            ? "rgba(255,255,255,0.2)"
-            : "rgba(0,0,0,0.1)"
-          : pageTheme === "dark"
-          ? "rgba(0,0,0,0.8)"
-          : "rgba(255,255,255,0.8)",
+        backgroundColor:
+          state.isSelected || state.isFocused
+            ? pageTheme === "dark"
+              ? "rgba(255,255,255,0.2)"
+              : "rgba(0,0,0,0.1)"
+            : pageTheme === "dark"
+            ? "rgba(0,0,0,0.8)"
+            : "rgba(255,255,255,0.8)",
       }),
       multiValue: (provided) => ({
         ...provided,

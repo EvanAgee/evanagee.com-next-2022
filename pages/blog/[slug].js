@@ -23,10 +23,12 @@ export default function Post({ post, catPosts }) {
         title={`${helpers.decodeHtml(post?.title?.rendered)}`}
         ogData={{
           ...post?.yoast_head_json,
-          ogImage: helpers.postImage(post, "large")[0]
+          ogImage: helpers.postImage(post, "large")[0],
         }}
       />
-      <div className="pl-6 pt-6"><Breadcrumbs /></div>
+      <div className="pl-6 pt-6">
+        <Breadcrumbs />
+      </div>
       <PostDetail data={post} style="full" />
       {/* <div className="bg-primary-50"><Discussion /></div> */}
       {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
@@ -82,7 +84,7 @@ export async function getStaticProps(context) {
       post: post[0],
       catPosts,
     },
-    revalidate: 1
+    revalidate: 1,
   };
 }
 

@@ -58,18 +58,24 @@ function Photos() {
 
   return (
     <>
-      <Meta title={filterType ? `Photos ${
-        filterType === "photo_album"
-          ? `in the ${filterTerm.split("|")[1]} album`
-          : `tagged with ${filterTerm.split("|")[1]}`
-      }` : false}  />
+      <Meta
+        title={
+          filterType
+            ? `Photos ${
+                filterType === "photo_album"
+                  ? `in the ${filterTerm.split("|")[1]} album`
+                  : `tagged with ${filterTerm.split("|")[1]}`
+              }`
+            : false
+        }
+      />
       <div className="" data-test-id="photo-index">
-      <Filters
-            filters={filters}
-            onChange={setFilters}
-            results={resultCount}
-            className="sticky top-0 z-10"
-          />
+        <Filters
+          filters={filters}
+          onChange={setFilters}
+          results={resultCount}
+          className="sticky top-0 z-10"
+        />
         {isLoading ? (
           <div className="grid lg:grid-cols-4 gap-0 divide-x divide-y divide-gray-800">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((d, ii) => (
@@ -85,7 +91,10 @@ function Photos() {
                   `
                 )}
               >
-                <Loader className="absolute top-1/2 transform -translate-y-1/2 left-1/2 -translate-x-1/2" color="var(--color-gray-600)" />
+                <Loader
+                  className="absolute top-1/2 transform -translate-y-1/2 left-1/2 -translate-x-1/2"
+                  color="var(--color-gray-600)"
+                />
               </div>
             ))}
           </div>

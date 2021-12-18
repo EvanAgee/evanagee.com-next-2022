@@ -14,23 +14,23 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
   const [filters, setFilters] = React.useState(initialFilters);
 
   React.useEffect(() => {
-    if (router.pathname === '/blog/categories/[filterTerm]') {
+    if (router.pathname === "/blog/categories/[filterTerm]") {
       return setFilterType("categories");
     }
 
-    if (router.pathname === '/blog/tags/[filterTerm]') {
+    if (router.pathname === "/blog/tags/[filterTerm]") {
       return setFilterType("tags");
     }
 
-    if (router.pathname === '/photos/photo_album/[filterTerm]') {
+    if (router.pathname === "/photos/photo_album/[filterTerm]") {
       return setFilterType("photo_album");
     }
 
-    if (router.pathname === '/photos/photo_tags/[filterTerm]') {
+    if (router.pathname === "/photos/photo_tags/[filterTerm]") {
       return setFilterType("photo_tags");
     }
 
-    if (router.pathname === '/portfolio/tags/[filterTerm]') {
+    if (router.pathname === "/portfolio/tags/[filterTerm]") {
       return setFilterType("tags");
     }
   }, [router]);
@@ -56,13 +56,14 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
     if (queryID === "searchIndex" && "data" in data) {
       await Promise.all(
         data.data.map(async (d, i) => {
-          const additionalData = await axios.get(`${settings.apiBase}/${d.subtype}s/${d.id}`, {
-            params: {
-              per_page: 1,
-            },
-          });
-
-         
+          const additionalData = await axios.get(
+            `${settings.apiBase}/${d.subtype}s/${d.id}`,
+            {
+              params: {
+                per_page: 1,
+              },
+            }
+          );
 
           data.data[i] = {
             ...data.data[i],

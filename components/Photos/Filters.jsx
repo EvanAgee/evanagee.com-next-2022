@@ -31,7 +31,7 @@ function Filters({ filters, onChange, results, className }) {
       >
         <FontAwesomeIcon icon={["fas", "filter"]} />
       </button>
-      
+
       <div
         className={classNames(
           "overflow-hidden flex items-center transition-all duration-300",
@@ -40,36 +40,36 @@ function Filters({ filters, onChange, results, className }) {
           `
         )}
       >
-          <div className="flex items-center mr-6">
-            <strong className="inline-block font-display uppercase mr-4 text-xs">
-              Albums
-            </strong>
-            <div style={{ minWidth: "250px" }}>
-              <Filter
-                filters={filters}
-                isMulti={true}
-                querySlug="photo_album"
-                filterKey="photo_album"
-                onChange={updateFilters}
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center mr-6">
-            <strong className="inline-block font-display uppercase mr-4 text-xs">
-              Tags
-            </strong>
-            <div style={{ minWidth: "250px" }}>
-              <Filter
-                isMulti={true}
-                filters={filters}
-                querySlug="photo_tags"
-                filterKey="photo_tags"
-                onChange={updateFilters}
-              />
-            </div>
+        <div className="flex items-center mr-6">
+          <strong className="inline-block font-display uppercase mr-4 text-xs">
+            Albums
+          </strong>
+          <div style={{ minWidth: "250px" }}>
+            <Filter
+              filters={filters}
+              isMulti={true}
+              querySlug="photo_album"
+              filterKey="photo_album"
+              onChange={updateFilters}
+            />
           </div>
         </div>
+
+        <div className="flex items-center mr-6">
+          <strong className="inline-block font-display uppercase mr-4 text-xs">
+            Tags
+          </strong>
+          <div style={{ minWidth: "250px" }}>
+            <Filter
+              isMulti={true}
+              filters={filters}
+              querySlug="photo_tags"
+              filterKey="photo_tags"
+              onChange={updateFilters}
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="ml-auto flex items-center">
         {results > 0 && (
@@ -78,7 +78,8 @@ function Filters({ filters, onChange, results, className }) {
               "mr-6": breakpoint.isLgUp || filtersVisible,
             })}
           >
-            <strong className="text-black dark:text-white">{results}</strong> Photos Found
+            <strong className="text-black dark:text-white">{results}</strong>{" "}
+            Photos Found
           </div>
         )}
 

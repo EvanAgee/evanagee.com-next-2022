@@ -50,7 +50,7 @@ const GridWrapper = function ({
 GridWrapper.defaultProps = {
   largeFirst: false,
   wrapItems: true,
-  columns: 2
+  columns: 2,
 };
 
 export default React.memo(GridWrapper);

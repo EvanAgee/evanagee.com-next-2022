@@ -19,7 +19,7 @@ export default {
       tags: ["JavaScript", "React", "WordPress", "HTML/CSS"],
       logo: "memory-net-logo.png",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Web Application Developer",
@@ -31,7 +31,7 @@ export default {
       tags: ["Rails", "Vuejs", "React", "JavaScript", "HTML/CSS"],
       logo: "gateway-church-logo.png",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Front-end Developer",
@@ -41,7 +41,7 @@ export default {
       description: `Worked as part of a small team of developers on a variety of Rails and React projects.`,
       tags: ["JavaScript", "React", "Rails", "HTML/CSS", "Google Cloud"],
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Senior Developer",
@@ -53,7 +53,7 @@ export default {
       tags: ["Docker", "Nuxt", "Vuejs", "JavaScript", "Azure", "HTML/CSS"],
       logo: "koch-logo.jpg",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Web Application Developer",
@@ -71,7 +71,7 @@ export default {
       tags: ["Vuejs", "Firebase", "HTML/CSS"],
       logo: "carb-manager-logo.png",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Senior Developer",
@@ -86,7 +86,7 @@ export default {
       </ul>`,
       tags: ["WordPress", "JavaScript", "React", "Vuejs", "HTML/CSS"],
       logo: "beanstalk-logo.png",
-      remote: true
+      remote: true,
     },
     {
       title: "Senior Front-End Engineer",
@@ -96,14 +96,14 @@ export default {
       description: `During my time at 10up I worked on several large-scale WordPress-based applications. I worked with a few notable clients including NPR affiliate WAMU (home of Diane Rehm) and Facebook.`,
       tags: ["WordPress", "JavaScript", "React", "HTML/CSS"],
       logo: "10up-logo.png",
-      remote: true
+      remote: true,
     },
     {
       title: "Senior Developer",
       company: "Gateway Church",
       start_date: "February 2012",
       end_date: "February 2018",
-      location: 'Southlake, TX',
+      location: "Southlake, TX",
       description: `
       <p>I have a passion for equipping the Church with powerful, state-of-the-art tools to help them serve their congregations and the world. Gateway was the perfect place for me to put that passion to work! Working with an amazing team of developers we produced award-winning work that we were incredibly proud of.</p>
       <ul>
@@ -121,7 +121,7 @@ export default {
       company: "G2 Technology",
       start_date: "September 2008",
       end_date: "July 2011",
-      location: 'San Jose, CA',
+      location: "San Jose, CA",
       description: `
       <p>My position at G2 Technology was one of the more interesting of my career. What started as myself and a product owner (an SEO expert) working to build a robust, SEO-focused custom CMS turned into a team of around 10 people after our product was acquired by G2.</p>
       <ul>
@@ -132,14 +132,14 @@ export default {
       tags: ["PHP", "JavaScript", "Grails", "HTML/CSS"],
       logo: "g2-logo.png",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Lead Web Developer",
       company: "AuctionFloor.com",
       start_date: "February 2007",
       end_date: "August 2007",
-      location: 'Indianapolis, IN',
+      location: "Indianapolis, IN",
       description: `<p>AuctionFloor.com was focused on becoming the standard for real-time online auctions. I worked as part of a small team of two developers to develop the platform that allowed auctioneers (or their assistants) to manage their on-location auction with online bidders. It was a cool project!</p><ul>
       <li>Helped redesign and redevelop a robust web-based online auction management system.</li>
       <li>Assisted with company re-branding.</li>
@@ -149,14 +149,14 @@ export default {
       tags: ["PHP", "HTML/CSS"],
       logo: "auction-floor-logo.png",
       remote: true,
-      contract: true
+      contract: true,
     },
     {
       title: "Web Designer",
       company: "Summersault Website Development",
       start_date: "July 2000",
       end_date: "February 2007",
-      location: 'Richmond, IN',
+      location: "Richmond, IN",
       description: `<p>Summersault was my first dev job and I loved it. I learned so many things during my time there working on countless client projects. In those days a "web designer", as we were called, I was responsible for creating designs comps for each project and iterating on this with client feedback. Once the design was approved I would then begin building out the front end.</p><ul>
       <li>Responsible for the design, development, quality assurance and launch of the majority of projects.
       </li>

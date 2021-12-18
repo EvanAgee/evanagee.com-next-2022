@@ -12,7 +12,7 @@ function PostGrid({ children, counter, largeFirst, className }) {
         {
           "lg:col-span-2 xl:p-32 xl:pt-8": counter === 0 && largeFirst,
           "": counter % offsetCounter === 0,
-          "xl:p-16": !className
+          "xl:p-16": !className,
         },
         css`
           margin-left: ${counter > 0 && counter % offsetCounter === 0
@@ -30,7 +30,7 @@ function PostGrid({ children, counter, largeFirst, className }) {
 
 PostGrid.defaultProps = {
   largeFirst: true,
-  className: false
+  className: false,
 };
 
 export default React.memo(PostGrid);

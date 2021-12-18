@@ -107,7 +107,7 @@ export default function Header() {
         }
       >
         <div ref={headerWrapper}>
-          {location.pathname === '/' ? <HeaderHome /> : <HeaderInterior />}
+          {location.pathname === "/" ? <HeaderHome /> : <HeaderInterior />}
         </div>
       </div>
 

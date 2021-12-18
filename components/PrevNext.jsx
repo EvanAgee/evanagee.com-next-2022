@@ -21,17 +21,22 @@ function PrevNext({ type, data }) {
                   "p-6": data.type === "post",
                 })}
               >
-                <Badge>
-                  {`${which} ${data.type}`}
-                </Badge>
+                <Badge>{`${which} ${data.type}`}</Badge>
                 {data.type === "photo" ? (
-                  <PhotoTeaser data={helpers.getPhotoMeta(data[which])} showDetails={true} />
+                  <PhotoTeaser
+                    data={helpers.getPhotoMeta(data[which])}
+                    showDetails={true}
+                  />
                 ) : data.type === "project" ? (
                   <div className="p-6 xl:p-16">
                     <ProjectTeaser data={data[which]} />
                   </div>
                 ) : (
-                  <Post data={data[which]} style="teaser" showImage={breakpoint.isLgUp} />
+                  <Post
+                    data={data[which]}
+                    style="teaser"
+                    showImage={breakpoint.isLgUp}
+                  />
                 )}
               </article>
             )}

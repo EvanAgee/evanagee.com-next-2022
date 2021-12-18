@@ -23,43 +23,43 @@ export default function Footer() {
         </div>
       </div>
       <div className="">
-        <Link
-          href="/blog/a-web-developer-story"
-        ><a className="flex flex-wrap items-center justify-center mt-4 gap-6">
-          <img
-            loading="lazy"
-            src="/assets/images/badges/made_with_m_dw_anim.gif"
-            alt="Web Nostalgia"
-          />
-          <img
-            loading="lazy"
-            src="/assets/images/badges/amazon4.gif"
-            alt="Web Nostalgia"
-          />
-          <img
-            loading="lazy"
-            src="/assets/images/badges/DownloadICQBadge.gif"
-            alt="Web Nostalgia"
-          />
-          <img
-            src="/assets/images/badges/html-writer-guild.jpeg"
-            style={{ maxWidth: "80px" }}
-          />
-          <img
-            loading="lazy"
-            src="/assets/images/badges/GeoCitiesBadge.gif"
-            alt="Web Nostalgia"
-          />
-          <img
-            loading="lazy"
-            src="/assets/images/badges/MemberoftheIhateframesclub.gif"
-            alt="Web Nostalgia"
-          />
-          <img
-            loading="lazy"
-            src="/assets/images/badges/NetscapeNow.gif"
-            alt="Web Nostalgia"
-          /></a>
+        <Link href="/blog/a-web-developer-story">
+          <a className="flex flex-wrap items-center justify-center mt-4 gap-6">
+            <img
+              loading="lazy"
+              src="/assets/images/badges/made_with_m_dw_anim.gif"
+              alt="Web Nostalgia"
+            />
+            <img
+              loading="lazy"
+              src="/assets/images/badges/amazon4.gif"
+              alt="Web Nostalgia"
+            />
+            <img
+              loading="lazy"
+              src="/assets/images/badges/DownloadICQBadge.gif"
+              alt="Web Nostalgia"
+            />
+            <img
+              src="/assets/images/badges/html-writer-guild.jpeg"
+              style={{ maxWidth: "80px" }}
+            />
+            <img
+              loading="lazy"
+              src="/assets/images/badges/GeoCitiesBadge.gif"
+              alt="Web Nostalgia"
+            />
+            <img
+              loading="lazy"
+              src="/assets/images/badges/MemberoftheIhateframesclub.gif"
+              alt="Web Nostalgia"
+            />
+            <img
+              loading="lazy"
+              src="/assets/images/badges/NetscapeNow.gif"
+              alt="Web Nostalgia"
+            />
+          </a>
         </Link>
       </div>
     </div>

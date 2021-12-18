@@ -3,7 +3,12 @@ import moment from "moment";
 
 const helpers = {
   postImage: function (p, size) {
-    if (!p || !(`uagb_featured_image_src` in p) || !(size in p[`uagb_featured_image_src`])) return false;
+    if (
+      !p ||
+      !(`uagb_featured_image_src` in p) ||
+      !(size in p[`uagb_featured_image_src`])
+    )
+      return false;
     return p[`uagb_featured_image_src`][size];
   },
 
@@ -50,7 +55,9 @@ const helpers = {
     if (!p) return p;
     const newPhoto = {
       ...p,
-      photoMeta: p?.better_featured_image?.media_details?.image_meta ? p?.better_featured_image?.media_details?.image_meta : false,
+      photoMeta: p?.better_featured_image?.media_details?.image_meta
+        ? p?.better_featured_image?.media_details?.image_meta
+        : false,
     };
     return {
       ...newPhoto,

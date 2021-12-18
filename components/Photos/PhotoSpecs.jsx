@@ -10,9 +10,13 @@ function PhotoSpecs({ photo }) {
   if (!photo) return null;
   const { breakpoint } = useBreakpoints();
   const photoMeta = React.useMemo(() => {
-    return photo?.better_featured_image?.media_details?.image_meta ? photo?.better_featured_image?.media_details?.image_meta : false;
+    return photo?.better_featured_image?.media_details?.image_meta
+      ? photo?.better_featured_image?.media_details?.image_meta
+      : false;
   }, [photo]);
-  const shutterSpeed = photoMeta ? helpers.toFraction(photoMeta.shutter_speed) : false;
+  const shutterSpeed = photoMeta
+    ? helpers.toFraction(photoMeta.shutter_speed)
+    : false;
   if (!photo) return;
 
   return (
@@ -20,7 +24,9 @@ function PhotoSpecs({ photo }) {
       <ul className="photo-data-grid__items grid grid-cols-6">
         <li className="photo-data-grid__items__item col-span-6 lg:col-span-2">
           <strong>Taken</strong>
-          <div>{helpers.getPhotoMeta(photo).dateTaken.format("dddd, MMMM Do YYYY")}</div>
+          <div>
+            {helpers.getPhotoMeta(photo).dateTaken.format("dddd, MMMM Do YYYY")}
+          </div>
         </li>
 
         <li className="photo-data-grid__items__item col-span-6 lg:col-span-2">
@@ -110,13 +116,15 @@ function PhotoSpecs({ photo }) {
           <li className="photo-data-grid__items__item col-span-6 lg:col-span-6">
             <strong>Colors</strong>
             <ul className="flex mb-0 w-full rounded-xl overflow-hidden">
-              {photo.acf.colors.slice(0, breakpoint.isLgUp ? 10 : 5).map((c, i) => (
-                <li
-                  className="flex-1 h-6"
-                  key={i}
-                  style={{ backgroundColor: c.color }}
-                ></li>
-              ))}
+              {photo.acf.colors
+                .slice(0, breakpoint.isLgUp ? 10 : 5)
+                .map((c, i) => (
+                  <li
+                    className="flex-1 h-6"
+                    key={i}
+                    style={{ backgroundColor: c.color }}
+                  ></li>
+                ))}
             </ul>
           </li>
         )}

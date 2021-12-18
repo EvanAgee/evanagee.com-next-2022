@@ -69,17 +69,15 @@ export default function HeaderNav() {
             )}
           >
             <li className={classNames("flex min-h-full")}>
-              <Link
-                href="/search"
-                title="Search"
-              >
+              <Link href="/search" title="Search">
                 <a
                   className={classNames(
                     "flex items-center min-h-full px-4 lg:px-8 text-xl",
                     {
-                      "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active": location.pathname === "/search"
+                      "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active":
+                        location.pathname === "/search",
                     }
-                    )}
+                  )}
                 >
                   <FontAwesomeIcon icon={["far", "search"]} />
                 </a>
@@ -92,14 +90,14 @@ export default function HeaderNav() {
                   key={`navlink-${i}`}
                   className={classNames("flex min-h-full")}
                 >
-                  <Link
-                    href={p?.path}
-                  >
+                  <Link href={p?.path}>
                     <a
                       className={classNames(
                         "flex items-center min-h-full px-4 lg:px-4 xl:px-8",
                         {
-                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active": currentPage?.path === p?.path || currentPage?.parentLink === p?.path
+                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active":
+                            currentPage?.path === p?.path ||
+                            currentPage?.parentLink === p?.path,
                         }
                       )}
                     >
