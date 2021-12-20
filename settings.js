@@ -1,5 +1,8 @@
 const settings = {
   apiBase: "https://blog.evanagee.com/wp-json/wp/v2",
+  apiSettings: {
+    perPageInfinite: 11
+  },
   functionBase:
     process.env.NODE_ENV !== "development" ? "/.netlify/functions" : "/api",
   googleAnalyticsID: "G-9Y1P8VDZWB",

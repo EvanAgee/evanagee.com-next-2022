@@ -9,16 +9,17 @@ import Loader from "@/components/Loaders/Loader";
 import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
+import settings from "@/settings";
+import helpers from "@/helpers";
 const Filters = dynamic(() => import("@/components/Blog/Filters/Filters"));
 
-export default function BlogIndex() {
+export default function BlogIndex({ posts, filterType }) {
   const location = useRouter();
   const { setPageTitle } = useContext(HeaderContext);
   const { breakpoint } = useBreakpoints();
   const {
     loadMoreButtonRef,
     filters,
-    filterType,
     filterTerm,
     setFilters,
     resultCount,
@@ -33,10 +34,10 @@ export default function BlogIndex() {
       tags: { value: null },
       order: { value: "desc" },
       orderby: { value: "date" },
-      per_page: { value: 11 },
+      per_page: { value: settings.apiSettings.perPageInfinite }
     },
     queryID: "blogIndex",
-    apiPath: "/posts",
+    apiPath: "/posts"
   });
 
   if (error) return "An error has occurred: " + error.message;
@@ -53,6 +54,9 @@ export default function BlogIndex() {
               }`
             : false
         }
+        ogData={posts ? {
+          ogImage: helpers.postImage(posts[0], "large")[0],
+        } : false}
       />
       <Filters
         filters={filters}
@@ -60,6 +64,18 @@ export default function BlogIndex() {
         results={resultCount}
         className="sticky top-0 z-10"
       />
+      {false && posts && (
+        <GridWrapper data-test-id="blog-index-grid-wrapper" largeFirst={true}>
+          {posts.map((d, ii) => (
+            <Post
+              key={ii}
+              data={d}
+              style={ii === 0 ? "large" : "small"}
+            />
+          ))}
+        </GridWrapper>
+      )}
+      
       {isLoading ? (
         <GridWrapper largeFirst={true}>
           {[1, 2, 3].map((d, ii) => (
@@ -72,6 +88,7 @@ export default function BlogIndex() {
             <GridWrapper
               data-test-id="blog-index-grid-wrapper"
               largeFirst={true}
+              key={i}
             >
               {group.data.map((d, ii) => (
                 <Post
@@ -88,7 +105,6 @@ export default function BlogIndex() {
           No posts found...
         </div>
       )}
-
       <div className="flex items-center justify-center py-16">
         <button
           ref={loadMoreButtonRef}

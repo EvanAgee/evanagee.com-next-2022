@@ -5,7 +5,7 @@ import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 import settings from "@/settings";
 
-function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
+function useInfiniteScroller({ initialFilters, apiPath, queryID, initialData }) {
   const loadMoreButtonRef = React.useRef();
   const router = useRouter();
   const { filterTerm } = router.query;
@@ -14,6 +14,7 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
   const [filters, setFilters] = React.useState(initialFilters);
 
   React.useEffect(() => {
+    setFilters(initialFilters);
     if (router.pathname === "/blog/categories/[filterTerm]") {
       return setFilterType("categories");
     }
@@ -87,11 +88,12 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
     isLoading,
   } = useInfiniteQuery([queryID, filters], fetchItems, {
     getNextPageParam: (lastPage, pages) => {
-      return parseInt(lastPage.headers["x-wp-totalpages"]) >=
-        lastPage.config.params.page + 1
+      return parseInt(lastPage?.headers["x-wp-totalpages"]) >=
+        lastPage?.config?.params?.page + 1
         ? lastPage.config.params.page
         : undefined;
     },
+    initialData,
   });
 
   useIntersectionObserver({
@@ -103,7 +105,7 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID }) {
 
   React.useEffect(() => {
     if (!isLoading && !error && data && "pages" in data) {
-      setResultCount(data.pages[data.pages.length - 1].headers["x-wp-total"]);
+      setResultCount(data?.pages[data.pages.length - 1]?.headers["x-wp-total"]);
     }
   }, [data, isLoading, error]);
 
@@ -141,8 +143,9 @@ useInfiniteScroller.defaultProps = {
   initialFilters: {
     order: { value: "desc" },
     orderby: { value: "date" },
-    per_page: { value: 11 },
+    per_page: { value: settings.apiSettings.perPageInfinite },
   },
+  initialData: [],
 };
 
 export default useInfiniteScroller;
