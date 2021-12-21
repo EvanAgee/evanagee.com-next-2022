@@ -242,7 +242,7 @@ export async function getStaticProps(context) {
   );
   project = await project.json();
 
-  if (!project) {
+  if (!project || project.length < 1) {
     return {
       notFound: true,
     };

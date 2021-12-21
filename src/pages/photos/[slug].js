@@ -115,7 +115,7 @@ export async function getStaticProps(context) {
   );
   const res = await photo.json();
 
-  if (!res) {
+  if (!res || res.length < 1) {
     return {
       notFound: true,
     };

@@ -66,8 +66,8 @@ export async function getStaticProps(context) {
     `${settings.apiBase}/posts?slug=${context.params.slug}&per_page=1`
   );
   post = await post.json();
-
-  if (!post) {
+  
+  if (!post || post.length < 1) {
     return {
       notFound: true,
     };
