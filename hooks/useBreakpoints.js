@@ -52,14 +52,16 @@ const getBreakpoint = (width) => {
 };
 
 const useBreakpoint = () => {
-  const [brkPnt, setBrkPnt] = useState(() =>
-    getBreakpoint(typeof window === "undefined" ? 0 : window.innerWidth)
-  );
+  const [brkPnt, setBrkPnt] = useState(0);
 
   useEffect(() => {
+    setBrkPnt(
+      getBreakpoint(window.innerWidth)
+    );
+    
     const calcInnerWidth = throttle(() => {
       setBrkPnt(
-        getBreakpoint(typeof window === "undefined" ? 0 : window.innerWidth)
+        getBreakpoint(window.innerWidth)
       );
     }, 200);
 
