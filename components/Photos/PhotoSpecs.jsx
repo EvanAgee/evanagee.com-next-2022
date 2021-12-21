@@ -51,7 +51,7 @@ function PhotoSpecs({ photo }) {
               <TagList
                 items={photo.ea_photo_albums.map((a, i) => ({
                   name: a.name,
-                  link: `/photos/photo_album/${a.term_id}|${a.slug}`,
+                  link: `/photos/photo_album/${a.term_id}|${a.name}`,
                 }))}
               />
             ) : (
@@ -70,7 +70,7 @@ function PhotoSpecs({ photo }) {
               <TagList
                 items={photo.ea_photo_tags.map((t) => ({
                   name: t.name,
-                  link: `/photos/photo_tags/${t.term_id}|${t.slug}`,
+                  link: `/photos/photo_tags/${t.term_id}|${t.name}`,
                 }))}
               />
             ) : (

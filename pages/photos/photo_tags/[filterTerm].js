@@ -35,7 +35,7 @@ export async function getStaticPaths() {
     if (posts.length > 0) {
       posts.map((p) => allPosts.push({
         id: p.id,
-        title: p.slug
+        title: p.name
       }));
       page++;
     } else {

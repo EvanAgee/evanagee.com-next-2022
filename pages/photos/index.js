@@ -45,8 +45,8 @@ function Photos({ posts, filterType }) {
           filterType
             ? `Photos ${
                 filterType === "photo_album"
-                  ? `in the ${filterTerm.split("|")[1]} album`
-                  : `tagged with ${filterTerm.split("|")[1]}`
+                  ? `in the '${filterTerm.split("|")[1]}' album`
+                  : `tagged with '${filterTerm.split("|")[1]}'`
               }`
             : false
         }

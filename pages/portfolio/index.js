@@ -41,8 +41,8 @@ function Portfolio({ posts, filterType }) {
           filterTerm
             ? `Projects ${
                 filterType === "tags"
-                  ? `tagged with ${filterTerm.split("|")[1]}`
-                  : `tagged with ${filterTerm.split("|")[1]}`
+                  ? `tagged with '${filterTerm.split("|")[1]}'`
+                  : `tagged with '${filterTerm.split("|")[1]}'`
               }`
             : false
         }

@@ -47,8 +47,8 @@ export default function BlogIndex({ posts, filterType }) {
           filterType
             ? `Blog posts ${
                 filterType === "categories"
-                  ? `in the ${filterTerm.split("|")[1]} category`
-                  : `tagged with ${filterTerm.split("|")[1]}`
+                  ? `in the '${filterTerm.split("|")[1]}' category`
+                  : `tagged with '${filterTerm.split("|")[1]}'`
               }`
             : false
         }
