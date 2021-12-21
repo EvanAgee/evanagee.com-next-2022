@@ -46,7 +46,7 @@ export default function HeaderInterior() {
             delay: 1,
             duration: 0.5,
           }}
-          className="font-display text-primary-500 mt-2 lg:ml-5 lg:mt-0"
+          className="font-display text-transparent bg-clip-text bg-gradient-to-br from-primary-300 to-primary-500 mt-2 lg:ml-5 lg:mt-0"
         >
           <Link href="/">EvanAgee.com</Link>
         </motion.strong>

@@ -16,7 +16,7 @@ function ProjectTeaser({ data }) {
     <Link href={`/portfolio/${data.slug}`}>
       <a
         className={classNames(
-          "text-inherit block",
+          "text-inherit block group",
           css`
             .badge-wrapper & {
               padding-top: var(--p-4);
@@ -25,7 +25,7 @@ function ProjectTeaser({ data }) {
         )}
       >
         <motion.div
-          className="relative cursor-pointer rounded-2xl shadow-lg overflow-hidden mx-auto pb-16x9"
+          className="relative cursor-pointer rounded-2xl shadow-lg overflow-hidden mx-auto pb-16x9 group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4"
           style={{}}
         >
           <img
@@ -43,7 +43,7 @@ function ProjectTeaser({ data }) {
         </motion.div>
         <div className="pt-6 mx-auto max-w-xl text-center px-4">
           <div className={classNames({ matchHeight: data.content.rendered })}>
-            <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer">
+            <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer group-hover:text-secondary-500">
               <WpApiContent content={data.title.rendered} />
             </h3>
             <time className="text-sm font-normal text-gray-400 italic ml-2">

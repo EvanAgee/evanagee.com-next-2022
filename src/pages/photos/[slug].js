@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Head from "next/head";
 import moment from "moment";
-import { useRouter } from "next/router";
+import classNames from "classnames";
 import Link from "next/link";
 import settings from "@/settings";
 import helpers from "@/helpers";
@@ -16,6 +16,7 @@ import Carousel from "@/components/Carousel";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import Meta from "@/components/Meta";
+import Button from "@/components/Button";
 
 export default function Photo({ photo, catPosts }) {
   const { breakpoint } = useBreakpoints();
@@ -68,27 +69,33 @@ export default function Photo({ photo, catPosts }) {
             </ul>
           </div>
           <div>
-            <Link href="/photos">
-              <a className="button button-sm whitespace-nowrap">
+            <Button href="/photos">
                 Back to Photos
-              </a>
-            </Link>
+            </Button>
           </div>
         </header>
       </div>
       <div className="dark:bg-gray-900 dark:text-gray-300 p-6 pb-12 lg:p-16">
-        <div className="grid lg:grid-cols-3 lg:gap-16">
-          <div>
+        <div className="flex space-x-9 justify-center">
+          <div className="flex-shrink">
             {photo?.content?.rendered && (
               <WpApiContent content={photo?.content?.rendered} />
             )}
           </div>
-          <div className="lg:col-span-2">
+          <div className={classNames("lg:[min-width:900px]", {
+            "mx-auto": !photo?.content?.rendered,
+          })}>
             <PhotoSpecs photo={photo} />
           </div>
         </div>
+
+        {process.env.NODE_ENV === "development" && <div className="flex items-center justify-center space-x-6 pt-6">
+          <Button href={`https://blog.evanagee.com/wp-admin/post.php?post=${photo.id}&action=edit`} target="_blank">
+            Edit Photo
+          </Button>
+        </div>}
       </div>
-      <div className="">
+      <div className="bg-black text-white">
         <Discussion />
       </div>
       {catPosts && catPosts.filter((c) => c.id !== photo.id).length > 0 && (

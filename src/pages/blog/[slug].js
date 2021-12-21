@@ -30,6 +30,7 @@ export default function Post({ post, catPosts }) {
         <Breadcrumbs />
       </div>
       <PostDetail data={post} style="full" />
+      <em className="block py-4 text-sm text-center">Some imagery provided by <a href="https://unsplash.com/" target="_blank">Unsplash</a>.</em>
       <div className="bg-gray-100">
         <Discussion />
       </div>
@@ -66,7 +67,7 @@ export async function getStaticProps(context) {
     `${settings.apiBase}/posts?slug=${context.params.slug}&per_page=1`
   );
   post = await post.json();
-  
+
   if (!post || post.length < 1) {
     return {
       notFound: true,
