@@ -16,7 +16,7 @@ function Post({ data, style, showImage }) {
   const image = React.useMemo(() => {
     return helpers.postImage(
       data,
-      style === "small" ? "medium" : "medium_large"
+      style === "small" || style === "teaser" ? "medium_large" : "large"
     );
   }, [data, style]);
 
@@ -27,7 +27,7 @@ function Post({ data, style, showImage }) {
   return (
     <>
       <article
-        className={classNames("text-center post", {
+        className={classNames(`text-center post group post--${style}`, {
           "post--large p-6 lg:p-16": style === "large" || style === "full",
           "pb-0": style === "large",
           "post--small": style === "small",
@@ -68,7 +68,7 @@ function Post({ data, style, showImage }) {
             className={classNames(
               "up-title post-title mx-auto flex items-center justify-center matchHeight",
               {
-                "xl:max-w-sm lg:max-w-xs hover:text-primary-500":
+                "xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500":
                   style === "small" || style === "teaser",
                 "up-title-lg max-w-screen-lg lg:my-12":
                   style === "large" || style === "full",
@@ -130,9 +130,10 @@ function Post({ data, style, showImage }) {
                     width={image[1]}
                     height={image[2]}
                     className={classNames(
-                      "inset-0 absolute object-cover w-full h-full object-center shadow-lg rounded-2xl max-w-full cursor-pointer",
+                      "inset-0 absolute object-cover w-full h-full object-center shadow-lg rounded-2xl max-w-full cursor-pointer ",
                       {
                         "": style !== "full",
+                        "group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4": style !== "full" && style !== "large"
                       }
                     )}
                   />

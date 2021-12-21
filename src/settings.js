@@ -165,9 +165,9 @@ const settings = {
       disabledInNav: true,
     },
     {
-      path: "/whoops",
+      path: "/404",
       component: "NotFound",
-      title: "NotFound",
+      title: "Whoops",
       disabledInNav: true,
     },
   ],

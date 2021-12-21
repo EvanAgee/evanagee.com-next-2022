@@ -30,7 +30,7 @@ export default function Header() {
 
   // Google Analytics Tracking
   React.useEffect(() => {
-    if (process.env.NODE_ENV !== "production" || !process.browser) return;
+    if (process.env.NODE_ENV !== "production") return;
 
     TagManager.dataLayer({
       gtmId: settings.gtmID,

@@ -2,15 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/pages/*": ["pages/*"],
-      "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/context/*": ["context/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/settings": ["./settings.js"],
-      "@/content": ["./content.js"],
-      "@/helpers": ["./helpers.js"]
+      "@/*": ["src/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/context/*": ["src/context/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/settings": ["src/settings.js"],
+      "@/content": ["src/content.js"],
+      "@/helpers": ["src/helpers.js"],
+      "@/css/*": ["src/css/*"]
     }
   }
 }

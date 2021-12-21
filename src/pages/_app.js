@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/index.css";
-import "../icons.js";
+import "@/css/index.css";
+import "@/icons.js";
 import { css } from "@emotion/css";
 import settings from "@/settings";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -13,13 +13,16 @@ const tagManagerArgs = {
   gtmId: settings.gtmID,
 };
 
-if (process.env.NODE_ENV === "production" && process.browser) {
-  TagManager.initialize(tagManagerArgs);
-  ReactGA.initialize(settings.googleAnalyticsID);
-  LogRocket.init("6kdr3y/evanageecom");
-}
-
 function MyApp({ Component, pageProps }) {
+
+  React.useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      TagManager.initialize(tagManagerArgs);
+      ReactGA.initialize(settings.googleAnalyticsID);
+      LogRocket.init("6kdr3y/evanageecom");
+    }
+  },[]);
+
   return (
     <React.StrictMode>
       <ThemeProvider>

@@ -25,13 +25,13 @@ let primaryColor = colors[randomColors[rando]];
 
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./hooks/**/*.{js,ts,jsx,tsx}",
-    "./context/**/*.{js,ts,jsx,tsx}",
-    "./layouts/**/*.{js,ts,jsx,tsx}",
-    "./hooks/**/*.{js,ts,jsx,tsx}",
-    "./css/*.{css}",
+    "src/pages/**/*.{js,ts,jsx,tsx}",
+    "src/components/**/*.{js,ts,jsx,tsx}",
+    "src/hooks/**/*.{js,ts,jsx,tsx}",
+    "src/context/**/*.{js,ts,jsx,tsx}",
+    "src/layouts/**/*.{js,ts,jsx,tsx}",
+    "src/hooks/**/*.{js,ts,jsx,tsx}",
+    "src/css/*.{css}",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
