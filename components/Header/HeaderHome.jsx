@@ -46,7 +46,7 @@ export default function HeaderHome() {
               delay: 0,
               duration: 0.5,
             }}
-            className="text-sm lg:text-lg leading-6 gradient-text font-semibold tracking-wide uppercase mb-6"
+            className="text-sm lg:text-lg leading-6 font-black tracking-widest uppercase mb-6 text-transparent bg-clip-text bg-gradient-to-r from-secondary-100 to-secondary-500"
           >
             Creating killer web apps with
             <br />

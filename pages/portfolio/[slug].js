@@ -4,9 +4,6 @@ import classNames from "classnames";
 import Img from "next/image";
 import Loader from "@/components/Loaders/Loader";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import axios from "axios";
 import settings from "@/settings";
 import helpers from "@/helpers";
 import WpApiContent from "@/components/WpApiContent";
@@ -28,7 +25,7 @@ function Project({ project }) {
 
   React.useEffect(() => {
     if (!project) return;
-
+    setFeaturedImage(helpers.postImage(project, "large"))
     ReactGA.event({
       category: "User",
       action: "Viewed Project Details",
@@ -73,7 +70,7 @@ function Project({ project }) {
           className="p-6 flex-1 flex items-center justify-center"
         >
           {featuredImage ? (
-            <Img
+            <img
               ref={featuredImageRef}
               loading="lazy"
               width={featuredImage[1]}
@@ -255,7 +252,7 @@ export async function getStaticProps(context) {
     props: {
       project: project[0],
     },
-    revalidate: 1,
+    revalidate: settings.ISRrevalidate,
   };
 }
 

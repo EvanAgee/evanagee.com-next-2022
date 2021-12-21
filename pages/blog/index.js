@@ -14,8 +14,6 @@ import helpers from "@/helpers";
 const Filters = dynamic(() => import("@/components/Blog/Filters/Filters"));
 
 export default function BlogIndex({ posts, filterType }) {
-  const location = useRouter();
-  const { setPageTitle } = useContext(HeaderContext);
   const { breakpoint } = useBreakpoints();
   const {
     loadMoreButtonRef,
@@ -55,7 +53,7 @@ export default function BlogIndex({ posts, filterType }) {
             : false
         }
         ogData={posts ? {
-          ogImage: helpers.postImage(posts[0], "large")[0],
+          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
         } : false}
       />
       <Filters
@@ -118,7 +116,7 @@ export default function BlogIndex({ posts, filterType }) {
             ? "Loading more..."
             : hasNextPage
             ? "Load More"
-            : "Nothing more to load"}
+            : "No more posts, is your finger tired?" }
         </button>
       </div>
     </div>

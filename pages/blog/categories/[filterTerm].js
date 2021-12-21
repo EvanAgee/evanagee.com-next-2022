@@ -7,7 +7,7 @@ export async function getStaticProps(context) {
   let posts = await axios.get(`${settings.apiBase}/posts`, {
     params: {
       categories: parseInt(context.params.filterTerm.split("|")[0]),
-      per_page: settings.apiSettings.perPageInfinite
+      per_page: 1
     },
   });
 
@@ -16,7 +16,7 @@ export async function getStaticProps(context) {
       posts: posts.data,
       filterType: "categories",
     },
-    revalidate: 10,
+    revalidate: settings.ISRrevalidate,
   };
 }
 

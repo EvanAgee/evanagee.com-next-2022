@@ -18,11 +18,10 @@ const randomColors = Object.keys(colors).filter(
     c === "violet" ||
     c === "fuchsia" ||
     c === "rose" ||
-    c === "lightBlue" ||
     c === "yellow"
 );
 const rando = Math.floor(Math.random() * randomColors.length);
-const primaryColor = colors[randomColors[rando]];
+let primaryColor = colors[randomColors[rando]];
 
 module.exports = {
   content: [
@@ -53,8 +52,10 @@ module.exports = {
           800: "#712424",
           900: "#4C1818",
         },
-        primary: primaryColor,
-        secondary: colors.neutral,
+        // primary: primaryColor,
+        primary: colors.rose,
+        secondary: colors.cyan,
+        gray: colors.neutral
       },
       typography: {
         xl: {

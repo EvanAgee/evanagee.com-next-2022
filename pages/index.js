@@ -66,7 +66,7 @@ export default function Home({ posts }) {
           <div className="relative mb-16 text-center max-w-md mx-auto">
             <div
               className={classNames(
-                "absolute inset-0 bg-gradient-to-r from-secondary-700 to-primary-500 shadow-lg transition-transform transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
+                "absolute inset-0 bg-gradient-to-r from-neutral-700 to-primary-500 shadow-lg transition-transform transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
               )}
             ></div>
             <img
@@ -108,7 +108,7 @@ export default function Home({ posts }) {
               <Button href="/portfolio">
                 View My Portfolio
               </Button>
-              <Button href="/resume" variant="secondary">
+              <Button href="/resume" variant="gray">
                 My Resume
               </Button>
             </div>
@@ -116,7 +116,7 @@ export default function Home({ posts }) {
         </motion.section>
         <motion.section
           variants={pageVariants.section}
-          className="bg-primary-50 pb-6"
+          className="bg-gray-100 pb-6"
         >
           <BadgeWrapper title="Recent Blog Posts">
             <RecentPosts

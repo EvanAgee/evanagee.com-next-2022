@@ -30,8 +30,10 @@ export default function Post({ post, catPosts }) {
         <Breadcrumbs />
       </div>
       <PostDetail data={post} style="full" />
-      <div className="bg-primary-50"><Discussion /></div>
-      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
+      <div className="bg-gray-100">
+        <Discussion />
+      </div>
+      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (<div className="bg-primary-50">
         <BadgeWrapper title={`More Posts in '${post.ea_categories[0].name}'`}>
           <Carousel
             slidesToShow={breakpoint.isLgUp ? 3 : 1}
@@ -51,6 +53,7 @@ export default function Post({ post, catPosts }) {
               ))}
           </Carousel>
         </BadgeWrapper>
+        </div>
       )}
 
       <PrevNext data={post} />
@@ -84,7 +87,7 @@ export async function getStaticProps(context) {
       post: post[0],
       catPosts,
     },
-    revalidate: 1,
+    revalidate: settings.ISRrevalidate,
   };
 }
 

@@ -7,30 +7,23 @@ import { css } from "@emotion/css";
 import { HeaderContext } from "@/context/HeaderContext";
 import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import helpers from "@/helpers";
-import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
 const Filters = dynamic(() => import("@/components/Photos/Filters"));
 
-function Photos() {
-  const location = useRouter();
-  const { setPageTitle } = useContext(HeaderContext);
-  const { breakpoint } = useBreakpoints();
+function Photos({ posts, filterType }) {
   const {
     loadMoreButtonRef,
     filters,
-    filterType,
     filterTerm,
     setFilters,
     resultCount,
     isLoading,
     data,
-    perPage,
     isFetchingNextPage,
     hasNextPage,
     error,
-    goodToGo,
   } = useInfiniteScroller({
     initialFilters: {
       photo_album: { value: null },
@@ -42,17 +35,6 @@ function Photos() {
     queryID: "photoIndex",
     apiPath: "/photos",
   });
-
-  React.useEffect(() => {
-    if (!filterType || !filterTerm) return;
-    setPageTitle(
-      `Photos ${
-        filterType === "photo_album"
-          ? `in the ${filterTerm.split("|")[1]} album`
-          : `tagged with ${filterTerm.split("|")[1]}`
-      }`
-    );
-  }, [filterType, filterTerm, location]);
 
   if (error) return "An error has occurred: " + error.message;
 
@@ -68,6 +50,9 @@ function Photos() {
               }`
             : false
         }
+        ogData={posts ? {
+          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
+        } : false}
       />
       <div className="" data-test-id="photo-index">
         <Filters

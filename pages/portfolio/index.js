@@ -7,14 +7,14 @@ import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import Filters from "@/components/Projects/Filters";
 import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
+import helpers from "@/helpers"
 import Button from "@/components/Button";
 
-function Portfolio() {
+function Portfolio({ posts, filterType }) {
   const {
     loadMoreButtonRef,
     filters,
     filterTerm,
-    filterType,
     setFilters,
     resultCount,
     isLoading,
@@ -34,9 +34,8 @@ function Portfolio() {
     queryID: "portfolioIndex",
     apiPath: "/projects",
   });
-
   return (
-    <>
+    <div className="relative">
       <Meta
         title={
           filterTerm
@@ -47,6 +46,9 @@ function Portfolio() {
               }`
             : false
         }
+        ogData={posts ? {
+          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
+        } : false}
       />
       <Filters
         filters={filters}
@@ -110,11 +112,11 @@ function Portfolio() {
               ? "Loading more..."
               : hasNextPage
               ? "Load More"
-              : "Nothing more to load"}
+              : "No more projects, is your finger tired?"}
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -7,7 +7,12 @@ import useBreakpoints from "@/hooks/useBreakpoints";
 
 function Filters({ filters, onChange, results, className }) {
   const { breakpoint } = useBreakpoints();
-  const [filtersVisible, setFiltersVisible] = React.useState(breakpoint.isLgUp);
+  const [filtersVisible, setFiltersVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    setFiltersVisible(breakpoint.isLgUp)
+  }, [breakpoint]);
+
   const updateFilters = function (payload) {
     const newFilters = { ...filters };
     newFilters[payload.type] =
@@ -18,7 +23,7 @@ function Filters({ filters, onChange, results, className }) {
   return (
     <div
       className={classNames(
-        "bg-gradient-to-t from-primary-50 dark:from-primary-900 to-white dark:to-gray-900 p-4 flex w-full items-center text-sm whitespace-nowrap overflow-x-auto overflow-y-visible dark:text-gray-300",
+        "bg-gradient-to-t from-secondary-50 dark:from-secondary-900 to-white dark:to-gray-900 p-4 flex w-full items-center text-sm whitespace-nowrap overflow-x-auto overflow-y-visible dark:text-gray-300",
         className,
         css`
           min-height: 70px;

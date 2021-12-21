@@ -57,7 +57,7 @@ function ProjectTeaser({ data }) {
                 className="justify-center"
                 items={data.ea_tags.map((t, i) => ({
                   name: t.name,
-                  link: `/portfolio/tags/${t.term_id}|${t.name}`,
+                  link: `/portfolio/tags/${t.term_id}|${t.slug}`,
                 }))}
               />
             </div>

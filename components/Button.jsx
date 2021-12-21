@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+// classes: bg-primary-500 shadow-primary-500/40 hover:shadow-primary-600/40 bg-secondary-500 shadow-secondary-500/40 hover:shadow-secondary-600/40 bg-primary-600 bg-secondary-600 ring-primary-500 ring-secondary-500 !text-primary-500 !text-secondary-500 !text-white text-white bg-gray-500 shadow-gray-500/40 shadow-gray-600/40 bg-gray-600 ring-gray-500 text-gray-500
 function Button({ children, variant, href, hollow, target, rel, smooth }) {
   const Tag = React.useMemo(() => {
     if (target || smooth) {
@@ -8,7 +9,7 @@ function Button({ children, variant, href, hollow, target, rel, smooth }) {
     }
     return Link;
   }, [target]);
-  // classes: bg-primary-500 shadow-primary-500/40 hover:shadow-primary-600/40 bg-secondary-500 shadow-secondary-500/40 hover:shadow-secondary-600/40 bg-primary-600 bg-secondary-600 ring-primary-500 ring-secondary-500 !text-primary-500 !text-secondary-500 !text-white text-white
+
   return (
     <Tag href={href} target={target} rel={target === "_blank" ? 'noopener noreferrer' : ''}>
       <div className={`relative inline-flex w-auto px-4 py-3 text-white font-extrabold tracking-widest uppercase text-center justify-center font-display text-sm no-underline rounded-full lg:w-auto lg:px-6 shadow-lg group overflow-hidden hover:transition-shadow duration-300 items-center justify-center bg-${variant}-500 shadow-${variant}-500/40 hover:shadow-${variant}-600/40 cursor-pointer ${hollow && `ring-2 ring-inset ring-${variant}-500 bg-transparent !text-${variant}-500`}`}>

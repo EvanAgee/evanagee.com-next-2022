@@ -18,7 +18,7 @@ export default function Footer() {
           </Link>
           . <br />
           <small className="font-bold">
-            Headless WordPress with Vite + React + TailwindCSS
+            Headless WordPress with NextJS + TailwindCSS
           </small>
         </div>
       </div>

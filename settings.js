@@ -3,6 +3,7 @@ const settings = {
   apiSettings: {
     perPageInfinite: 11
   },
+  ISRrevalidate: 100,
   functionBase:
     process.env.NODE_ENV !== "development" ? "/.netlify/functions" : "/api",
   googleAnalyticsID: "G-9Y1P8VDZWB",

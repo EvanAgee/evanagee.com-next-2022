@@ -60,11 +60,11 @@
 
   .gradient-text,
   .primary-gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-primary-200 to-primary-800;
+    @apply text-transparent bg-clip-text bg-gradient-to-b from-primary-200 to-primary-600;
   }
 
   .secondary-gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-secondary-200 to-secondary-800;
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-secondary-600 to-secondary-200;
   }
 
   .button {
