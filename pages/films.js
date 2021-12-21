@@ -32,6 +32,8 @@ function Films({ feed, error }) {
               src="assets/images/letterboxd-mac-icon.png"
               className="mr-4"
               style={{ width: "64px", height: "auto" }}
+              width="64"
+              height="64"
             />
             Follow me on Letterboxd
           </a>

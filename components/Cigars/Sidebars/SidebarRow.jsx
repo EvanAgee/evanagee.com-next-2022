@@ -33,6 +33,8 @@ const SidebarRow = ({ cigar }) => {
             <img
               alt={helpers.decodeHtml(cigar.title.rendered)}
               src={image[0]}
+              width={image[1]}
+              height={image[2]}
               className="h-16 w-16 rounded-full"
             />
           )}

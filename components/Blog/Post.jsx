@@ -16,7 +16,7 @@ function Post({ data, style, showImage }) {
   const image = React.useMemo(() => {
     return helpers.postImage(
       data,
-      style === "small" ? "post-thumbnail" : "post-thumbnail"
+      style === "small" ? "medium" : "medium_large"
     );
   }, [data, style]);
 

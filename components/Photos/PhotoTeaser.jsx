@@ -34,6 +34,8 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 alt={helpers.decodeHtml(data.title.rendered)}
                 loading="lazy"
                 src={image[0]}
+                width={image[1]}
+                height={image[2]}
                 className={classNames(
                   "inset-0 absolute object-cover w-full h-full object-center"
                 )}

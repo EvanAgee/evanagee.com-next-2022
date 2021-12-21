@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 function ProjectTeaser({ data }) {
   const image = React.useMemo(() => {
-    return helpers.postImage(data, "large");
+    return helpers.postImage(data, "medium_large");
   }, [data]);
 
   return (

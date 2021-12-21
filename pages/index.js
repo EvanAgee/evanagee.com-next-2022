@@ -27,7 +27,6 @@ const myImages = [
 export default function Home({ posts }) {
   const { breakpoint } = useBreakpoints();
   const [randomImage, setRandomImage] = React.useState(myImages[0]);
-  const [name, setName] = React.useState("");
 
   React.useEffect(() => {
     let counter = 0;

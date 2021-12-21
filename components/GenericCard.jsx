@@ -22,6 +22,7 @@ function GenericCard({
             src={image}
             alt={`${helpers.decodeHtml(title)}`}
             height="100"
+            width="auto"
             className={classNames(
               "mx-auto h-auto",
               css`

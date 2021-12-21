@@ -37,7 +37,9 @@ export default function Photo({ photo, catPosts }) {
           <img
             loading="lazy"
             src={helpers.postImage(photo, "large")[0]}
-            className="mx-auto shadow-lg"
+            width={helpers.postImage(photo, "large")[1]}
+            height={helpers.postImage(photo, "large")[2]}
+            className="mx-auto shadow-lg w-auto h-auto"
           />
         </figure>
 

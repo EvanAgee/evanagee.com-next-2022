@@ -28,36 +28,51 @@ export default function Footer() {
             <img
               loading="lazy"
               src="/assets/images/badges/made_with_m_dw_anim.gif"
-              alt="Web Nostalgia"
+              alt="Made with Dreeamweaver"
+              width="88"
+              height="31"
             />
             <img
               loading="lazy"
               src="/assets/images/badges/amazon4.gif"
-              alt="Web Nostalgia"
+              alt="Buy Books Here!"
+              width="120"
+              height="60"
             />
             <img
               loading="lazy"
               src="/assets/images/badges/DownloadICQBadge.gif"
-              alt="Web Nostalgia"
+              alt="Download ICQ"
+              width="88"
+              height="31"
             />
             <img
               src="/assets/images/badges/html-writer-guild.jpeg"
+              alt="HTML Writers Guild"
               style={{ maxWidth: "80px" }}
+              width="80"
+              height="112"
             />
             <img
               loading="lazy"
               src="/assets/images/badges/GeoCitiesBadge.gif"
-              alt="Web Nostalgia"
+              alt="GeoCities"
+              width="88"
+              height="31"
             />
             <img
               loading="lazy"
               src="/assets/images/badges/MemberoftheIhateframesclub.gif"
-              alt="Web Nostalgia"
+              alt="I hate frames"
+              width="96"
+              height="41"
             />
             <img
               loading="lazy"
               src="/assets/images/badges/NetscapeNow.gif"
-              alt="Web Nostalgia"
+              alt="Netscape Navigator Now"
+              width="90"
+              height="30"
             />
           </a>
         </Link>

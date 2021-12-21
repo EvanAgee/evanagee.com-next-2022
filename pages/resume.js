@@ -71,6 +71,8 @@ function Resume() {
             src="https://res.cloudinary.com/evanagee/image/upload/c_scale,w_180/v1551277265/evanagee.com/BW_Honoree.png"
             className="mx-auto my-5 lg:float-right lg:ml-10 lg:mb-5"
             alt="I was a 2016 Webby Award Honoree!"
+            width="180"
+            height="180"
           />
           <div className="prose prose-lg">
             <ul className="">

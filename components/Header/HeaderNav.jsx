@@ -159,6 +159,8 @@ export default function HeaderNav() {
                 <img
                   alt="Follow me on Letterboxd"
                   src="/assets/images/letterboxd-mac-icon.png"
+                  width="24"
+                  height="24"
                   className="filter invert grayscale contrast-200 h-auto"
                   style={{
                     width:
