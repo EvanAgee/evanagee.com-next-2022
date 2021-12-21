@@ -52,5 +52,5 @@ export async function getStaticPaths() {
   }));
 
   console.timeEnd("Getting static paths for categories");
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
