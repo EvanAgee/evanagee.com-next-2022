@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { DiscussionEmbed } from "disqus-react";
 import { HeaderContext } from "@/context/HeaderContext";
 import PageLoader from "@/components/Loaders/PageLoader";
-
+import settings from "@/settings"
 function Discussion() {
+  if (!settings.enableComments) return null;
   const ref = React.useRef();
   const { metaData } = React.useContext(HeaderContext);
   const location = useRouter();

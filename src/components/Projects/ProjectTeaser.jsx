@@ -7,7 +7,7 @@ import WpApiContent from "@/components/WpApiContent";
 import TagList from "@/components/TagList";
 import { motion } from "framer-motion";
 
-function ProjectTeaser({ data }) {
+function ProjectTeaser({ data, showDescription }) {
   const image = React.useMemo(() => {
     return helpers.postImage(data, "medium_large");
   }, [data]);
@@ -46,12 +46,12 @@ function ProjectTeaser({ data }) {
             <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer group-hover:text-secondary-500">
               <WpApiContent content={data.title.rendered} />
             </h3>
-            <time className="text-sm font-normal text-gray-400 italic ml-2">
+            {showDescription && <time className="text-sm font-normal text-gray-400 italic ml-2">
               cir. {helpers.formatDate(data.date, "yyyy")}
-            </time>
-            <WpApiContent content={data.excerpt.rendered} />
+            </time>}
+            {showDescription && <WpApiContent content={data.excerpt.rendered} />}
           </div>
-          {"ea_tags" in data && (
+          {showDescription && "ea_tags" in data && (
             <div className="my-6">
               <TagList
                 className="justify-center"
@@ -77,6 +77,10 @@ function ProjectTeaser({ data }) {
       </a>
     </Link>
   );
+}
+
+ProjectTeaser.defaultProps = {
+  showDescription: true,
 }
 
 export default React.memo(ProjectTeaser);

@@ -15,8 +15,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { scroller } from "react-scroll";
 import Meta from "@/components/Meta";
 import Button from "@/components/Button";
+import BadgeWrapper from "@/components/BadgeWrapper";
+import Carousel from "@/components/Carousel";
+import PostDetail from "@/components/Blog/Post";
+import ProjectTeaser from "@/components/Projects/ProjectTeaser";
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 
-function Project({ project }) {
+function Project({ project, relatedProjects }) {
   const featuredImageRef = React.useRef();
   const { breakpoint, mediaQueries } = useBreakpoints();
   const [featuredImage, setFeaturedImage] = useState(
@@ -25,7 +30,7 @@ function Project({ project }) {
 
   React.useEffect(() => {
     if (!project) return;
-    setFeaturedImage(helpers.postImage(project, "large"))
+    setFeaturedImage(helpers.postImage(project, "large"));
     ReactGA.event({
       category: "User",
       action: "Viewed Project Details",
@@ -218,9 +223,7 @@ function Project({ project }) {
             </Button>
           )}
 
-          <Button href="/portfolio">
-            Back to Portfolio
-          </Button>
+          <Button href="/portfolio">Back to Portfolio</Button>
         </div>
 
         <div className="text-xs text-center my-6 font-display">
@@ -230,6 +233,32 @@ function Project({ project }) {
       </div>
       <Discussion />
       <PrevNext data={project} />
+      {relatedProjects &&
+        relatedProjects.filter((c) => c.id !== project.id).length > 0 && (
+          <div className="">
+            <BadgeWrapper
+              title={`Similar Projects`}
+            >
+              <Carousel
+                slidesToShow={breakpoint.isLgUp ? 3 : 1}
+                className=" bg-opacity-75"
+              >
+                {relatedProjects
+                  .filter((c) => c.id !== project.id)
+                  .map((c, i) => (
+                    <PostGridWrapper
+                      key={i}
+                      className="pt-16 pb-20 w-full"
+                      counter={i}
+                      largeFirst={false}
+                    >
+                      <ProjectTeaser data={c} showDescription={false} />
+                    </PostGridWrapper>
+                  ))}
+              </Carousel>
+            </BadgeWrapper>
+          </div>
+        )}
     </>
   );
 }
@@ -248,9 +277,19 @@ export async function getStaticProps(context) {
     };
   }
 
+  // Get posts that are in the same category
+  let relatedProjects = false;
+  if (project[0]?.tags && project[0]?.tags?.length > 0) {
+    let projects = await fetch(
+      `${settings.apiBase}/projects?tags=${project[0]?.tags[0]}&per_page=100`
+    );
+    relatedProjects = await projects.json();
+  }
+
   return {
     props: {
       project: project[0],
+      relatedProjects,
     },
     revalidate: settings.ISRrevalidate,
   };
@@ -284,5 +323,5 @@ export async function getStaticPaths() {
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

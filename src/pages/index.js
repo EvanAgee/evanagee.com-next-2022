@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import content from "@/content";
+import helpers from "@/helpers";
 import classNames from "classnames";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import WpApiContent from "@/components/WpApiContent";
@@ -11,6 +12,11 @@ import { pageVariants } from "@/lib/animations";
 import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
 import Button from "@/components/Button";
+import Carousel from "@/components/Carousel";
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
+import PostDetail from "@/components/Blog/Post";
+import ProjectTeaser from "@/components/Projects/ProjectTeaser";
+import PhotoTeaser from "@/components/Photos/PhotoTeaser";
 
 const RecentPosts = dynamic(() => import("../components/RecentPosts.jsx"));
 
@@ -24,7 +30,7 @@ const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426981/evanagee.com/8C574DF9-8924-4EBD-A03A-5FA2450B1E82_1_105_c.jpg",
 ];
 
-export default function Home({ posts }) {
+export default function Home({ posts, projects, photos }) {
   const { breakpoint } = useBreakpoints();
   const [randomImage, setRandomImage] = React.useState(myImages[0]);
 
@@ -104,47 +110,66 @@ export default function Home({ posts }) {
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Button href="/portfolio">
-                View My Portfolio
-              </Button>
+              <Button href="/portfolio">View My Portfolio</Button>
               <Button href="/resume" variant="gray">
                 My Resume
               </Button>
             </div>
           </div>
         </motion.section>
-        <motion.section
-          variants={pageVariants.section}
-          className="bg-gray-100 pb-6"
-        >
+        <motion.section variants={pageVariants.section} className="bg-gray-100">
           <BadgeWrapper title="Recent Blog Posts">
-            <RecentPosts
-              style="grid"
-              cardStyle="teaser"
-              count={breakpoint.isLgUp ? 2 : 2}
-            />
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 3 : 1}
+              className=" bg-opacity-0 border-b-0"
+            >
+              {posts.map((c, i) => (
+                <PostGridWrapper
+                  key={i}
+                  className="pt-16 pb-20 w-full"
+                  counter={i}
+                  largeFirst={false}
+                >
+                  <PostDetail data={c} style="teaser" />
+                </PostGridWrapper>
+              ))}
+            </Carousel>
           </BadgeWrapper>
         </motion.section>
-        <motion.section variants={pageVariants.section}>
+        <motion.section variants={pageVariants.section} className="bg-gray-100">
           <BadgeWrapper title="Recent Projects" className="">
-            <RecentPosts
-              style="grid"
-              postType="projects"
-              cardStyle="teaser"
-              count={breakpoint.isLgUp ? 2 : 1}
-            />
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 3 : 1}
+              className=" bg-opacity-0 border-b-0"
+            >
+              {projects?.map((c, i) => (
+                <PostGridWrapper
+                  key={i}
+                  className="pt-16 pb-20 w-full"
+                  counter={i}
+                  largeFirst={false}
+                >
+                  <ProjectTeaser data={c} />
+                </PostGridWrapper>
+              ))}
+            </Carousel>
           </BadgeWrapper>
         </motion.section>
         <motion.section variants={pageVariants.section}>
           <BadgeWrapper title="Recent Photos">
-            <RecentPosts
-              containerClassName="grid-cols-2 lg:!grid-cols-4"
-              postType="photos"
-              style="grid"
-              cardStyle="teaser"
-              count={breakpoint.isMdDown ? 2 : 4}
-              columns={breakpoint.isMdDown ? 2 : 4}
-            />
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 4 : 2}
+              className=" bg-opacity-0 border-b-0"
+              showDots={false}
+            >
+              {photos?.map((c, i) => (
+                <PhotoTeaser
+                  key={i}
+                  data={helpers.getPhotoMeta(c)}
+                  showDetails={true}
+                />
+              ))}
+            </Carousel>
           </BadgeWrapper>
         </motion.section>
       </motion.div>
@@ -153,13 +178,25 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = await fetch(
-    "https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50"
+  let posts = await fetch(
+    "https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=12"
   );
-  const res = await posts.json();
+  posts = await posts.json();
+
+  let projects = await fetch(
+    "https://blog.evanagee.com/wp-json/wp/v2/projects?per_page=12"
+  );
+  projects = await projects.json();
+
+  let photos = await fetch(
+    "https://blog.evanagee.com/wp-json/wp/v2/photos?per_page=12"
+  );
+  photos = await photos.json();
   return {
     props: {
-      posts: res,
+      posts,
+      projects,
+      photos,
     },
   };
 }

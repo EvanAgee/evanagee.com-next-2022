@@ -8,6 +8,7 @@ const settings = {
     process.env.NODE_ENV !== "development" ? "/.netlify/functions" : "/api",
   googleAnalyticsID: "G-9Y1P8VDZWB",
   gtmID: "GTM-W47SLZT",
+  enableComments: false,
   pathData: [
     {
       path: "/",

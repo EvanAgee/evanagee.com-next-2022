@@ -30,12 +30,17 @@ export default function Post({ post, catPosts }) {
         <Breadcrumbs />
       </div>
       <PostDetail data={post} style="full" />
-      <em className="block py-4 text-sm text-center">Some imagery provided by <a href="https://unsplash.com/" target="_blank">Unsplash</a>.</em>
+
+
+      <em className="block py-4 text-sm text-center mb-6 text-gray-400">Some imagery provided by <a href="https://unsplash.com/" target="_blank" className="text-primary-400">Unsplash</a>.</em>
+      
+      <PrevNext data={post} />
+      
       <div className="bg-gray-100">
         <Discussion />
       </div>
-      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (<div className="bg-primary-50">
-        <BadgeWrapper title={`More Posts in '${post.ea_categories[0].name}'`}>
+      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (<div className="">
+        <BadgeWrapper title={`More Posts in <span className="text-primary-500">${post.ea_categories[0].name}</span>`}>
           <Carousel
             slidesToShow={breakpoint.isLgUp ? 3 : 1}
             className=" bg-opacity-75"
@@ -56,8 +61,6 @@ export default function Post({ post, catPosts }) {
         </BadgeWrapper>
         </div>
       )}
-
-      <PrevNext data={post} />
     </>
   );
 }
@@ -78,7 +81,7 @@ export async function getStaticProps(context) {
   let catPosts = false;
   if (post[0]?.categories && post[0]?.categories?.length > 0) {
     let posts = await fetch(
-      `${settings.apiBase}/posts?categories=${post[0]?.categories[0]}&per_page=20`
+      `${settings.apiBase}/posts?categories=${post[0]?.categories[0]}&per_page=100`
     );
     catPosts = await posts.json();
   }

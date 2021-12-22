@@ -2,6 +2,7 @@
 // https://tailwindcss.com/docs/using-with-preprocessors
 module.exports = {
   plugins: {
+    // "tailwindcss-scoped-groups": {},
     "tailwindcss/nesting": {},
     tailwindcss: {},
     autoprefixer: {},

@@ -59,7 +59,7 @@ function Portfolio({ posts, filterType }) {
       <div className="pt-6 lg:pt-16 text-center">
         <header className="mx-auto max-w-4xl mb-12 px-6">
           <h1 className="text-3xl lg:text-6xl mb-6">My Work</h1>
-          <p class="mb-6">
+          <p className="mb-6">
             I've worked as a web developer since the year 2000 and during that
             time I've completed hundreds of projects. Below is a sampling of
             those projects. You can filter projects by year or tag using the

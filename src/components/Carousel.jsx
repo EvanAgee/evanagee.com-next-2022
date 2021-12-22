@@ -17,19 +17,12 @@ function SlickArrow({ dir, className, style, onClick }) {
     <button
       onClick={onClick}
       className={classNames(
-        "absolute top-6 transform text-white z-50 bg-primary-500 rounded-full w-12 h-12 flex items-center justify-center shadow-lg",
+        "hidden lg:flex absolute top-6 transform text-white z-50 bg-primary-500 rounded-full w-12 h-12 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed",
         className,
         {
           "left-6": dir === "prev",
           "right-6": dir === "next",
         },
-        css`
-          z-index: 999999;
-          &.swiper-button-disabled {
-            opacity: 0;
-            pointer-events: none;
-          }
-        `
       )}
     >
       <FontAwesomeIcon
@@ -47,17 +40,18 @@ function Carousel({
   "data-cy": dataCy,
   useScrim,
   className,
+  showDots
 }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
   const [showLeftScrim, setShowLeftScrim] = React.useState(false);
   const [showRightScrim, setShowRightScrim] = React.useState(useScrim);
-  const { breakpoint, mediaQueries } = useBreakpoints();
+  const { mediaQueries } = useBreakpoints();
+  const random = Math.round(Math.random() * (10000000000000 - 1) + 1);
 
   const updateScrims = function (swiper) {
     setShowRightScrim(useScrim && !swiper.isEnd);
     setShowLeftScrim(useScrim && !swiper.isBeginning);
   };
-
   return (
     <div
       className={classNames(
@@ -65,18 +59,20 @@ function Carousel({
         className
       )}
       data-cy={dataCy}
+      ref={ref}
     >
       <Swiper
-        ref={ref}
+        loop={false}
         slidesPerView={slidesToShow}
+        slidesPerGroup={slidesToShow}
         spaceBetween={0}
         navigation={{
-          nextEl: ".carousel-next",
-          prevEl: ".carousel-prev",
+          nextEl: `.carousel-next-${random}`,
+          prevEl: `.carousel-prev-${random}`,
         }}
-        pagination={{
+        pagination={showDots ? {
           clickable: true,
-        }}
+        } : false}
         onAfterInit={(s) => {
           updateScrims(s);
           updateMatchedHeights();
@@ -95,11 +91,6 @@ function Carousel({
           },
           css`
             overflow: visible !important;
-
-            ${mediaQueries.lg} {
-              // padding-bottom: 0 !important;
-              // overflow: hidden !important;
-            }
 
             &:before,
             &:after {
@@ -181,8 +172,8 @@ function Carousel({
           <SwiperSlide key={i}>{c}</SwiperSlide>
         ))}
       </Swiper>
-      {breakpoint.isLgUp && <SlickArrow className="carousel-prev" dir="prev" />}
-      {breakpoint.isLgUp && <SlickArrow className="carousel-next" dir="next" />}
+      <SlickArrow className={`carousel-prev-${random}`} dir="prev" />
+      <SlickArrow className={`carousel-next-${random}`} dir="next" />
     </div>
   );
 }
@@ -191,6 +182,7 @@ Carousel.defaultProps = {
   slidesToShow: 1,
   theme: "dark",
   useScrim: false,
+  showDots: true
 };
 
 export default Carousel;

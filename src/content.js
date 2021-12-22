@@ -197,7 +197,7 @@ export default {
   <img
     loading="lazy"
     src="https://res.cloudinary.com/evanagee/image/upload/c_scale,w_180/v1551277265/evanagee.com/BW_Honoree.png"
-    class="mx-auto my-5 lg:float-right lg:ml-10 lg:mb-5"
+    className="mx-auto my-5 lg:float-right lg:ml-10 lg:mb-5"
     alt="I was a 2016 Webby Award Honoree!"
   />
   I've been developing web apps professionally since 2000 (Geocities anyone?). In that span of time I've worked

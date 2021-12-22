@@ -98,11 +98,12 @@ export default function Photo({ photo, catPosts }) {
       <div className="bg-black text-white">
         <Discussion />
       </div>
+      <PrevNext data={photo} />
       {catPosts && catPosts.filter((c) => c.id !== photo.id).length > 0 && (
         <BadgeWrapper
-          title={`More Photos in '${photo?.ea_photo_albums[0]?.name}'`}
+          title={`More Photos in <span className="text-primary-500">${photo?.ea_photo_albums[0]?.name}</span>`}
         >
-          <Carousel slidesToShow={breakpoint.isLgUp ? 3 : 1} theme="dark">
+          <Carousel slidesToShow={breakpoint.isLgUp ? 4 : 1} theme="dark" showDots={false}>
             {catPosts
               .filter((c) => c.id !== photo.id)
               .map((c, i) => (
@@ -111,7 +112,6 @@ export default function Photo({ photo, catPosts }) {
           </Carousel>
         </BadgeWrapper>
       )}
-      <PrevNext data={photo} />
     </>
   );
 }
@@ -135,6 +135,14 @@ export async function getStaticProps(context) {
       `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=10`
     );
     catPosts = await posts.json();
+  }
+
+  let relatedBlogPosts = false;
+  if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
+    const posts = await fetch(
+      `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=100`
+    );
+    relatedBlogPosts = await posts.json();
   }
 
   return {
@@ -174,9 +182,5 @@ export async function getStaticPaths() {
   }));
 
   console.timeEnd("Getting static paths for photos");
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
   return { paths, fallback: 'blocking' };
 }

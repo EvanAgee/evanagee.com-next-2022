@@ -10,8 +10,9 @@ import useBreakpoints from "@/hooks/useBreakpoints";
 import PostMap from "@/components/Blog/PostMap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@/components/Button";
+import PostMini from "@/components/Blog/Post/PostMini";
 
-function Post({ data, style, showImage }) {
+function Post({ data, style, showImage, side }) {
   const { breakpoint, mediaQueries } = useBreakpoints();
   const image = React.useMemo(() => {
     return helpers.postImage(
@@ -23,6 +24,8 @@ function Post({ data, style, showImage }) {
   const hasLocation = React.useMemo(() => {
     return data["x_metadata"].geo_longitude && data["x_metadata"].geo_latitude;
   }, [data]);
+
+  if (style === "mini") return <PostMini data={data} image={image} showImage={showImage} side={side} />;
 
   return (
     <>
@@ -372,6 +375,7 @@ Post.defaultProps = {
   data: false,
   style: "large",
   showImage: true,
+  side: "previous"
 };
 
 export default React.memo(Post);

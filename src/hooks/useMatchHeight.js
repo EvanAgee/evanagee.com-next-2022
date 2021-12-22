@@ -44,6 +44,8 @@ function useMatchHeights(userOptions) {
     const items = getItems(ref);
     resetItems(items);
 
+    if (breakpoint.isMdDown) return;
+
     setTimeout(function () {
       items.map((i) => {
         // Calculate the offset with tolerance
