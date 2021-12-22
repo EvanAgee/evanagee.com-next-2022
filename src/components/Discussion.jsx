@@ -4,11 +4,21 @@ import { DiscussionEmbed } from "disqus-react";
 import { HeaderContext } from "@/context/HeaderContext";
 import PageLoader from "@/components/Loaders/PageLoader";
 import settings from "@/settings"
-function Discussion() {
+import WpComments from "react-wordpress-comments"
+import "react-wordpress-comments/css/styles.css"
+
+function Discussion({postID}) {
   if (!settings.enableComments) return null;
   const ref = React.useRef();
   const { metaData } = React.useContext(HeaderContext);
   const location = useRouter();
+
+  return (<WpComments
+    maxDepth={3} // provide depth that you want comments to be nested in a list
+    pageId={postID} // id of a page you want to fetch comments from and post to
+    hostUrl="https://blog.evanagee.com" // url of your WordPress website
+    allowComments={true} // can users post comments?
+  />)
 
   // Hide Disqus ads
   React.useEffect(() => {

@@ -11,7 +11,7 @@ function Categories({ categories }) {
           className="justify-center"
           items={categories.map((c) => ({
             name: c.name,
-            link: `/blog/categories/${c.term_id}|${c.name}`,
+            link: `/blog/categories/${c.term_id}%7C${c.name}`,
           }))}
         />
       )}
