@@ -194,6 +194,10 @@ function Project({ project, relatedProjects }) {
                 </ul>
               </li>
             )}
+            <li className="flex items-center">
+              <span>Views</span>
+              <strong>{project.page_views}</strong>
+            </li>
           </ul>
         </header>
 
@@ -236,9 +240,7 @@ function Project({ project, relatedProjects }) {
       {relatedProjects &&
         relatedProjects.filter((c) => c.id !== project.id).length > 0 && (
           <div className="">
-            <BadgeWrapper
-              title={`Similar Projects`}
-            >
+            <BadgeWrapper title={`Similar Projects`}>
               <Carousel
                 slidesToShow={breakpoint.isLgUp ? 3 : 1}
                 className=" bg-opacity-75"
@@ -303,7 +305,7 @@ export async function getStaticPaths() {
 
   while (keepGoing) {
     const res = await fetch(
-      `https://blog.evanagee.com/wp-json/wp/v2/projects?per_page=50&page=${page}`
+      `${settings.apiBase}/projects?per_page=50&page=${page}`
     );
     const posts = await res.json();
     if (posts.length > 0) {

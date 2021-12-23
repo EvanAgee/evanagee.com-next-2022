@@ -1,7 +1,7 @@
 const settings = {
   apiBase: "https://blog.evanagee.com/wp-json/wp/v2",
   apiSettings: {
-    perPageInfinite: 11
+    perPageInfinite: 11,
   },
   ISRrevalidate: 100,
   functionBase:

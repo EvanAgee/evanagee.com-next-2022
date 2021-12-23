@@ -22,7 +22,7 @@ function SlickArrow({ dir, className, style, onClick }) {
         {
           "left-6": dir === "prev",
           "right-6": dir === "next",
-        },
+        }
       )}
     >
       <FontAwesomeIcon
@@ -40,7 +40,7 @@ function Carousel({
   "data-cy": dataCy,
   useScrim,
   className,
-  showDots
+  showDots,
 }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
   const [showLeftScrim, setShowLeftScrim] = React.useState(false);
@@ -70,9 +70,13 @@ function Carousel({
           nextEl: `.carousel-next-${random}`,
           prevEl: `.carousel-prev-${random}`,
         }}
-        pagination={showDots ? {
-          clickable: true,
-        } : false}
+        pagination={
+          showDots
+            ? {
+                clickable: true,
+              }
+            : false
+        }
         onAfterInit={(s) => {
           updateScrims(s);
           updateMatchedHeights();
@@ -182,7 +186,7 @@ Carousel.defaultProps = {
   slidesToShow: 1,
   theme: "dark",
   useScrim: false,
-  showDots: true
+  showDots: true,
 };
 
 export default Carousel;

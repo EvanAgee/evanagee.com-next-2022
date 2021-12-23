@@ -178,19 +178,13 @@ export default function Home({ posts, projects, photos }) {
 }
 
 export async function getStaticProps() {
-  let posts = await fetch(
-    "https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=12"
-  );
+  let posts = await fetch(`${settings.apiBase}/posts?per_page=12`);
   posts = await posts.json();
 
-  let projects = await fetch(
-    "https://blog.evanagee.com/wp-json/wp/v2/projects?per_page=12"
-  );
+  let projects = await fetch(`${settings.apiBase}/projects?per_page=12`);
   projects = await projects.json();
 
-  let photos = await fetch(
-    "https://blog.evanagee.com/wp-json/wp/v2/photos?per_page=12"
-  );
+  let photos = await fetch(`${settings.apiBase}/photos?per_page=12`);
   photos = await photos.json();
   return {
     props: {

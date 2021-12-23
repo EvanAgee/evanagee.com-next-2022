@@ -16,7 +16,7 @@ const Filters = dynamic(() => import("@/components/Blog/Filters/Filters"));
 export default function BlogIndex({ posts, filterType }) {
   const { breakpoint } = useBreakpoints();
   const {
-    loadMoreButtonRef,
+    LoadMoreButton,
     filters,
     filterTerm,
     setFilters,
@@ -32,10 +32,10 @@ export default function BlogIndex({ posts, filterType }) {
       tags: { value: null },
       order: { value: "desc" },
       orderby: { value: "date" },
-      per_page: { value: settings.apiSettings.perPageInfinite }
+      per_page: { value: settings.apiSettings.perPageInfinite },
     },
     queryID: "blogIndex",
-    apiPath: "/posts"
+    apiPath: "/posts",
   });
 
   if (error) return "An error has occurred: " + error.message;
@@ -52,9 +52,13 @@ export default function BlogIndex({ posts, filterType }) {
               }`
             : false
         }
-        ogData={posts ? {
-          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
-        } : false}
+        ogData={
+          posts
+            ? {
+                og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
+              }
+            : false
+        }
       />
       <Filters
         filters={filters}
@@ -65,15 +69,11 @@ export default function BlogIndex({ posts, filterType }) {
       {false && posts && (
         <GridWrapper data-test-id="blog-index-grid-wrapper" largeFirst={true}>
           {posts.map((d, ii) => (
-            <Post
-              key={ii}
-              data={d}
-              style={ii === 0 ? "large" : "small"}
-            />
+            <Post key={ii} data={d} style={ii === 0 ? "large" : "small"} />
           ))}
         </GridWrapper>
       )}
-      
+
       {isLoading ? (
         <GridWrapper largeFirst={true}>
           {[1, 2, 3].map((d, ii) => (
@@ -103,22 +103,7 @@ export default function BlogIndex({ posts, filterType }) {
           No posts found...
         </div>
       )}
-      <div className="flex items-center justify-center py-16">
-        <button
-          ref={loadMoreButtonRef}
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}
-          className={classNames(
-            "button button-black button-reversed button-sm"
-          )}
-        >
-          {isFetchingNextPage
-            ? "Loading more..."
-            : hasNextPage
-            ? "Load More"
-            : "No more posts, is your finger tired?" }
-        </button>
-      </div>
+      <LoadMoreButton />
     </div>
   );
 }

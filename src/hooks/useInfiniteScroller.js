@@ -2,11 +2,19 @@ import React from "react";
 import { useRouter } from "next/router";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import { useInfiniteQuery } from "react-query";
+import useBreakpoints from "@/hooks/useBreakpoints";
 import axios from "axios";
 import settings from "@/settings";
+import classNames from "classnames";
 
-function useInfiniteScroller({ initialFilters, apiPath, queryID, initialData }) {
+function useInfiniteScroller({
+  initialFilters,
+  apiPath,
+  queryID,
+  initialData,
+}) {
   const loadMoreButtonRef = React.useRef();
+  const { breakpoint } = useBreakpoints();
   const router = useRouter();
   const { filterTerm } = router.query;
   const [resultCount, setResultCount] = React.useState(0);
@@ -120,6 +128,29 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID, initialData }) 
     });
   }, [filterType, filterTerm]);
 
+  function LoadMoreButton() {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <button
+          ref={loadMoreButtonRef}
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+          className={classNames(
+            "border-4 border-gray-200 rounded-md font-display uppercase font-bold px-4 py-2 text-sm text-gray-300"
+          )}
+        >
+          {isFetchingNextPage
+            ? "Loading more..."
+            : hasNextPage
+            ? "Load More"
+            : `No more posts, is your ${
+                breakpoint.isLgUp ? "mouse" : "finger"
+              } tired?`}
+        </button>
+      </div>
+    );
+  }
+
   return {
     filters,
     setFilters,
@@ -127,6 +158,7 @@ function useInfiniteScroller({ initialFilters, apiPath, queryID, initialData }) 
     filterType,
     filterTerm,
     loadMoreButtonRef,
+    LoadMoreButton,
     status,
     data,
     error,

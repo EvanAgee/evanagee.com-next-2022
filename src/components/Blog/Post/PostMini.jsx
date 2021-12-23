@@ -6,7 +6,6 @@ import WpApiContent from "@/components/WpApiContent";
 
 function PostMini({ data, showImage, side }) {
   const image = helpers.postImage(data, "thumbnail");
-  console.log(image)
   const path =
     data.type === "post"
       ? "blog"

@@ -1,13 +1,13 @@
 import Portfolio from "@/pages/portfolio/index";
 export default Portfolio;
-import settings from "@/settings"
-import axios from "axios"
+import settings from "@/settings";
+import axios from "axios";
 
 export async function getStaticProps(context) {
   let posts = await axios.get(`${settings.apiBase}/projects`, {
     params: {
       tags: parseInt(context.params.filterTerm.split("%7C")[0]),
-      per_page: 1
+      per_page: 1,
     },
   });
 
@@ -31,13 +31,14 @@ export async function getStaticPaths() {
       `${settings.apiBase}/tags?per_page=50&page=${page}`
     );
     const posts = await res.json();
-  
-    
+
     if (posts.length > 0) {
-      posts.map((p) => allPosts.push({
-        id: p.id,
-        title: p.slug
-      }));
+      posts.map((p) =>
+        allPosts.push({
+          id: p.id,
+          title: p.slug,
+        })
+      );
       page++;
     } else {
       keepGoing = false;
@@ -45,12 +46,12 @@ export async function getStaticPaths() {
   }
 
   // Get the paths we want to pre-render based on posts
-  const paths = allPosts.map(({id, title}) => ({
+  const paths = allPosts.map(({ id, title }) => ({
     params: {
       filterTerm: `${id}|${title}`,
     },
   }));
 
   console.timeEnd("Getting static paths for project tags");
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

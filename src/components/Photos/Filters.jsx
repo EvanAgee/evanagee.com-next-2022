@@ -10,7 +10,7 @@ function Filters({ filters, onChange, results, className }) {
   const [filtersVisible, setFiltersVisible] = React.useState(false);
 
   React.useEffect(() => {
-    setFiltersVisible(breakpoint.isLgUp)
+    setFiltersVisible(breakpoint.isLgUp);
   }, [breakpoint]);
 
   const updateFilters = function (payload) {

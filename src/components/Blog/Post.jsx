@@ -25,7 +25,10 @@ function Post({ data, style, showImage, side }) {
     return data["x_metadata"].geo_longitude && data["x_metadata"].geo_latitude;
   }, [data]);
 
-  if (style === "mini") return <PostMini data={data} image={image} showImage={showImage} side={side} />;
+  if (style === "mini")
+    return (
+      <PostMini data={data} image={image} showImage={showImage} side={side} />
+    );
 
   return (
     <>
@@ -136,7 +139,8 @@ function Post({ data, style, showImage, side }) {
                       "inset-0 absolute object-cover w-full h-full object-center shadow-lg rounded-2xl max-w-full cursor-pointer ",
                       {
                         "": style !== "full",
-                        "group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4": style !== "full" && style !== "large"
+                        "group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4":
+                          style !== "full" && style !== "large",
                       }
                     )}
                   />
@@ -320,7 +324,7 @@ function Post({ data, style, showImage, side }) {
             )}
 
             {style === "full" && data.ea_tags && data.ea_tags.length > 0 && (
-              <div className="my-6">
+              <div className="my-6 flex space-x-6 justify-center items-center">
                 <TagList
                   label="Tags"
                   className="justify-center"
@@ -329,6 +333,11 @@ function Post({ data, style, showImage, side }) {
                     link: `/blog/tags/${t.term_id}|${t.name}`,
                   }))}
                 />
+                <div className="font-display uppercase text-xs font-semibold">
+                  {parseInt(data.page_views) < 2
+                    ? `${data.page_views} View`
+                    : `${data.page_views} Views`}
+                </div>
               </div>
             )}
 
@@ -375,7 +384,7 @@ Post.defaultProps = {
   data: false,
   style: "large",
   showImage: true,
-  side: "previous"
+  side: "previous",
 };
 
 export default React.memo(Post);

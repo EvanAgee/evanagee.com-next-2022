@@ -12,7 +12,7 @@ import helpers from "@/helpers";
 import Button from "@/components/Button";
 
 function Discussion({ post, postID, className }) {
-  if (!settings.enableComments) return null;
+  if (!settings.enableComments || !post) return null;
   const ref = React.useRef();
   const [comments, setComments] = React.useState([]);
   const { metaData } = React.useContext(HeaderContext);
@@ -46,7 +46,6 @@ function Discussion({ post, postID, className }) {
 
     try {
       let api = await axios.post("/api/comments", data);
-      console.log(api);
       if (api.data.error) {
         setError(api.data.error);
       } else {
@@ -62,6 +61,12 @@ function Discussion({ post, postID, className }) {
 
   return (
     <div className={classNames("p-16", className)}>
+      <div className="inline-flex items-baseline space-x-1 border-b-4 border-gray-300 mb-4">
+        <div className="lg:text-6xl font-display text-primary-500">
+          {filteredComments.length}
+        </div>
+        <div className="lg:text-3xl">Comments</div>
+      </div>
       {filteredComments.length > 0 && (
         <ul className="flex-col space-y-16 prose max-w-none mb-16">
           {filteredComments.map((comment) => (
@@ -117,6 +122,7 @@ function Discussion({ post, postID, className }) {
                 id="name"
                 type="text"
                 required
+                className="p-4 rounded-md outline-none border-gray-300 focus:ring-secondary-500 focus:outline-none focus:border-transparent focus:ring-2 form-input"
               />
             </div>
             <div className="flex flex-col justify-center">
@@ -130,6 +136,7 @@ function Discussion({ post, postID, className }) {
                 id="email"
                 type="email"
                 required
+                className="p-4 rounded-md outline-none border-gray-300 focus:ring-secondary-500 focus:outline-none focus:border-transparent focus:ring-2 form-input"
               />
             </div>
             <div className="flex flex-col justify-center col-span-2">
@@ -142,7 +149,7 @@ function Discussion({ post, postID, className }) {
               <textarea
                 id="comment"
                 required
-                className="h-48"
+                className="h-48 p-4 rounded-md outline-none border-gray-300 focus:ring-secondary-500 focus:outline-none focus:border-transparent focus:ring-2 form-textarea"
               />
             </div>
             <div className="col-span-2">

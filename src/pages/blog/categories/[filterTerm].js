@@ -7,7 +7,7 @@ export async function getStaticProps(context) {
   let posts = await axios.get(`${settings.apiBase}/posts`, {
     params: {
       categories: parseInt(context.params.filterTerm.split("|")[0]),
-      per_page: 1
+      per_page: 1,
     },
   });
 
@@ -35,22 +35,24 @@ export async function getStaticPaths() {
     );
     const posts = await res.json();
     if (posts.length > 0) {
-      posts.map((p) => allPosts.push({
-        id: p.id,
-        title: p.name
-      }));
+      posts.map((p) =>
+        allPosts.push({
+          id: p.id,
+          title: p.name,
+        })
+      );
       page++;
     } else {
       keepGoing = false;
     }
   }
   // Get the paths we want to pre-render based on posts
-  const paths = allPosts.map(({id, title}) => ({
-    params: { 
-      filterTerm: `${id}|${title}` 
+  const paths = allPosts.map(({ id, title }) => ({
+    params: {
+      filterTerm: `${id}|${title}`,
     },
   }));
 
   console.timeEnd("Getting static paths for categories");
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

@@ -46,10 +46,14 @@ function ProjectTeaser({ data, showDescription }) {
             <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer group-hover:text-secondary-500">
               <WpApiContent content={data.title.rendered} />
             </h3>
-            {showDescription && <time className="text-sm font-normal text-gray-400 italic ml-2">
-              cir. {helpers.formatDate(data.date, "yyyy")}
-            </time>}
-            {showDescription && <WpApiContent content={data.excerpt.rendered} />}
+            {showDescription && (
+              <time className="text-sm font-normal text-gray-400 italic ml-2">
+                cir. {helpers.formatDate(data.date, "yyyy")}
+              </time>
+            )}
+            {showDescription && (
+              <WpApiContent content={data.excerpt.rendered} />
+            )}
           </div>
           {showDescription && "ea_tags" in data && (
             <div className="my-6">
@@ -81,6 +85,6 @@ function ProjectTeaser({ data, showDescription }) {
 
 ProjectTeaser.defaultProps = {
   showDescription: true,
-}
+};
 
 export default React.memo(ProjectTeaser);

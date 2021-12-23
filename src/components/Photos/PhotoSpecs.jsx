@@ -38,7 +38,7 @@ function PhotoSpecs({ photo }) {
 
         <li className="photo-data-grid__items__item col-span-6 lg:col-span-2">
           <strong>Views</strong>
-          <div>{photo?.acf?.view_count}</div>
+          <div>{photo?.page_views}</div>
         </li>
 
         <li className="photo-data-grid__items__item col-span-6 lg:col-span-3">

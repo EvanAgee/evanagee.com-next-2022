@@ -55,7 +55,7 @@ module.exports = {
         // primary: primaryColor,
         primary: colors.rose,
         secondary: colors.cyan,
-        gray: colors.neutral
+        gray: colors.neutral,
       },
       typography: {
         xl: {
@@ -83,7 +83,9 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
     require("@tailwindcss/typography"),
     require("tailwind-css-variables")(
       {

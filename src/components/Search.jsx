@@ -46,6 +46,7 @@ export default function Search() {
   const search = React.useRef(null);
   const {
     loadMoreButtonRef,
+    LoadMoreButton,
     filters,
     setFilters,
     resultCount,
@@ -174,22 +175,7 @@ export default function Search() {
                 ))}
             </GridWrapper>
           ))}
-          <div className="flex items-center justify-center py-16">
-            <button
-              ref={loadMoreButtonRef}
-              onClick={() => fetchNextPage()}
-              disabled={!hasNextPage || isFetchingNextPage}
-              className={classNames(
-                "button button-black button-reversed button-sm"
-              )}
-            >
-              {isFetchingNextPage
-                ? "Loading more..."
-                : hasNextPage
-                ? "Load More"
-                : "Nothing more to load"}
-            </button>
-          </div>
+          <LoadMoreButton />
         </>
       ) : resultCount < 1 ? (
         <div className="flex justify-center items-center h-96 text-2xl">

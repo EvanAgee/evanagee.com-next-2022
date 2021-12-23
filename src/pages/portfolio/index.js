@@ -7,12 +7,13 @@ import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 import Filters from "@/components/Projects/Filters";
 import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
-import helpers from "@/helpers"
+import helpers from "@/helpers";
 import Button from "@/components/Button";
 
 function Portfolio({ posts, filterType }) {
   const {
     loadMoreButtonRef,
+    LoadMoreButton,
     filters,
     filterTerm,
     setFilters,
@@ -46,9 +47,13 @@ function Portfolio({ posts, filterType }) {
               }`
             : false
         }
-        ogData={posts ? {
-          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
-        } : false}
+        ogData={
+          posts
+            ? {
+                og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
+              }
+            : false
+        }
       />
       <Filters
         filters={filters}
@@ -66,9 +71,7 @@ function Portfolio({ posts, filterType }) {
             controls above.
           </p>
           <div className="flex gap-6 justify-center">
-            <Button href="/resume">
-              View My Resume
-            </Button>
+            <Button href="/resume">View My Resume</Button>
             <Button
               variant="secondary"
               href="https://vuewp.com"
@@ -99,22 +102,7 @@ function Portfolio({ posts, filterType }) {
           </div>
         )}
 
-        <div className="flex items-center justify-center py-16">
-          <button
-            ref={loadMoreButtonRef}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-            className={classNames(
-              "button button-black button-reversed button-sm"
-            )}
-          >
-            {isFetchingNextPage
-              ? "Loading more..."
-              : hasNextPage
-              ? "Load More"
-              : "No more projects, is your finger tired?"}
-          </button>
-        </div>
+        <LoadMoreButton />
       </div>
     </div>
   );

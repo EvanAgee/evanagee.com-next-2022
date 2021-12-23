@@ -55,14 +55,10 @@ const useBreakpoint = () => {
   const [brkPnt, setBrkPnt] = useState(0);
 
   useEffect(() => {
-    setBrkPnt(
-      getBreakpoint(window.innerWidth)
-    );
-    
+    setBrkPnt(getBreakpoint(window.innerWidth));
+
     const calcInnerWidth = throttle(() => {
-      setBrkPnt(
-        getBreakpoint(window.innerWidth)
-      );
+      setBrkPnt(getBreakpoint(window.innerWidth));
     }, 200);
 
     window.addEventListener("resize", calcInnerWidth);

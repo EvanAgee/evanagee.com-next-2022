@@ -14,14 +14,13 @@ const tagManagerArgs = {
 };
 
 function MyApp({ Component, pageProps }) {
-
   React.useEffect(() => {
     if (process.env.NODE_ENV === "production") {
       TagManager.initialize(tagManagerArgs);
       ReactGA.initialize(settings.googleAnalyticsID);
       LogRocket.init("6kdr3y/evanageecom");
     }
-  },[]);
+  }, []);
 
   return (
     <React.StrictMode>

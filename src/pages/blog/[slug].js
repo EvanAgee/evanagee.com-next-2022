@@ -1,5 +1,3 @@
-import React, { useEffect, useContext } from "react";
-import { fetchAPI } from "@/lib/api";
 import helpers from "@/helpers";
 import PostDetail from "@/components/Blog/Post";
 import Discussion from "@/components/Discussion";
@@ -15,7 +13,6 @@ import Meta from "@/components/Meta";
 
 export default function Post({ post, catPosts }) {
   const { breakpoint } = useBreakpoints();
-  const { updateMatchedHeights } = useMatchHeight();
 
   return (
     <>
@@ -31,35 +28,47 @@ export default function Post({ post, catPosts }) {
       </div>
       <PostDetail data={post} style="full" />
 
+      <em className="block py-4 text-sm text-center mb-6 text-gray-400">
+        Some imagery provided by{" "}
+        <a
+          href="https://unsplash.com/"
+          target="_blank"
+          className="text-primary-400"
+        >
+          Unsplash
+        </a>
+        .
+      </em>
 
-      <em className="block py-4 text-sm text-center mb-6 text-gray-400">Some imagery provided by <a href="https://unsplash.com/" target="_blank" className="text-primary-400">Unsplash</a>.</em>
-      
       <div className="bg-gray-100">
         <Discussion post={post} postID={post.id} />
       </div>
-      
+
       <PrevNext data={post} />
-      
-      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (<div className="">
-        <BadgeWrapper title={`More Posts in <span className="text-primary-500">${post.ea_categories[0].name}</span>`}>
-          <Carousel
-            slidesToShow={breakpoint.isLgUp ? 3 : 1}
-            className=" bg-opacity-75"
+
+      {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
+        <div className="">
+          <BadgeWrapper
+            title={`More Posts in <span className="text-primary-500">${post.ea_categories[0].name}</span>`}
           >
-            {catPosts
-              .filter((c) => c.id !== post.id)
-              .map((c, i) => (
-                <PostGridWrapper
-                  key={i}
-                  className="pt-16 pb-20 w-full"
-                  counter={i}
-                  largeFirst={false}
-                >
-                  <PostDetail data={c} style="teaser" />
-                </PostGridWrapper>
-              ))}
-          </Carousel>
-        </BadgeWrapper>
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 3 : 1}
+              className=" bg-opacity-75"
+            >
+              {catPosts
+                .filter((c) => c.id !== post.id)
+                .map((c, i) => (
+                  <PostGridWrapper
+                    key={i}
+                    className="pt-16 pb-20 w-full"
+                    counter={i}
+                    largeFirst={false}
+                  >
+                    <PostDetail data={c} style="teaser" />
+                  </PostGridWrapper>
+                ))}
+            </Carousel>
+          </BadgeWrapper>
         </div>
       )}
     </>
@@ -107,7 +116,7 @@ export async function getStaticPaths() {
 
   while (keepGoing) {
     const res = await fetch(
-      `https://blog.evanagee.com/wp-json/wp/v2/posts?per_page=50&page=${page}`
+      `${settings.apiBase}/posts?per_page=50&page=${page}`
     );
     const posts = await res.json();
     if (posts.length > 0) {
@@ -127,5 +136,5 @@ export async function getStaticPaths() {
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

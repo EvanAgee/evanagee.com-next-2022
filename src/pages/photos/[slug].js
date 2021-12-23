@@ -20,6 +20,7 @@ import Button from "@/components/Button";
 
 export default function Photo({ photo, catPosts }) {
   const { breakpoint } = useBreakpoints();
+  console.log(photo);
 
   return (
     <>
@@ -69,9 +70,7 @@ export default function Photo({ photo, catPosts }) {
             </ul>
           </div>
           <div>
-            <Button href="/photos">
-                Back to Photos
-            </Button>
+            <Button href="/photos">Back to Photos</Button>
           </div>
         </header>
       </div>
@@ -82,28 +81,39 @@ export default function Photo({ photo, catPosts }) {
               <WpApiContent content={photo?.content?.rendered} />
             )}
           </div>
-          <div className={classNames("lg:[min-width:900px]", {
-            "mx-auto": !photo?.content?.rendered,
-          })}>
+          <div
+            className={classNames("lg:[min-width:900px]", {
+              "mx-auto": !photo?.content?.rendered,
+            })}
+          >
             <PhotoSpecs photo={photo} />
           </div>
         </div>
 
-        {process.env.NODE_ENV === "development" && <div className="flex items-center justify-center space-x-6 pt-6">
-          <Button href={`https://blog.evanagee.com/wp-admin/post.php?post=${photo.id}&action=edit`} target="_blank">
-            Edit Photo
-          </Button>
-        </div>}
+        {process.env.NODE_ENV === "development" && (
+          <div className="flex items-center justify-center space-x-6 pt-6">
+            <Button
+              href={`https://blog.evanagee.com/wp-admin/post.php?post=${photo.id}&action=edit`}
+              target="_blank"
+            >
+              Edit Photo
+            </Button>
+          </div>
+        )}
       </div>
       <div className="bg-black text-white">
-        <Discussion />
+        <Discussion post={photo} />
       </div>
       <PrevNext data={photo} />
       {catPosts && catPosts.filter((c) => c.id !== photo.id).length > 0 && (
         <BadgeWrapper
           title={`More Photos in <span className="text-primary-500">${photo?.ea_photo_albums[0]?.name}</span>`}
         >
-          <Carousel slidesToShow={breakpoint.isLgUp ? 4 : 1} theme="dark" showDots={false}>
+          <Carousel
+            slidesToShow={breakpoint.isLgUp ? 4 : 1}
+            theme="dark"
+            showDots={false}
+          >
             {catPosts
               .filter((c) => c.id !== photo.id)
               .map((c, i) => (
@@ -165,7 +175,7 @@ export async function getStaticPaths() {
 
   while (keepGoing) {
     const res = await fetch(
-      `https://blog.evanagee.com/wp-json/wp/v2/photos?per_page=20&page=${page}`
+      `${settings.apiBase}/photos?per_page=20&page=${page}`
     );
     const posts = await res.json();
     if (posts.length > 0) {
@@ -182,5 +192,5 @@ export async function getStaticPaths() {
   }));
 
   console.timeEnd("Getting static paths for photos");
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 }

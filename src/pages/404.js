@@ -28,16 +28,14 @@ function NotFound() {
               </p>
               <div className="mt-6">
                 <Button href="/">
-                    Go back home <span aria-hidden="true">&nbsp; &rarr;</span>
+                  Go back home <span aria-hidden="true">&nbsp; &rarr;</span>
                 </Button>
               </div>
             </div>
           </div>
         </main>
       </div>
-      <div
-        className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"
-      >
+      <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <img
           className="absolute inset-0 h-full w-full object-cover object-center"
           src="https://res.cloudinary.com/evanagee/image/upload/c_fill,h_800,w_800/v1550789111/flickr-photos/66174073.jpg"

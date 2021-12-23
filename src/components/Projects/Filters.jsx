@@ -12,7 +12,7 @@ function Filters({ filters, onChange, results, className }) {
 
   React.useEffect(() => {
     setFiltersVisible(breakpoint.isLgUp);
-  }, [breakpoint])
+  }, [breakpoint]);
 
   const setFilterValue = (payload) => {
     return payload.field.length > 0

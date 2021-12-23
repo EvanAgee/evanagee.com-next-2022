@@ -15,6 +15,7 @@ const Filters = dynamic(() => import("@/components/Photos/Filters"));
 function Photos({ posts, filterType }) {
   const {
     loadMoreButtonRef,
+    LoadMoreButton,
     filters,
     filterTerm,
     setFilters,
@@ -50,9 +51,13 @@ function Photos({ posts, filterType }) {
               }`
             : false
         }
-        ogData={posts ? {
-          og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
-        } : false}
+        ogData={
+          posts
+            ? {
+                og_image: [{ url: helpers.postImage(posts[0], "large")[0] }],
+              }
+            : false
+        }
       />
       <div className="" data-test-id="photo-index">
         <Filters
@@ -111,23 +116,7 @@ function Photos({ posts, filterType }) {
             No posts found...
           </div>
         )}
-
-        <div className="flex items-center justify-center py-16">
-          <button
-            ref={loadMoreButtonRef}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-            className={classNames(
-              "button button-white button-reversed button-sm"
-            )}
-          >
-            {isFetchingNextPage
-              ? "Loading more..."
-              : hasNextPage
-              ? "Load More"
-              : "No more photos, is your finger tired?"}
-          </button>
-        </div>
+        <LoadMoreButton />
       </div>
     </>
   );
