@@ -20,7 +20,6 @@ import Button from "@/components/Button";
 
 export default function Photo({ photo, catPosts }) {
   const { breakpoint } = useBreakpoints();
-  console.log(photo);
 
   return (
     <>
