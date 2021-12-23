@@ -6,6 +6,7 @@ import WpApiContent from "@/components/WpApiContent";
 
 function PostMini({ data, showImage, side }) {
   const image = helpers.postImage(data, "thumbnail");
+  console.log(image)
   const path =
     data.type === "post"
       ? "blog"
@@ -16,7 +17,7 @@ function PostMini({ data, showImage, side }) {
   return (
     <Link href={`/${path}/${data.slug}`}>
       <a className="flex items-stretch cursor-pointer dark:text-white dark:bg-gray-800 group">
-        {showImage && (
+        {showImage && image && (
           <img
             loading="lazy"
             src={image[0]}

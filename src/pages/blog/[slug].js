@@ -35,7 +35,7 @@ export default function Post({ post, catPosts }) {
       <em className="block py-4 text-sm text-center mb-6 text-gray-400">Some imagery provided by <a href="https://unsplash.com/" target="_blank" className="text-primary-400">Unsplash</a>.</em>
       
       <div className="bg-gray-100">
-        <Discussion postID={post.id} />
+        <Discussion post={post} postID={post.id} />
       </div>
       
       <PrevNext data={post} />
