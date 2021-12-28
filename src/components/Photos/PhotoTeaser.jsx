@@ -27,7 +27,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
       )}
     >
       <Link href={`/photos/${data.slug}`}>
-        <a className="absolute inset-0 overflow-hidden">
+        <a className="absolute inset-0 overflow-hidden group">
           {image ? (
             <>
               <img
@@ -37,7 +37,10 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 width={image[1]}
                 height={image[2]}
                 className={classNames(
-                  "inset-0 absolute object-cover w-full h-full object-center"
+                  "inset-0 absolute object-cover w-full h-full object-center",
+                  { 
+                    "grayscale group-hover:grayscale-0 transition duration-500": showDetails
+                  }
                 )}
               />
               {/* Photo deatils overlay */}
@@ -48,6 +51,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                     "translate-x-0": hovered,
                     "translate-x-full": !hovered,
                     "from-primary-500": featuredImage,
+                    "transition group-hover:opacity-0": showDetails,
                   }
                 )}
               >

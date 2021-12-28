@@ -11,7 +11,7 @@ import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
 import settings from "@/settings";
 import helpers from "@/helpers";
-const Filters = dynamic(() => import("@/components/Blog/Filters/Filters"));
+const Filters = dynamic(() => import("@/components/Filters"));
 
 export default function BlogIndex({ posts, filterType }) {
   const { breakpoint } = useBreakpoints();
@@ -28,11 +28,18 @@ export default function BlogIndex({ posts, filterType }) {
     error,
   } = useInfiniteScroller({
     initialFilters: {
-      categories: { value: null },
-      tags: { value: null },
+      search: { value: null },
+      categories: { value: null, isMulti: true, showCounts: true },
+      tags: {
+        value: null,
+        querySlug: "posts/tags",
+        isMulti: true,
+        showCounts: false,
+      },
       order: { value: "desc" },
       orderby: { value: "date" },
       per_page: { value: settings.apiSettings.perPageInfinite },
+      post_type: { value: "post" },
     },
     queryID: "blogIndex",
     apiPath: "/posts",

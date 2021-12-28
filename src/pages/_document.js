@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
         <Head />
         <body
           className={classNames(
-            "font-body subpixel-antialiased bg-gray-900 overflow-x-hidden"
+            "font-body subpixel-antialiased bg-gray-900 overflow-x-hidden selection:bg-primary-500 selection:text-white"
           )}
         >
           <Main />

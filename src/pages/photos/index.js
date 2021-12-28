@@ -10,7 +10,7 @@ import helpers from "@/helpers";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
-const Filters = dynamic(() => import("@/components/Photos/Filters"));
+const Filters = dynamic(() => import("@/components/Filters"));
 
 function Photos({ posts, filterType }) {
   const {
@@ -27,11 +27,13 @@ function Photos({ posts, filterType }) {
     error,
   } = useInfiniteScroller({
     initialFilters: {
-      photo_album: { value: null },
-      photo_tags: { value: null },
+      search: { value: null },
+      photo_album: { value: null, isMulti: true },
+      photo_tags: { value: null, isMulti: true },
       order: { value: "desc" },
       orderby: { value: "date" },
       per_page: { value: 26 },
+      post_type: { value: "photo"}
     },
     queryID: "photoIndex",
     apiPath: "/photos",

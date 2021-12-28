@@ -24,6 +24,7 @@ function Filter({
       params: {
         page: pageParam + 1,
         per_page: 100,
+        post_type: filters.post_type ? filters.post_type.value : "post",
         hide_empty: true,
       },
     });
@@ -38,7 +39,7 @@ function Filter({
     isFetching,
     isFetchingNextPage,
     isLoading,
-  } = useInfiniteQuery(["filterData", filterKey], fetchTerms, {
+  } = useInfiniteQuery(["filterData", querySlug, showCounts], fetchTerms, {
     getNextPageParam: (lastPage, pages) => {
       return parseInt(lastPage.headers["x-wp-totalpages"]) >=
         lastPage.config.params.page + 1

@@ -31,11 +31,9 @@ export default function HeaderHome() {
           `
         )}
       >
-        {breakpoint.isLgUp && (
-          <div className="relative w-full flex justify-center">
+        <div className="hidden relative w-full lg:flex justify-center">
             <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
           </div>
-        )}
         <div
           className={classNames(
             "relative flex flex-col justify-end py-8 px-12 lg:py-24 text-center",
@@ -136,11 +134,9 @@ export default function HeaderHome() {
             </motion.p>
           </div>
         </div>
-        {breakpoint.isMdDown && (
-          <div className="flex justify-center pb-8 relative">
+        <div className="flex lg:hidden justify-center pb-8 relative">
             <CurrentLocation />
           </div>
-        )}
       </div>
     </>
   );

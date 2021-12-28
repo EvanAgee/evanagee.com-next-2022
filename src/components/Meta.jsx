@@ -12,13 +12,13 @@ function Meta({ title, ogData }) {
       <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.ico" />
       <meta
         property="og:type"
-        content={ogData?.og_type ? ogData?.og_type : "website"}
+        content={ogData?.og_type ? ogData?.og_type?.toString() : "website"}
       />
       <meta
         property="og:description"
         content={
           ogData?.og_description
-            ? ogData?.og_description
+            ? ogData?.og_description?.toString()
             : "I’m a web application developer who specializes in WordPress and JavaScript development."
         }
       />
@@ -26,19 +26,19 @@ function Meta({ title, ogData }) {
         property="description"
         content={
           ogData?.og_description
-            ? ogData?.og_description
+            ? ogData?.og_description?.toString()
             : "I’m a web application developer who specializes in WordPress and JavaScript development."
         }
       />
       <meta
         property="og:locale"
-        content={ogData?.og_locale ? ogData?.og_locale : "en_US"}
+        content={ogData?.og_locale ? ogData?.og_locale?.toString() : "en_US"}
       />
       <meta
         property="og:image"
         content={
           ogData?.og_image
-            ? ogData?.og_image[0].url
+            ? ogData?.og_image[0].url?.toString()
             : "https://res.cloudinary.com/evanagee/image/upload/v1551277282/evanagee.com/bg-2018-code.jpg"
         }
       />

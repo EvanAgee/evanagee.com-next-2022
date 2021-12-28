@@ -4,7 +4,7 @@ import Link from "next/link";
 import Loader from "@/components/Loaders/Loader";
 import ProjectTeaser from "@/components/Projects/ProjectTeaser";
 import useInfiniteScroller from "@/hooks/useInfiniteScroller";
-import Filters from "@/components/Projects/Filters";
+import Filters from "@/components/Filters";
 import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
 import helpers from "@/helpers";
@@ -24,13 +24,47 @@ function Portfolio({ posts, filterType }) {
     hasNextPage,
   } = useInfiniteScroller({
     initialFilters: {
-      tags: { value: null },
+      search: { value: null },
+      year: {
+        value: null,
+        querySlug: "projects/dates",
+        setFunction: (field) => {
+          return [
+            {
+              type: "after",
+              field: field
+                ? {
+                    ...field,
+                    value: `${field.value - 1}-12-31T00:00:00`,
+                  }
+                : { value: null },
+            },
+            {
+              type: "before",
+              field: field
+                ? {
+                    ...field,
+                    value: `${field.value + 1}-01-01T00:00:00`,
+                  }
+                : { value: null },
+            },
+          ];
+        },
+        displayFunction: (item) => {
+          return {
+            value: item.year,
+            label: `${item.year} (${item.count})`,
+          };
+        },
+        isMulti: false
+      },
+      tags: { value: null, querySlug: "projects/tags" },
       order: { value: "desc" },
       orderby: { value: "date" },
       per_page: { value: 12 },
       before: { value: null },
       after: { value: null },
-      year: { value: null },
+      post_type: { value: 'project' }
     },
     queryID: "portfolioIndex",
     apiPath: "/projects",

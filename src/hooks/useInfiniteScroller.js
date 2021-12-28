@@ -136,7 +136,7 @@ function useInfiniteScroller({
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}
           className={classNames(
-            "border-4 border-gray-200 rounded-md font-display uppercase font-bold px-4 py-2 text-sm text-gray-300"
+            "border-4 border-gray-200 dark:border-gray-700 rounded-md font-display uppercase font-bold px-4 py-2 text-sm text-gray-300 dark:text-gray-500"
           )}
         >
           {isFetchingNextPage

@@ -17,8 +17,7 @@ import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 import PostDetail from "@/components/Blog/Post";
 import ProjectTeaser from "@/components/Projects/ProjectTeaser";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
-
-const RecentPosts = dynamic(() => import("../components/RecentPosts.jsx"));
+import PostMini from "@/components/Blog/Post/PostMini";
 
 const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426991/evanagee.com/27E4E7A7-CC69-4D72-B18E-9385B1072840.jpg",
@@ -66,7 +65,7 @@ export default function Home({ posts, projects, photos }) {
         <motion.section
           variants={pageVariants.section}
           id="about"
-          className="px-6 py-12 lg:px-16 lg:py-16"
+          className="px-6 py-12 lg:px-16 lg:py-16 lg:flex items-center"
         >
           <div className="relative mb-16 text-center max-w-md mx-auto">
             <div
@@ -84,7 +83,7 @@ export default function Home({ posts, projects, photos }) {
             />
           </div>
 
-          <div className=" mt-20 lg:mt-0 mx-auto">
+          <div className="mt-20 lg:mt-0 mx-auto">
             <div className="prose lg:prose-xl mx-auto">
               <div className="up-title">A little about me...</div>
               <p>
@@ -149,7 +148,7 @@ export default function Home({ posts, projects, photos }) {
                   counter={i}
                   largeFirst={false}
                 >
-                  <ProjectTeaser data={c} />
+                  <ProjectTeaser data={c} showDescription={false} />
                 </PostGridWrapper>
               ))}
             </Carousel>
@@ -159,7 +158,7 @@ export default function Home({ posts, projects, photos }) {
           <BadgeWrapper title="Recent Photos">
             <Carousel
               slidesToShow={breakpoint.isLgUp ? 4 : 2}
-              className=" bg-opacity-0 border-b-0"
+              className="!border-b-0 !border-r-0 !border-l-0"
               showDots={false}
             >
               {photos?.map((c, i) => (
