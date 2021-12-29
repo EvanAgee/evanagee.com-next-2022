@@ -4,6 +4,7 @@ import ParseHTML from "@/components/WpApiContent";
 import useMatchHeight from "@/hooks/useMatchHeight";
 import Discussion from "@/components/Discussion";
 import Meta from "@/components/Meta";
+import settings from "@/settings";
 
 function Films({ feed, error }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
@@ -83,6 +84,7 @@ export async function getStaticProps() {
       props: {
         feed: feed.items,
       },
+      revalidate: settings.ISRrevalidate,
     };
   } catch (error) {
     return {

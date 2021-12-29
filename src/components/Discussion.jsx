@@ -112,7 +112,7 @@ function Discussion({ post, postID, className }) {
         <>
           <h3 className="up-title">Leave a Comment</h3>
           <form className="grid lg:grid-cols-2 gap-12 dark:text-gray-300" onSubmit={handleSubmit}>
-            <div className="flex flex-col justify-center">
+            <div className="flex col-span-2 lg:col-span-1 flex-col justify-center">
               <label
                 className="uppercase font-bold mb-2 font-display text-base tracking-widest"
                 htmlFor="name"
@@ -126,7 +126,7 @@ function Discussion({ post, postID, className }) {
                 className={inputClasses}
               />
             </div>
-            <div className="flex flex-col justify-center">
+            <div className="flex col-span-2 lg:col-span-1 flex-col justify-center">
               <label
                 className="uppercase font-bold mb-2 font-display text-base tracking-widest"
                 htmlFor="email"

@@ -15,11 +15,11 @@ export default function HeaderHome() {
         <Photo
           cycle={true}
           imgStyle="c_scale,w_2000"
-          tag={[248]}
+          tag={[248,1890]}
           placeholder="https://res.cloudinary.com/evanagee/image/upload/v1551277282/evanagee.com/bg-2018-code.jpg"
           className="object-cover object-center w-screen h-screen absolute inset-0 max-w-none transition-opacity"
         />
-        <div className="scrim absolute inset-0 bg-gray-800 opacity-80"></div>
+        <div className="scrim absolute inset-0 bg-gray-900 opacity-80"></div>
       </div>
       <div
         className={classNames(
