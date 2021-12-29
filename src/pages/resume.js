@@ -11,12 +11,14 @@ import GridWrapper from "@/components/GridWrapper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@/components/Button";
 import * as Scroll from "react-scroll";
+import Meta from "@/components/Meta";
 
 function Resume() {
   const { breakpoint } = useBreakpoints();
 
   return (
     <div>
+      <Meta />
       <div className="p-6 lg:p-12">
         <section className="max-w-screen-md mx-auto">
           <h1 className="text-3xl lg:text-5xl text-center mb-4">Evan Agee</h1>
@@ -140,6 +142,7 @@ function Resume() {
               <GridWrapper wrapItems={false}>
                 {content.workHistory.map((job, i) => (
                   <div
+                    key={i}
                     className={classNames("p-6 xl:p-16", {
                       "col-span-2":
                         i + 1 === content.workHistory.length &&

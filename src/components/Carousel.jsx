@@ -79,10 +79,10 @@ function Carousel({
         }
         onAfterInit={(s) => {
           updateScrims(s);
-          updateMatchedHeights();
+          // updateMatchedHeights();
         }}
         onResize={() => {
-          updateMatchedHeights();
+          // updateMatchedHeights();
         }}
         onActiveIndexChange={(s) => {
           updateScrims(s);
