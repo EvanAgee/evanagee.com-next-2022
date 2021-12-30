@@ -47,8 +47,8 @@ function GenericCard({
               <TagList
                 className="justify-center"
                 items={tags.map((t, i) => ({
-                  name: t,
-                  link: "",
+                  name: t.name,
+                  link: t.link,
                 }))}
               />
             </div>

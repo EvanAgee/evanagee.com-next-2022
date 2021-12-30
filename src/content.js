@@ -8,7 +8,6 @@ export default {
   resumeBlurb: `I'm currently on the market for a new position, check out
   <router-link to="/resume">my resume</router-link>`,
   yearsExperience: new Date().getFullYear() - 2000,
-  currentLocation: "Alvarado, TX",
   workHistory: [
     {
       title: "Front-end Developer",

@@ -12,8 +12,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@/components/Button";
 import * as Scroll from "react-scroll";
 import Meta from "@/components/Meta";
+import WpApiContent from "@/components/WpApiContent";
 
-function Resume() {
+function Resume({ settings }) {
   const { breakpoint } = useBreakpoints();
 
   return (
@@ -23,26 +24,11 @@ function Resume() {
         <section className="max-w-screen-md mx-auto">
           <h1 className="text-3xl lg:text-5xl text-center mb-4">Evan Agee</h1>
           <h2 className="uppercase tracking-widest lg:text-2xl text-center text-primary-500 mb-2 leading-tight">
-            Full-Stack Developer specializing
-            <br className="hidden lg:inline" />
-            in JavaScript, React and Vue
+            <WpApiContent content={settings.headline} />
           </h2>
 
           <div className="text-center text-sm lg:text-lg">
-            <p>
-              Hey, I'm Evan Agee (pronounced A.G.) and I'm a full-stack
-              <br className="hidden lg:inline" />
-              web developer and Webby Award Honoree and we might be a good fit
-              for each other.
-            </p>
-
-            {/* <WpApiContent content={content.bioBlurb} /> */}
-
-            <p>
-              One of my key differentiators is that I started my career as a
-              designer; I posses a unique combination of creative and technical
-              skills.
-            </p>
+            <WpApiContent content={settings.intro} />
 
             <div className="flex flex-wrap gap-4 justify-center py-6">
               <Button href="/portfolio" className="mr-2">
@@ -57,15 +43,22 @@ function Resume() {
           <hr className="my-4" />
           <h3 className="up-title">Soft Skills</h3>
           <ul>
-            <li>Self-Motivated</li>
-            <li>Encourager and Motivator</li>
-            <li>Quick Learner</li>
-            <li>Diligent and Disciplined</li>
-            <li>Easygoing and Patient</li>
+            {settings.soft_skills.map((s) => (
+              <li>{s.skill}</li>
+            ))}
           </ul>
 
           <h3 className="up-title">Tech Skills</h3>
-          <Skillz />
+          <ul className="flex flex-wrap gap-2">
+            {settings.tech_skills.map((s, i) => (
+              <li
+                className="text-primary-500 bg-primary-100 dark:bg-primary-700 dark:text-primary-100 inline-block py-1 px-2 rounded-md"
+                key={i}
+              >
+                {s.skill}
+              </li>
+            ))}
+          </ul>
 
           <h2 className="up-title">Awards &amp; Achievements</h2>
           <img
@@ -78,44 +71,7 @@ function Resume() {
           />
           <div className="prose prose-lg">
             <ul className="">
-              <li>
-                <strong>2016 Webby Award Honoree</strong> in the Not for Profit
-                category for my work on the Gateway Church Annual Report
-              </li>
-              <li>
-                I'm the creator and maintainer of the{" "}
-                <strong>
-                  <a
-                    href="https://github.com/EvanAgee/vuejs-wordpress-theme-starter"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Vuejs Wordpress Starter Theme
-                  </a>
-                </strong>
-                , a VueJS starter for those wishing to develop headless
-                WordPress applications.
-              </li>
-              <li>
-                I pride myself on being able to accomplish tasks efficiently and
-                faster than the majority of devs I've worked with.
-              </li>
-              <li>
-                I hold an{" "}
-                <strong>
-                  A.S. degree in Computer Graphics Technology from Purdue
-                  University
-                </strong>
-                . Early in my career I was a &quot;web designer&quot; which
-                means I spent most of my day in Photoshop slicing PSDs and the
-                rest of the day in Dreamweaver.
-              </li>
-              <li>
-                Back in the early 2000's I operated one of the first ever horror
-                movie databases on the internet. It was called Living-Dead.com
-                and for a period of time was THE home of horror movies on the
-                web.
-              </li>
+              {settings.awards_achievements.map((a,i) => <li key={i}><WpApiContent content={a.award} /></li>)}
             </ul>
             <blockquote>
               <h3>Remote Ready!</h3>
@@ -140,31 +96,36 @@ function Resume() {
           <div className="-mx-6 lg:-mx-12">
             <BadgeWrapper title={`Employment History`}>
               <GridWrapper wrapItems={false}>
-                {content.workHistory.map((job, i) => (
+                {settings.positions.map((job, i) => (
                   <div
                     key={i}
                     className={classNames("p-6 xl:p-16", {
                       "col-span-2":
-                        i + 1 === content.workHistory.length &&
-                        i % content.workHistory.length > 0,
+                        i + 1 === settings.positions.length &&
+                        i % settings.positions.length > 0,
                     })}
                   >
                     <GenericCard
                       key={i}
-                      image={job.logo ? `assets/images/${job.logo}` : false}
+                      image={job.logo ? job.logo.url : false}
                       imageStyle={{
                         maxHeight: "100px",
                       }}
-                      title={job.company}
+                      title={job.company_name}
                       content={job.description}
                       date={`${
                         job.location ? `${job.location}  &bull; ` : ""
-                      } ${job.start_date} &mdash; ${job.end_date}`}
+                      } ${job.start_date} &mdash; ${ job.currently_work_there ? 'Present' :  job.end_date}`}
                       subtitle={job.title}
-                      tags={job.tags}
+                      tags={job.technologies.map(t => {
+                        return {
+                          name: t.name,
+                          link: `/portfolio/tags/${t.term_id}%7C${t.slug}`
+                        }
+                      })}
                     />
                     <ul className="flex justify-center items-center font-display font-semibold text-sm gap-6 mt-6">
-                      {job.remote && (
+                      {job.position_remote && (
                         <li>
                           <FontAwesomeIcon
                             className="mr-2"
@@ -173,7 +134,7 @@ function Resume() {
                           Remote
                         </li>
                       )}
-                      {job.contract && (
+                      {job.position_contract && (
                         <li>
                           <FontAwesomeIcon
                             className="mr-2"
@@ -293,3 +254,17 @@ function Resume() {
 }
 
 export default Resume;
+
+export async function getStaticProps() {
+  let settings = await fetch(
+    `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+  );
+  settings = await settings.json();
+
+  return {
+    props: {
+      settings: settings.acf,
+    },
+    revalidate: settings.ISRrevalidate,
+  };
+}

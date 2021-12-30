@@ -24,7 +24,7 @@ const GridWrapper = function ({
       data-test-id={dataTestId}
       ref={ref}
       className={classNames(
-        "grid border-t border-gray-300 dark:border-gray-300 divide-x divide-gray-300 dark:divide-gray-300",
+        "lg:grid border-t border-gray-300 dark:border-gray-300 divide-x divide-gray-300 dark:divide-gray-300 grid-cols-1",
         {
           "divide-y": children.length > 2 || breakpoint.isMdDown || largeFirst,
           "lg:grid-cols-2": columns === 2,
