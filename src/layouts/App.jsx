@@ -43,7 +43,7 @@ function App({ children }) {
           <Header />
           <main
             className={classNames(
-              "bg-white dark:bg-gray-900 rounded-b-3xl text-lg mb-6 lg:mb-16 leading-relaxed shadow-2xl overflow-x-hidden relative",
+              "bg-white dark:bg-gray-900 rounded-b-3xl text-lg mb-6 lg:mb-16 leading-relaxed shadow-2xl overflow-hidden relative",
               css`
                 ul,
                 hr,

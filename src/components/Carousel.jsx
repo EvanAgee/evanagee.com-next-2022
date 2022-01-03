@@ -55,7 +55,7 @@ function Carousel({
   return (
     <div
       className={classNames(
-        "relative border-t border-b border-gray-300",
+        "relative border-t border-b border-gray-300 overflow-hidden",
         className
       )}
       data-cy={dataCy}
