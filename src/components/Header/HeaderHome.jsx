@@ -108,7 +108,7 @@ export default function HeaderHome() {
               <a
                 href="https://github.com/EvanAgee/vuejs-wordpress-theme-starter"
                 target="_blank"
-                className="bg-primary-500 bg-opacity-30 text-white px-3 rounded-xl decoration-clone text-shadow py-0"
+                className="bg-primary-500 transition bg-opacity-30 hover:bg-opacity-100 text-white px-3 rounded-xl decoration-clone text-shadow py-0"
                 rel="noreferrer"
               >
                 Vuejs WordPress Theme Starter
@@ -117,7 +117,7 @@ export default function HeaderHome() {
               <a
                 href="https://vuewp.com"
                 target="_blank"
-                className={`bg-primary-500 bg-opacity-30 text-white px-3 rounded-xl decoration-clone text-shadow py-0`}
+                className={`bg-primary-500 transition bg-opacity-30 hover:bg-opacity-100 text-white px-3 rounded-xl decoration-clone text-shadow py-0`}
                 rel="noreferrer"
               >
                 VueWordPress

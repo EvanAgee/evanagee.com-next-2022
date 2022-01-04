@@ -72,7 +72,7 @@ export default function HeaderNav() {
               <Link href="/search" title="Search">
                 <a
                   className={classNames(
-                    "flex items-center min-h-full px-4 lg:px-8 text-xl",
+                    "flex items-center min-h-full px-4 lg:px-8 text-xl hover:text-primary-500",
                     {
                       "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active":
                         location.pathname === "/search",
@@ -93,9 +93,9 @@ export default function HeaderNav() {
                   <Link href={p?.path}>
                     <a
                       className={classNames(
-                        "flex items-center min-h-full px-4 lg:px-4 xl:px-8",
+                        "flex items-center min-h-full px-4 lg:px-4 xl:px-8 hover:text-primary-500",
                         {
-                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active":
+                          "text-gray-800 bg-white dark:bg-gray-900 dark:text-white active hover:text-gray-800":
                             currentPage?.path === p?.path ||
                             currentPage?.parentLink === p?.path,
                         }

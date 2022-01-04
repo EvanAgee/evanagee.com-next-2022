@@ -21,12 +21,9 @@ import HeaderNav from "@/components/Header/HeaderNav";
 
 export default function Header() {
   const location = useRouter();
-  const headerWrapper = useRef();
-
-  const { metaData, ogData, currentPage } = useContext(HeaderContext);
+  const { currentPage } = useContext(HeaderContext);
   const { setPageTheme, pageTheme } = useContext(ThemeContext);
   const { breakpoint, mediaQueries } = useBreakpoints();
-  const [headerHeight, setHeaderHeight] = useState(150);
 
   // Google Analytics Tracking
   React.useEffect(() => {
@@ -48,12 +45,6 @@ export default function Header() {
       return setPageTheme(currentPage.theme);
     return setPageTheme("light");
   }, [currentPage]);
-
-  React.useEffect(() => {
-    if (!headerWrapper?.current) return;
-    if (headerHeight === headerWrapper.current.scrollHeight) return;
-    return setHeaderHeight(headerWrapper.current.scrollHeight);
-  }, [location, headerWrapper, currentPage, breakpoint]);
 
   if (!location || !breakpoint || !mediaQueries) return null;
 
@@ -88,27 +79,8 @@ export default function Header() {
         <div className="scrim absolute inset-0 bg-gray-800 opacity-80"></div>
       </div>
 
-      <div
-        className={
-          ("overflow-hidden",
-          css`
-            transition: all 1s ease;
-            will-change: height, max-height, min-height;
-            height: ${headerHeight}px;
-            max-height: ${headerHeight}px;
-            min-height: ${headerHeight}px;
-
-            ${mediaQueries.lg} {
-              height: ${headerHeight}px;
-              max-height: ${headerHeight}px;
-              min-height: ${headerHeight}px;
-            }
-          `)
-        }
-      >
-        <div ref={headerWrapper}>
-          {location.pathname === "/" ? <HeaderHome /> : <HeaderInterior />}
-        </div>
+      <div className="overflow-hidden">
+        {location.pathname === "/" ? <HeaderHome /> : <HeaderInterior />}
       </div>
 
       <HeaderNav />
