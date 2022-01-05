@@ -33,7 +33,7 @@ function Photos({ posts, filterType }) {
       order: { value: "desc" },
       orderby: { value: "date" },
       per_page: { value: 26 },
-      post_type: { value: "photo"}
+      post_type: { value: "photo" },
     },
     queryID: "photoIndex",
     apiPath: "/photos",

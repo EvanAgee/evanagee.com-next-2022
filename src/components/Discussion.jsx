@@ -19,7 +19,8 @@ function Discussion({ post, postID, className }) {
   const location = useRouter();
   const [error, setError] = React.useState(false);
   const [commentSuccess, setCommentSuccess] = React.useState(false);
-  const inputClasses = "p-4 rounded-md outline-none border-gray-300 dark:border-gray-700 focus:ring-primary-500 focus:outline-none focus:border-transparent focus:ring-2 form-input dark:bg-gray-900 dark:focus:ring-primary-500";
+  const inputClasses =
+    "p-4 rounded-md outline-none border-gray-300 dark:border-gray-700 focus:ring-primary-500 focus:outline-none focus:border-transparent focus:ring-2 form-input dark:bg-gray-900 dark:focus:ring-primary-500";
 
   const filteredComments = React.useMemo(
     () => comments.filter((c) => c.status === "approved"),
@@ -111,7 +112,10 @@ function Discussion({ post, postID, className }) {
       {post.comment_status !== "closed" ? (
         <>
           <h3 className="up-title">Leave a Comment</h3>
-          <form className="grid lg:grid-cols-2 gap-12 dark:text-gray-300" onSubmit={handleSubmit}>
+          <form
+            className="grid lg:grid-cols-2 gap-12 dark:text-gray-300"
+            onSubmit={handleSubmit}
+          >
             <div className="flex col-span-2 lg:col-span-1 flex-col justify-center">
               <label
                 className="uppercase font-bold mb-2 font-display text-base tracking-widest"
@@ -119,12 +123,7 @@ function Discussion({ post, postID, className }) {
               >
                 Name*
               </label>
-              <input
-                id="name"
-                type="text"
-                required
-                className={inputClasses}
-              />
+              <input id="name" type="text" required className={inputClasses} />
             </div>
             <div className="flex col-span-2 lg:col-span-1 flex-col justify-center">
               <label

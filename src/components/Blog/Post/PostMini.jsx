@@ -3,6 +3,7 @@ import helpers from "@/helpers";
 import Link from "next/link";
 import classNames from "classnames";
 import WpApiContent from "@/components/WpApiContent";
+import PostImage from "./shared/PostImage";
 
 function PostMini({ data, showImage, side }) {
   const image = helpers.postImage(data, "thumbnail");

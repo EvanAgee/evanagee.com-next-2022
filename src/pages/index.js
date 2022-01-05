@@ -185,7 +185,7 @@ export async function getStaticProps() {
 
   let photos = await fetch(`${settings.apiBase}/photos?per_page=12`);
   photos = await photos.json();
-  
+
   return {
     props: {
       posts,

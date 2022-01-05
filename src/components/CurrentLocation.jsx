@@ -11,9 +11,12 @@ export default function CurrentLocation({ className }) {
   const [location, setLocation] = React.useState(false);
 
   React.useEffect(async () => {
-    const options = await axios.get(`https://blog.evanagee.com/wp-json/acf/v3/options/options`)
-    if (options?.data?.acf?.current_location) return setLocation(options.data.acf.current_location);
-    return setLocation(false)
+    const options = await axios.get(
+      `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+    );
+    if (options?.data?.acf?.current_location)
+      return setLocation(options.data.acf.current_location);
+    return setLocation(false);
   }, []);
 
   if (!location) return null;

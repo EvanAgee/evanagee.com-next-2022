@@ -13,7 +13,7 @@ import Meta from "@/components/Meta";
 
 export default function Post({ post, catPosts }) {
   const { breakpoint } = useBreakpoints();
-  
+
   return (
     <>
       <Meta

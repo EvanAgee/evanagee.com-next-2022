@@ -137,7 +137,12 @@ function Filters({ filters, onChange, results, className }) {
             })}
           >
             <strong className="text-black dark:text-white">{results}</strong>{" "}
-            <span className="capitalize">{filters?.post_type?.value ? `${filters?.post_type?.value}s` : 'Posts'} Found</span>
+            <span className="capitalize">
+              {filters?.post_type?.value
+                ? `${filters?.post_type?.value}s`
+                : "Posts"}{" "}
+              Found
+            </span>
           </div>
         )}
 

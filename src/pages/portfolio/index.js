@@ -56,7 +56,7 @@ function Portfolio({ posts, filterType }) {
             label: `${item.year} (${item.count})`,
           };
         },
-        isMulti: false
+        isMulti: false,
       },
       tags: { value: null, querySlug: "projects/tags" },
       order: { value: "desc" },
@@ -64,7 +64,7 @@ function Portfolio({ posts, filterType }) {
       per_page: { value: 12 },
       before: { value: null },
       after: { value: null },
-      post_type: { value: 'project' }
+      post_type: { value: "project" },
     },
     queryID: "portfolioIndex",
     apiPath: "/projects",

@@ -71,7 +71,11 @@ function Resume({ settings }) {
           />
           <div className="prose prose-lg">
             <ul className="">
-              {settings.awards_achievements.map((a,i) => <li key={i}><WpApiContent content={a.award} /></li>)}
+              {settings.awards_achievements.map((a, i) => (
+                <li key={i}>
+                  <WpApiContent content={a.award} />
+                </li>
+              ))}
             </ul>
             <blockquote>
               <h3>Remote Ready!</h3>
@@ -115,13 +119,15 @@ function Resume({ settings }) {
                       content={job.description}
                       date={`${
                         job.location ? `${job.location}  &bull; ` : ""
-                      } ${job.start_date} &mdash; ${ job.currently_work_there ? 'Present' :  job.end_date}`}
+                      } ${job.start_date} &mdash; ${
+                        job.currently_work_there ? "Present" : job.end_date
+                      }`}
                       subtitle={job.title}
-                      tags={job.technologies.map(t => {
+                      tags={job.technologies.map((t) => {
                         return {
                           name: t.name,
-                          link: `/portfolio/tags/${t.term_id}%7C${t.slug}`
-                        }
+                          link: `/portfolio/tags/${t.term_id}%7C${t.slug}`,
+                        };
                       })}
                     />
                     <ul className="flex justify-center items-center font-display font-semibold text-sm gap-6 mt-6">

@@ -15,18 +15,18 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
     return helpers.postImage(data, featuredImage ? "large" : "medium_large");
   }, [data, featuredImage]);
   return (
-    <div
-      onMouseEnter={() => (!showDetails ? setHovered(true) : null)}
-      onMouseLeave={() => (!showDetails ? setHovered(false) : null)}
-      className={classNames(
-        "relative text-white text-center",
-        { "col-span-2 row-span-2": featuredImage },
-        css`
-          padding-bottom: 100%;
-        `
-      )}
-    >
-      <Link href={`/photos/${data.slug}`}>
+    <Link href={`/photos/${data.slug}`}>
+      <div
+        onMouseEnter={() => (!showDetails ? setHovered(true) : null)}
+        onMouseLeave={() => (!showDetails ? setHovered(false) : null)}
+        className={classNames(
+          "relative text-white text-center",
+          { "col-span-2 row-span-2": featuredImage },
+          css`
+            padding-bottom: 100%;
+          `
+        )}
+      >
         <a className="absolute inset-0 overflow-hidden group">
           {image ? (
             <>
@@ -38,8 +38,9 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 height={image[2]}
                 className={classNames(
                   "inset-0 absolute object-cover w-full h-full object-center",
-                  { 
-                    "grayscale group-hover:grayscale-0 transition duration-500": showDetails
+                  {
+                    "grayscale group-hover:grayscale-0 transition duration-500":
+                      showDetails,
                   }
                 )}
               />
@@ -97,8 +98,8 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
             </>
           ) : null}
         </a>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

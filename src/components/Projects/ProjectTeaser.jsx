@@ -6,6 +6,7 @@ import helpers from "@/helpers";
 import WpApiContent from "@/components/WpApiContent";
 import TagList from "@/components/TagList";
 import { motion } from "framer-motion";
+import PostImage from "@/components/Blog/Post/shared/PostImage";
 
 function ProjectTeaser({ data, showDescription }) {
   const image = React.useMemo(() => {
@@ -24,23 +25,7 @@ function ProjectTeaser({ data, showDescription }) {
           `
         )}
       >
-        <motion.div
-          className="relative cursor-pointer rounded-2xl shadow-lg overflow-hidden mx-auto pb-16x9 group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4"
-          style={{}}
-        >
-          <img
-            loading="lazy"
-            width={image[1]}
-            height={image[2]}
-            src={image[0]}
-            alt={`${helpers.decodeHtml(
-              data.title.rendered
-            )} project screenshot`}
-            className={classNames(
-              "inset-0 absolute object-cover w-full h-full object-top"
-            )}
-          />
-        </motion.div>
+        <PostImage data={data} image={image} />
         <div className="pt-6 mx-auto max-w-xl text-center px-4">
           <div className={classNames({ matchHeight: data.content.rendered })}>
             <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer group-hover:text-secondary-500">

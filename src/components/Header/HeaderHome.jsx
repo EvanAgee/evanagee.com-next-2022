@@ -15,7 +15,7 @@ export default function HeaderHome() {
         <Photo
           cycle={true}
           imgStyle="c_scale,w_2000"
-          tag={[248,1890]}
+          tag={[248, 1890]}
           placeholder="https://res.cloudinary.com/evanagee/image/upload/v1551277282/evanagee.com/bg-2018-code.jpg"
           className="object-cover object-center w-screen h-screen absolute inset-0 max-w-none transition-opacity"
         />
@@ -32,8 +32,8 @@ export default function HeaderHome() {
         )}
       >
         <div className="hidden relative w-full lg:flex justify-center">
-            <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
-          </div>
+          <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
+        </div>
         <div
           className={classNames(
             "relative flex flex-col justify-end py-8 px-12 lg:py-24 text-center",
@@ -135,8 +135,8 @@ export default function HeaderHome() {
           </div>
         </div>
         <div className="flex lg:hidden justify-center pb-8 relative">
-            <CurrentLocation />
-          </div>
+          <CurrentLocation />
+        </div>
       </div>
     </>
   );
