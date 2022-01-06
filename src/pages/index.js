@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import axios from "axios";
 import content from "@/content";
 import helpers from "@/helpers";
 import settings from "@/settings";
@@ -29,7 +30,7 @@ const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426981/evanagee.com/8C574DF9-8924-4EBD-A03A-5FA2450B1E82_1_105_c.jpg",
 ];
 
-export default function Home({ posts, projects, photos }) {
+export default function Home({ posts, projects, photos, currentLocation }) {
   const { breakpoint } = useBreakpoints();
   const [randomImage, setRandomImage] = React.useState(myImages[0]);
 
@@ -96,10 +97,7 @@ export default function Home({ posts, projects, photos }) {
                     </a>
                   </Link>{" "}
                   and travel the country. Currently we're camping in{" "}
-                  <span className="text-primary-500">
-                    {content.currentLocation}
-                  </span>
-                  .
+                  <span className="text-primary-500">{currentLocation}</span>.
                 </strong>
               </p>
 
@@ -186,11 +184,17 @@ export async function getStaticProps() {
   let photos = await fetch(`${settings.apiBase}/photos?per_page=12`);
   photos = await photos.json();
 
+  let options = await fetch(
+    `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+  );
+  options = await options.json();
+
   return {
     props: {
       posts,
       projects,
       photos,
+      currentLocation: options?.acf?.current_location,
     },
     revalidate: settings.ISRrevalidate,
   };
