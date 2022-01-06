@@ -24,7 +24,7 @@ export default function Post({ post, catPosts }) {
         }}
       />
       <div className="pl-6 pt-6">
-        <Breadcrumbs />
+        <Breadcrumbs title={helpers.decodeHtml(post?.title?.rendered)} />
       </div>
       <PostDetail data={post} style="full" />
 

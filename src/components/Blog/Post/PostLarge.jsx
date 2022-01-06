@@ -14,7 +14,7 @@ function PostLarge({ data, image, showImage, side }) {
     <Link href={`/blog/${data.slug}`}>
       <article
         className={classNames(
-          `text-center post group post--large p-6 lg:p-16 pb-0`
+          `text-center post group post--large p-6 lg:p-16 pb-0 cursor-pointer`
         )}
       >
         <header>

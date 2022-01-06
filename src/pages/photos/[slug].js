@@ -31,7 +31,7 @@ export default function Photo({ photo, catPosts }) {
         }}
       />
       <div className="pl-6 pt-6">
-        <Breadcrumbs />
+        <Breadcrumbs title={helpers.decodeHtml(photo?.title?.rendered)} />
       </div>
       <div className="bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 lg:py-16">
         <figure className="lg:px-16">

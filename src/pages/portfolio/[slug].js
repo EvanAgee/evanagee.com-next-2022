@@ -67,7 +67,7 @@ function Project({ project, relatedProjects }) {
         }}
       />
       <div className="pl-6 pt-6">
-        <Breadcrumbs />
+        <Breadcrumbs title={helpers.decodeHtml(project.title.rendered)} />
       </div>
       <div className="bg-gradient-to-b from-white to-gray-300 dark:from-gray-900 dark:to-gray-800 lg:py-16 lg:min-h-screen flex flex-col">
         <figure
