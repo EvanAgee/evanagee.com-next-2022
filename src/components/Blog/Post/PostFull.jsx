@@ -37,7 +37,7 @@ export default function PostFull({ data, image, showImage, side }) {
 
       {showImage && <PostImage data={data} image={image} hoverable={false} />}
 
-      <main className="mt-6 lg:mt-12 lg:mb-4">
+      <main className="mt-6 lg:mt-12">
         <div
           className={classNames(
             "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none",
@@ -197,17 +197,8 @@ export default function PostFull({ data, image, showImage, side }) {
           </div>
         )}
 
-        {hasLocation && (
-          <PostMap
-            lng={data["x_metadata"].geo_longitude}
-            lat={data["x_metadata"].geo_latitude}
-            zoom={data["x_metadata"].geo_zoom}
-            title={data["x_metadata"].geo_address}
-          />
-        )}
-
         {process.env.NODE_ENV === "development" && (
-          <div className="mt-16">
+          <div className="my-16">
             <Button
               href={`https://blog.evanagee.com/wp-admin/post.php?post=${data.id}&action=edit`}
               target="_blank"
@@ -216,6 +207,28 @@ export default function PostFull({ data, image, showImage, side }) {
               Edit Post
             </Button>
           </div>
+        )}
+
+        <em className="block py-4 text-sm text-center mb-6 text-gray-400">
+          Some imagery provided by{" "}
+          <a
+            href="https://unsplash.com/"
+            target="_blank"
+            className="text-primary-400"
+          >
+            Unsplash
+          </a>
+          .
+        </em>
+
+        {hasLocation && (
+          <PostMap
+            className="-mx-6 lg:-mx-16 -mb-6 lg:-mb-16"
+            lng={data["x_metadata"].geo_longitude}
+            lat={data["x_metadata"].geo_latitude}
+            zoom={data["x_metadata"].geo_zoom}
+            title={data["x_metadata"].geo_address}
+          />
         )}
       </main>
     </article>

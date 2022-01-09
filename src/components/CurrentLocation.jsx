@@ -3,8 +3,6 @@ import Link from "next/link";
 import { css } from "@emotion/css";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import content from "@/content";
-import settings from "@/settings";
 import axios from "axios";
 
 export default function CurrentLocation({ className }) {

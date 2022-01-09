@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import axios from "axios";
 import content from "@/content";
 import helpers from "@/helpers";
 import settings from "@/settings";
@@ -10,7 +9,6 @@ import WpApiContent from "@/components/WpApiContent";
 import BadgeWrapper from "@/components/BadgeWrapper";
 import { motion } from "framer-motion";
 import { pageVariants } from "@/lib/animations";
-import dynamic from "next/dynamic";
 import Meta from "@/components/Meta";
 import Button from "@/components/Button";
 import Carousel from "@/components/Carousel";
@@ -18,7 +16,6 @@ import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 import PostDetail from "@/components/Blog/Post";
 import ProjectTeaser from "@/components/Projects/ProjectTeaser";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
-import PostMini from "@/components/Blog/Post/PostMini";
 
 const myImages = [
   "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426991/evanagee.com/27E4E7A7-CC69-4D72-B18E-9385B1072840.jpg",
@@ -56,15 +53,11 @@ export default function Home({ posts, projects, photos, currentLocation }) {
   return (
     <>
       <Meta />
-      <motion.div
-        variants={pageVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+      <div
         data-test-id="home-page"
       >
-        <motion.section
-          variants={pageVariants.section}
+        <section
+        
           id="about"
           className="px-6 py-12 lg:px-16 lg:py-16 lg:flex items-center"
         >
@@ -113,12 +106,13 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               </Button>
             </div>
           </div>
-        </motion.section>
-        <motion.section variants={pageVariants.section} className="bg-gray-100">
+        </section>
+        <section className="bg-gray-100">
           <BadgeWrapper title="Recent Blog Posts">
             <Carousel
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
+              separated
             >
               {posts.map((c, i) => (
                 <PostGridWrapper
@@ -132,12 +126,13 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               ))}
             </Carousel>
           </BadgeWrapper>
-        </motion.section>
-        <motion.section variants={pageVariants.section} className="bg-gray-100">
+        </section>
+        <section className="bg-gray-100">
           <BadgeWrapper title="Recent Projects" className="">
             <Carousel
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
+              separated
             >
               {projects?.map((c, i) => (
                 <PostGridWrapper
@@ -151,13 +146,14 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               ))}
             </Carousel>
           </BadgeWrapper>
-        </motion.section>
-        <motion.section variants={pageVariants.section}>
+        </section>
+        <section>
           <BadgeWrapper title="Recent Photos">
             <Carousel
               slidesToShow={breakpoint.isLgUp ? 4 : 2}
-              className="!border-b-0 !border-r-0 !border-l-0"
+              className="!border-b-0"
               showDots={false}
+              separated={false}
             >
               {photos?.map((c, i) => (
                 <PhotoTeaser
@@ -168,8 +164,8 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               ))}
             </Carousel>
           </BadgeWrapper>
-        </motion.section>
-      </motion.div>
+        </section>
+      </div>
     </>
   );
 }

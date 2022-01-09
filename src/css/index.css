@@ -104,4 +104,8 @@
       }
     }
   }
+
+  .separated .swiper-wrapper {
+    @apply divide-x divide-gray-200 dark:divide-gray-800;
+  }
 }

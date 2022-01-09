@@ -10,15 +10,23 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const SIZE = 20;
 
-function PostMap({ lat, lng, zoom, title }) {
+function PostMap({ lat, lng, zoom, title, className }) {
   const [viewport, setViewport] = React.useState({
     latitude: Number(lat),
     longitude: Number(lng),
-    zoom: 6,
+    zoom: zoom ? Number(zoom) : 6,
   });
 
+  React.useEffect(() => {
+    setViewport({
+      latitude: Number(lat),
+      longitude: Number(lng),
+      zoom: zoom ? Number(zoom) : 6,
+    })
+  }, [lat, lng, zoom]);
+
   return (
-    <div className="h-96 max-w-screen-md mx-auto rounded-lg overflow-hidden shadow-xl relative">
+    <div className={classNames("[height:40vh] lg:[height:50vh] mx-auto overflow-hidden relative", className)}>
       <ReactMapGL
         {...viewport}
         width="100%"

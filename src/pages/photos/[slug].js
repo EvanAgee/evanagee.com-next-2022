@@ -112,6 +112,7 @@ export default function Photo({ photo, catPosts }) {
             slidesToShow={breakpoint.isLgUp ? 4 : 1}
             theme="dark"
             showDots={false}
+            className="!border-b-0"
           >
             {catPosts
               .filter((c) => c.id !== photo.id)

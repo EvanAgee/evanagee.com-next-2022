@@ -19,16 +19,12 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
       <div
         onMouseEnter={() => (!showDetails ? setHovered(true) : null)}
         onMouseLeave={() => (!showDetails ? setHovered(false) : null)}
-        className={classNames(
-          "relative text-white text-center",
-          { "col-span-2 row-span-2": featuredImage },
-          css`
-            padding-bottom: 100%;
-          `
-        )}
+        className={classNames("relative text-white text-center aspect-square overflow-hidden", {
+          "col-span-2 row-span-2": featuredImage,
+        })}
       >
-        <a className="absolute inset-0 overflow-hidden group">
-          {image ? (
+        <a className="absolute inset-0 group">
+          {image && (
             <>
               <img
                 alt={helpers.decodeHtml(data.title.rendered)}
@@ -37,7 +33,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 width={image[1]}
                 height={image[2]}
                 className={classNames(
-                  "inset-0 absolute object-cover w-full h-full object-center",
+                  " object-cover w-full h-full object-center",
                   {
                     "grayscale group-hover:grayscale-0 transition duration-500":
                       showDetails,
@@ -47,7 +43,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
               {/* Photo deatils overlay */}
               <div
                 className={classNames(
-                  "absolute top-0 left-0 w-full h-full flex flex-col p-6 transform transition-transform ease-in-out duration-300 bg-gradient-to-t from-primary-500",
+                  "absolute inset-0 flex flex-col p-6 transform transition-transform ease-in-out duration-300 bg-gradient-to-t from-primary-500",
                   {
                     "translate-x-0": hovered,
                     "translate-x-full": !hovered,
@@ -96,7 +92,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 </div>
               </div>
             </>
-          ) : null}
+          )}
         </a>
       </div>
     </Link>

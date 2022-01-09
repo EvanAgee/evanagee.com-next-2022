@@ -41,6 +41,7 @@ function Carousel({
   useScrim,
   className,
   showDots,
+  separated
 }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
   const [showLeftScrim, setShowLeftScrim] = React.useState(false);
@@ -52,11 +53,15 @@ function Carousel({
     setShowRightScrim(useScrim && !swiper.isEnd);
     setShowLeftScrim(useScrim && !swiper.isBeginning);
   };
+
   return (
     <div
       className={classNames(
-        "relative border-t border-b border-gray-300 overflow-hidden",
-        className
+        "relative overflow-hidden border-y border-gray-200 dark:border-gray-800",
+        className,
+        {
+          "separated": separated
+        }
       )}
       data-cy={dataCy}
       ref={ref}
@@ -137,22 +142,9 @@ function Carousel({
               }
             }
 
-            .swiper-wrapper {
-              align-items: stretch;
-            }
-
             .swiper-pagination {
               bottom: 1.75rem !important;
-            }
 
-            .swiper-slide {
-              width: auto;
-              height: 100%;
-              min-height: 100%;
-              border-right: 1px solid var(--color-gray-300);
-            }
-
-            .swiper-pagination {
               .swiper-pagination-bullet {
                 width: 10px;
                 height: 10px;
@@ -187,6 +179,7 @@ Carousel.defaultProps = {
   theme: "dark",
   useScrim: false,
   showDots: true,
+  separated: true
 };
 
 export default Carousel;
