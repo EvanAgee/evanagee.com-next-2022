@@ -13,7 +13,6 @@ import PhotoTeaser from "@/components/Photos/PhotoTeaser";
 
 export default function Post({ post, catPosts, relatedPhotos }) {
   const { breakpoint } = useBreakpoints();
-  console.log(post.ea_categories)
   return (
     <>
       <Meta
@@ -109,10 +108,12 @@ export async function getStaticProps(context) {
   let relatedPhotos = false;
   if (post[0]?.ea_tags && post[0]?.ea_tags?.length > 0) {
     relatedPhotos = [];
-    
+
     for (const t of post[0].ea_tags) {
       // Get the corresponding photo tag that matches the post tag
-      let photoTag = await fetch(`https://blog.evanagee.com/wp-json/wp/v2/photo_tags?slug=${t.slug}`);
+      let photoTag = await fetch(
+        `https://blog.evanagee.com/wp-json/wp/v2/photo_tags?slug=${t.slug}`
+      );
       photoTag = await photoTag.json();
 
       if (photoTag.length > 0) {
@@ -122,7 +123,6 @@ export async function getStaticProps(context) {
         posts = await posts.json();
         relatedPhotos.push(...posts);
       }
-
     }
   }
 
@@ -130,7 +130,15 @@ export async function getStaticProps(context) {
     props: {
       post: post[0],
       catPosts,
-      relatedPhotos: relatedPhotos ? [...new Set(relatedPhotos)] : false,
+      relatedPhotos: relatedPhotos
+        ? relatedPhotos.filter(
+            (value, index, self) =>
+              index ===
+              self.findIndex(
+                (t) => t.id === value.id && t.slug === value.slug
+              )
+          )
+        : false,
     },
     revalidate: settings.ISRrevalidate,
   };

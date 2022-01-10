@@ -37,7 +37,7 @@ function Button({
       >
         <div
           className={`absolute -inset-1 transform -translate-x-full group-hover:translate-x-0 bg-${variant}-600 transform transition duration-300 ease-in-out [will-change:transform]`}
-        ></div>
+        />
         <div
           className={`relative transition duration-300 ${
             hollow && `group-hover:!text-white`

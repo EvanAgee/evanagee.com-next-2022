@@ -13,8 +13,9 @@ import Button from "@/components/Button";
 import * as Scroll from "react-scroll";
 import Meta from "@/components/Meta";
 import WpApiContent from "@/components/WpApiContent";
+import settings from "@/settings"
 
-function Resume({ settings }) {
+function Resume({ siteSettings }) {
   const { breakpoint } = useBreakpoints();
 
   return (
@@ -24,11 +25,11 @@ function Resume({ settings }) {
         <section className="max-w-screen-md mx-auto">
           <h1 className="text-3xl lg:text-5xl text-center mb-4">Evan Agee</h1>
           <h2 className="uppercase tracking-widest lg:text-2xl text-center text-primary-500 mb-2 leading-tight">
-            <WpApiContent content={settings.headline} />
+            <WpApiContent content={siteSettings.headline} />
           </h2>
 
           <div className="text-center text-sm lg:text-lg">
-            <WpApiContent content={settings.intro} />
+            <WpApiContent content={siteSettings.intro} />
 
             <div className="flex flex-wrap gap-4 justify-center py-6">
               <Button href="/portfolio" className="mr-2">
@@ -43,14 +44,14 @@ function Resume({ settings }) {
           <hr className="my-4" />
           <h3 className="up-title">Soft Skills</h3>
           <ul>
-            {settings.soft_skills.map((s) => (
-              <li>{s.skill}</li>
+            {siteSettings.soft_skills.map((s, i) => (
+              <li key={i}>{s.skill}</li>
             ))}
           </ul>
 
           <h3 className="up-title">Tech Skills</h3>
           <ul className="flex flex-wrap gap-2">
-            {settings.tech_skills.map((s, i) => (
+            {siteSettings.tech_skills.map((s, i) => (
               <li
                 className="text-primary-500 bg-primary-100 dark:bg-primary-700 dark:text-primary-100 inline-block py-1 px-2 rounded-md"
                 key={i}
@@ -71,7 +72,7 @@ function Resume({ settings }) {
           />
           <div className="prose prose-lg">
             <ul className="">
-              {settings.awards_achievements.map((a, i) => (
+              {siteSettings.awards_achievements.map((a, i) => (
                 <li key={i}>
                   <WpApiContent content={a.award} />
                 </li>
@@ -89,24 +90,23 @@ function Resume({ settings }) {
           </div>
         </section>
 
-        <p className="text-center py-16">
+        <div className="text-center py-16">
           <Button href="mailto:evanagee@gmail.com">
             Want to get in touch?
           </Button>
-        </p>
+        </div>
 
-        <div></div>
         <Scroll.Element id="history" name="history" className="scroll-mt-12">
           <div className="-mx-6 lg:-mx-12">
-            <BadgeWrapper title={`Employment History`}>
+            <BadgeWrapper title="Employment History">
               <GridWrapper wrapItems={false}>
-                {settings.positions.map((job, i) => (
+                {siteSettings.positions.map((job, i) => (
                   <div
                     key={i}
                     className={classNames("p-6 xl:p-16", {
                       "col-span-2":
-                        i + 1 === settings.positions.length &&
-                        i % settings.positions.length > 0,
+                        i + 1 === siteSettings.positions.length &&
+                        i % siteSettings.positions.length > 0,
                     })}
                   >
                     <GenericCard
@@ -262,14 +262,14 @@ function Resume({ settings }) {
 export default Resume;
 
 export async function getStaticProps() {
-  let settings = await fetch(
+  let siteSettings = await fetch(
     `https://blog.evanagee.com/wp-json/acf/v3/options/options`
   );
-  settings = await settings.json();
+  siteSettings = await siteSettings.json();
 
   return {
     props: {
-      settings: settings.acf,
+      siteSettings: siteSettings.acf,
     },
     revalidate: settings.ISRrevalidate,
   };
