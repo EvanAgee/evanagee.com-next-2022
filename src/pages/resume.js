@@ -1,19 +1,21 @@
+import * as Scroll from "react-scroll";
+
 import React, { useRef } from "react";
-import Link from "next/link";
-import content from "@/content";
-import Skillz from "@/components/Skillz";
-import classNames from "classnames";
-import RecentPosts from "@/components/RecentPosts";
-import useBreakpoints from "@/hooks/useBreakpoints";
+
 import BadgeWrapper from "@/components/BadgeWrapper";
+import Button from "@/components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GenericCard from "@/components/GenericCard";
 import GridWrapper from "@/components/GridWrapper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "@/components/Button";
-import * as Scroll from "react-scroll";
+import Link from "next/link";
 import Meta from "@/components/Meta";
+import RecentPosts from "@/components/RecentPosts";
+import Skillz from "@/components/Skillz";
 import WpApiContent from "@/components/WpApiContent";
+import classNames from "classnames";
+import content from "@/content";
 import settings from "@/settings"
+import useBreakpoints from "@/hooks/useBreakpoints";
 
 function Resume({ siteSettings }) {
   const { breakpoint } = useBreakpoints();
@@ -106,7 +108,7 @@ function Resume({ siteSettings }) {
                     className={classNames("p-6 xl:p-16", {
                       "col-span-2":
                         i + 1 === siteSettings.positions.length &&
-                        i % siteSettings.positions.length > 0,
+                        siteSettings.positions.length % 2 > 0,
                     })}
                   >
                     <GenericCard
