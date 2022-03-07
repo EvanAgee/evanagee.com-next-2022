@@ -158,6 +158,14 @@ const settings = {
     //   exact: true,
     // },
     {
+      path: "/search/[term]",
+      component: "Search",
+      linkText: "Search",
+      title: "Search",
+      exact: true,
+      disabledInNav: true,
+    },
+    {
       path: "/search",
       component: "Search",
       linkText: "Search",

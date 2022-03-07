@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import settings from "@/settings";
+import { useRouter } from "next/router";
 function Meta({ title, ogData }) {
   const location = useRouter();
   const defaultData = settings.pathData.find(

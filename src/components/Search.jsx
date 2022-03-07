@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
-import useInfiniteScroller from "@/hooks/useInfiniteScroller";
+
+import BadgeWrapper from "@/components/BadgeWrapper";
 import GridWrapper from "@/components/GridWrapper";
-import PageLoader from "@/components/Loaders/PageLoader";
 import Loader from "@/components/Loaders/Loader";
-import classNames from "classnames";
-import Post from "@/components/Blog/Post";
-import debounce from "lodash.debounce";
+import PageLoader from "@/components/Loaders/PageLoader";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
-import helpers from "@/helpers";
+import Post from "@/components/Blog/Post";
 import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 import ProjectTeaser from "@/components/Projects/ProjectTeaser";
-import BadgeWrapper from "@/components/BadgeWrapper";
+import classNames from "classnames";
+import debounce from "lodash.debounce";
+import helpers from "@/helpers";
+import useInfiniteScroller from "@/hooks/useInfiniteScroller";
 
 const filterTypes = [
   {
@@ -42,7 +43,7 @@ const postTypeDisplay = {
   photo: "Photo",
 };
 
-export default function Search() {
+export default function Search({ term }) {
   const search = React.useRef(null);
   const {
     loadMoreButtonRef,
@@ -57,7 +58,7 @@ export default function Search() {
     goodToGo,
   } = useInfiniteScroller({
     initialFilters: {
-      search: { value: "" },
+      search: { value: term ? term : "" },
       type: { value: null },
       subtype: { value: null },
       per_page: { value: 6 },
@@ -99,6 +100,7 @@ export default function Search() {
           type="search"
           className="font-display w-full bg-gradient-to-t from-gray-100 to-white px-8 py-6 border-b border-gray-300 focus:outline-none text-black font-normal text-2xl placeholder-black"
           placeholder="Search..."
+          value={term ? term : ''}
           onChange={debouncedChangeHandler}
         />
         <div className="absolute top-1/2 right-16 transform -translate-y-1/2">
