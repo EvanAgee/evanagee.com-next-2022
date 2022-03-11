@@ -134,9 +134,7 @@ export async function getStaticProps(context) {
         ? relatedPhotos.filter(
             (value, index, self) =>
               index ===
-              self.findIndex(
-                (t) => t.id === value.id && t.slug === value.slug
-              )
+              self.findIndex((t) => t.id === value.id && t.slug === value.slug)
           )
         : false,
     },

@@ -1,10 +1,11 @@
-import { css } from "@emotion/css";
-import { motion, AnimatePresence } from "framer-motion";
-import classNames from "classnames";
-import Link from "next/link";
-import useBreakpoints from "@/hooks/useBreakpoints";
+import { AnimatePresence, motion } from "framer-motion";
+
 import CurrentLocation from "@/components/CurrentLocation";
+import Link from "next/link";
 import Photo from "@/components/Photo";
+import classNames from "classnames";
+import { css } from "@emotion/css";
+import useBreakpoints from "@/hooks/useBreakpoints";
 
 export default function HeaderHome() {
   const { breakpoint, mediaQueries } = useBreakpoints();
@@ -75,7 +76,7 @@ export default function HeaderHome() {
                 delay: 0.5,
                 duration: 0.5,
               }}
-              className="mt-2 text-3xl lg:text-7xl font-extrabold text-gray-100 !leading-none decoration-clone"
+              className="mt-2 text-3xl lg:text-8xl font-extrabold text-gray-100 !leading-none decoration-clone"
             >
               I’m a <span className="text-primary-500">web developer</span> who
               specializes in{" "}

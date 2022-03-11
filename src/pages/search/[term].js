@@ -6,7 +6,7 @@ export default Search;
 export async function getStaticProps(context) {
   return {
     props: {
-      term: context.params.term
+      term: context.params.term,
     },
     revalidate: settings.ISRrevalidate,
   };

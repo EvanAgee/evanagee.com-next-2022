@@ -19,9 +19,12 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
       <div
         onMouseEnter={() => (!showDetails ? setHovered(true) : null)}
         onMouseLeave={() => (!showDetails ? setHovered(false) : null)}
-        className={classNames("relative text-white text-center aspect-square overflow-hidden", {
-          "col-span-2 row-span-2": featuredImage,
-        })}
+        className={classNames(
+          "relative text-white text-center aspect-square overflow-hidden",
+          {
+            "col-span-2 row-span-2": featuredImage,
+          }
+        )}
       >
         <a className="absolute inset-0 group">
           {image && (
@@ -35,8 +38,7 @@ function PhotoTeaser({ data, counter, featuredImage, showDetails }) {
                 className={classNames(
                   " object-cover w-full h-full object-center",
                   {
-                    "grayscale group-hover:grayscale-0 transition duration-500":
-                      showDetails,
+                    "grayscale group-hover:grayscale-0 transition duration-500": showDetails,
                   }
                 )}
               />

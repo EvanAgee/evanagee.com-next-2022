@@ -100,7 +100,7 @@ export default function Search({ term }) {
           type="search"
           className="font-display w-full bg-gradient-to-t from-gray-100 to-white px-8 py-6 border-b border-gray-300 focus:outline-none text-black font-normal text-2xl placeholder-black"
           placeholder="Search..."
-          value={term ? term : ''}
+          value={term ? term : ""}
           onChange={debouncedChangeHandler}
         />
         <div className="absolute top-1/2 right-16 transform -translate-y-1/2">

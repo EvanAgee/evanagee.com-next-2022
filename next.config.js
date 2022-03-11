@@ -8,7 +8,7 @@ module.exports = {
         source: "/tag/:slug",
         destination: "/search/:slug",
         permanent: true,
-      }
-    ]
-  }
+      },
+    ];
+  },
 };

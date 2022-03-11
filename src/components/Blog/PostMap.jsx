@@ -22,11 +22,16 @@ function PostMap({ lat, lng, zoom, title, className }) {
       latitude: Number(lat),
       longitude: Number(lng),
       zoom: zoom ? Number(zoom) : 6,
-    })
+    });
   }, [lat, lng, zoom]);
 
   return (
-    <div className={classNames("[height:40vh] lg:[height:50vh] mx-auto overflow-hidden relative", className)}>
+    <div
+      className={classNames(
+        "[height:40vh] lg:[height:50vh] mx-auto overflow-hidden relative",
+        className
+      )}
+    >
       <ReactMapGL
         {...viewport}
         width="100%"

@@ -11,7 +11,11 @@ import PostImage from "./shared/PostImage";
 function PostTeaser({ data, image, showImage, side }) {
   return (
     <Link href={`/blog/${data.slug}`}>
-      <article className={classNames(`text-center post group post--teaser cursor-pointer`)}>
+      <article
+        className={classNames(
+          `text-center post group post--teaser cursor-pointer`
+        )}
+      >
         <header>
           <PostDate data={data} />
           <h3

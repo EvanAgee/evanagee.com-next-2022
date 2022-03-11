@@ -41,7 +41,7 @@ function Carousel({
   useScrim,
   className,
   showDots,
-  separated
+  separated,
 }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
   const [showLeftScrim, setShowLeftScrim] = React.useState(false);
@@ -60,7 +60,7 @@ function Carousel({
         "relative overflow-hidden border-y border-gray-200 dark:border-gray-800",
         className,
         {
-          "separated": separated
+          separated: separated,
         }
       )}
       data-cy={dataCy}
@@ -179,7 +179,7 @@ Carousel.defaultProps = {
   theme: "dark",
   useScrim: false,
   showDots: true,
-  separated: true
+  separated: true,
 };
 
 export default Carousel;

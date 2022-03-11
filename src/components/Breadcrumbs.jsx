@@ -48,7 +48,9 @@ function Breadcrumbs({ className, title }) {
                     href={page.parentLink}
                     aria-current={page.current ? "page" : undefined}
                   >
-                    <a className="text-inherit hover:text-primary-500">{page.title}</a>
+                    <a className="text-inherit hover:text-primary-500">
+                      {page.title}
+                    </a>
                   </Link>
                 ) : (
                   page.title

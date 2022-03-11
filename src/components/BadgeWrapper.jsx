@@ -19,7 +19,7 @@ BadgeWrapper.defaultProps = {
   children: "",
   anchor: false,
   className: "",
-  link: false
-}
+  link: false,
+};
 
 export default React.memo(BadgeWrapper);

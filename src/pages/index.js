@@ -1,35 +1,35 @@
-import React from "react";
-import Link from "next/link";
-import content from "@/content";
-import helpers from "@/helpers";
-import settings from "@/settings";
-import classNames from "classnames";
-import useBreakpoints from "@/hooks/useBreakpoints";
-import WpApiContent from "@/components/WpApiContent";
 import BadgeWrapper from "@/components/BadgeWrapper";
-import { motion } from "framer-motion";
-import { pageVariants } from "@/lib/animations";
-import Meta from "@/components/Meta";
 import Button from "@/components/Button";
 import Carousel from "@/components/Carousel";
-import PostGridWrapper from "@/components/Blog/PostGridWrapper";
-import PostDetail from "@/components/Blog/Post";
-import ProjectTeaser from "@/components/Projects/ProjectTeaser";
+import Link from "next/link";
+import Meta from "@/components/Meta";
 import PhotoTeaser from "@/components/Photos/PhotoTeaser";
+import PostDetail from "@/components/Blog/Post";
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
+import ProjectTeaser from "@/components/Projects/ProjectTeaser";
+import React from "react";
+import WpApiContent from "@/components/WpApiContent";
+import classNames from "classnames";
+import content from "@/content";
+import helpers from "@/helpers";
+import { motion } from "framer-motion";
+import { pageVariants } from "@/lib/animations";
+import settings from "@/settings";
+import useBreakpoints from "@/hooks/useBreakpoints";
 
 const myImages = [
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426991/evanagee.com/27E4E7A7-CC69-4D72-B18E-9385B1072840.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1551277265/evanagee.com/evan-2018.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426014/evanagee.com/FCEF3355-FF54-4DF2-B5B7-884FEA349050_1_105_c.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426027/evanagee.com/9258D647-E46F-4386-8C76-459B09D50888_1_105_c.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426143/evanagee.com/D85938C3-A2CF-492B-A41A-537F4DF6514C_1_105_c.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426156/evanagee.com/5F1A2964-0B93-448A-80B5-0833ACDB5ECB_1_105_c.jpg",
-  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_350,w_350/v1630426981/evanagee.com/8C574DF9-8924-4EBD-A03A-5FA2450B1E82_1_105_c.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426991/evanagee.com/27E4E7A7-CC69-4D72-B18E-9385B1072840.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1551277265/evanagee.com/evan-2018.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426014/evanagee.com/FCEF3355-FF54-4DF2-B5B7-884FEA349050_1_105_c.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426027/evanagee.com/9258D647-E46F-4386-8C76-459B09D50888_1_105_c.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426143/evanagee.com/D85938C3-A2CF-492B-A41A-537F4DF6514C_1_105_c.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426156/evanagee.com/5F1A2964-0B93-448A-80B5-0833ACDB5ECB_1_105_c.jpg",
+  "https://res.cloudinary.com/evanagee/image/upload/c_fill,g_faces,h_1200/v1630426981/evanagee.com/8C574DF9-8924-4EBD-A03A-5FA2450B1E82_1_105_c.jpg",
 ];
 
 export default function Home({ posts, projects, photos, currentLocation }) {
   const { breakpoint } = useBreakpoints();
-  const [randomImage, setRandomImage] = React.useState(myImages[0]);
+  const [randomImage, setRandomImage] = React.useState(0);
 
   React.useEffect(() => {
     let counter = 0;
@@ -42,8 +42,9 @@ export default function Home({ posts, projects, photos, currentLocation }) {
 
       const image = new Image();
       image.src = myImages[counter];
+
       image.addEventListener("load", () => {
-        setRandomImage(myImages[counter]);
+        setRandomImage(counter);
       });
     }, 5000);
 
@@ -53,31 +54,30 @@ export default function Home({ posts, projects, photos, currentLocation }) {
   return (
     <>
       <Meta />
-      <div
-        data-test-id="home-page"
-      >
+      <div data-test-id="home-page">
         <section
-        
           id="about"
-          className="px-6 py-12 lg:px-16 lg:py-16 lg:flex items-center"
+          className="lg:px-0 lg:py-0 flex-column xl:flex-row xl:flex items-stretch"
         >
-          <div className="relative mb-16 text-center max-w-md mx-auto">
-            <div
-              className={classNames(
-                "absolute inset-0 bg-gradient-to-r from-neutral-700 to-primary-500 shadow-lg transition-transform transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"
-              )}
-            ></div>
-            <img
-              loading="lazy"
-              src={randomImage}
-              alt="Evan Agee"
-              width="366"
-              height="366"
-              className="relative border-8 border-gray-200 mx-auto"
-            />
+          <div className="order-0 lg:order-1 relative text-center mx-auto xl:w-1/3 aspect-video xl:aspect-none">
+            {myImages.map((image, i) => (
+              <img
+                loading="lazy"
+                src={image}
+                alt="Evan Agee"
+                width="366"
+                height="366"
+                className={classNames(
+                  "absolute w-full h-full object-cover object-center inset-0 transition duration-1000",
+                  {
+                    "opacity-0": randomImage !== i,
+                  }
+                )}
+              />
+            ))}
           </div>
 
-          <div className="mt-20 lg:mt-0 mx-auto">
+          <div className="px-6 my-12 lg:my-0 flex-1 lg:py-16 xl:px-16 lg:px-8 xl:w-2/3">
             <div className="prose lg:prose-xl mx-auto">
               <div className="up-title">A little about me...</div>
               <p>

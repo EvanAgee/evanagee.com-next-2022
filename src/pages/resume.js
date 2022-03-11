@@ -14,7 +14,7 @@ import Skillz from "@/components/Skillz";
 import WpApiContent from "@/components/WpApiContent";
 import classNames from "classnames";
 import content from "@/content";
-import settings from "@/settings"
+import settings from "@/settings";
 import useBreakpoints from "@/hooks/useBreakpoints";
 
 function Resume({ siteSettings }) {
