@@ -1,9 +1,10 @@
+import { AnimatePresence, motion } from "framer-motion";
+
 import React from "react";
-import { useQuery } from "react-query";
 import axios from "axios";
-import settings from "@/settings";
 import helpers from "@/helpers";
-import { motion, AnimatePresence } from "framer-motion";
+import settings from "@/settings";
+import { useQuery } from "react-query";
 
 function getRandom(arr, n) {
   var result = new Array(n),
@@ -31,6 +32,7 @@ function Photos({
   const [randomPhoto, setRandomPhoto] = React.useState(false);
   const [photoVisible, setPhotoVisible] = React.useState(false);
   const params = {};
+  const transitionSpeed = 3000;
 
   if (tag && Array.isArray(tag)) {
     params.photo_tags = [];
@@ -55,8 +57,8 @@ function Photos({
         setRandomPhoto(rand[0]);
         setTimeout(() => {
           setPhotoVisible(true);
-        }, 2000);
-      }, 2000);
+        }, transitionSpeed + 50);
+      }, transitionSpeed);
     });
   };
 
@@ -110,18 +112,21 @@ function Photos({
             initial={{
               scale: 1,
               opacity: 0,
+              y: -100
             }}
             animate={{
               scale: 1.2,
               opacity: 1,
+              y: 0
             }}
             transition={{
-              duration: 2,
+              duration: transitionSpeed/1000,
               ease: "easeInOut",
             }}
             exit={{
               scale: 1,
               opacity: 0,
+              y: -100
             }}
             alt={helpers.decodeHtml(randomPhoto.title.rendered)}
             src={`${helpers.postImage(randomPhoto, "2048x2048")[0]}`}
