@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["blog.evanagee.com"],
+    domains: ["blog.evanagee.com", "res.cloudinary.com"],
   },
   async redirects() {
     return [
