@@ -1,8 +1,8 @@
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
 import React from "react";
 import classNames from "classnames";
-import PostGridWrapper from "@/components/Blog/PostGridWrapper";
-import useMatchHeight from "@/hooks/useMatchHeight";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import useMatchHeight from "@/hooks/useMatchHeight";
 
 const GridWrapper = function ({
   className,
@@ -17,7 +17,7 @@ const GridWrapper = function ({
 
   React.useEffect(() => {
     updateMatchedHeights();
-  }, [children]);
+  }, [children, updateMatchedHeights]);
 
   return (
     <div

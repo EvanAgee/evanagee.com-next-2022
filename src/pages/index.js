@@ -62,6 +62,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
           <div className="order-0 lg:order-1 relative text-center mx-auto xl:w-1/3 aspect-video xl:aspect-none">
             {myImages.map((image, i) => (
               <img
+                key={i}
                 loading="lazy"
                 src={image}
                 alt="Evan Agee"
@@ -82,14 +83,14 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               <div className="up-title">A little about me...</div>
               <p>
                 <strong className="font-semibold font-display">
-                  Hey, I'm Evan Agee (pronounced A.G.) and I'm a full-stack web
+                  Hey, I&apos;m Evan Agee (pronounced A.G.) and I&apos;m a full-stack web
                   developer. My wife Crys our daughter Liliana and I{" "}
                   <Link href="/blog/were-moving-into-a-5th-wheel">
                     <a className="text-primary-500">
                       live full-time in a fifth wheel trailer
                     </a>
                   </Link>{" "}
-                  and travel the country. Currently we're camping in{" "}
+                  and travel the country. Currently we&apos;re camping in{" "}
                   <span className="text-primary-500">{currentLocation}</span>.
                 </strong>
               </p>

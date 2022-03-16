@@ -1,14 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import { HeaderContext } from "@/context/HeaderContext";
 import Button from "@/components/Button";
+import { HeaderContext } from "@/context/HeaderContext";
+import Link from "next/link";
+import React from "react";
 
 function NotFound() {
   const { setPageTitle } = React.useContext(HeaderContext);
 
   React.useEffect(() => {
     setPageTitle("Well this is akward - Page Not Found");
-  }, []);
+  }, [setPageTitle]);
 
   return (
     <div

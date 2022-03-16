@@ -214,6 +214,7 @@ export default function PostFull({ data, image, showImage, side }) {
           <a
             href="https://unsplash.com/"
             target="_blank"
+            rel="noreferrer"
             className="text-primary-400"
           >
             Unsplash

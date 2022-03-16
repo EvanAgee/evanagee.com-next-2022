@@ -1,8 +1,8 @@
 import React from "react";
+import TagList from "@/components/TagList";
 import classNames from "classnames";
 import { css } from "@emotion/css";
 import helpers from "@/helpers";
-import TagList from "@/components/TagList";
 
 function CigarDetails({ cigar }) {
   return (
@@ -18,6 +18,7 @@ function CigarDetails({ cigar }) {
         {cigar.acf.images.length > 0 &&
           cigar.acf.images.map((image, i) => (
             <div
+              key={i}
               className={classNames(
                 "relative",
                 css`

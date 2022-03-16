@@ -1,16 +1,16 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { HeaderContext } from "@/context/HeaderContext";
-import settings from "@/settings";
-import classNames from "classnames";
 import "react-wordpress-comments/css/styles.css";
-import axios from "axios";
-import WpApiContent from "@/components/WpApiContent";
-import helpers from "@/helpers";
+
 import Button from "@/components/Button";
+import { HeaderContext } from "@/context/HeaderContext";
+import React from "react";
+import WpApiContent from "@/components/WpApiContent";
+import axios from "axios";
+import classNames from "classnames";
+import helpers from "@/helpers";
+import settings from "@/settings";
+import { useRouter } from "next/router";
 
 function Discussion({ post, postID, className }) {
-  if (!settings.enableComments || !post) return null;
   const ref = React.useRef();
   const [comments, setComments] = React.useState([]);
   const { metaData } = React.useContext(HeaderContext);
@@ -58,6 +58,8 @@ function Discussion({ post, postID, className }) {
 
   if (filteredComments.length < 1 && post.comment_status === "closed")
     return null;
+
+  if (!settings.enableComments || !post) return null;
 
   return (
     <div className={classNames("p-16", className)}>

@@ -1,10 +1,10 @@
-import React from "react";
-import { css } from "@emotion/css";
-import ParseHTML from "@/components/WpApiContent";
-import useMatchHeight from "@/hooks/useMatchHeight";
 import Discussion from "@/components/Discussion";
 import Meta from "@/components/Meta";
+import ParseHTML from "@/components/WpApiContent";
+import React from "react";
+import { css } from "@emotion/css";
 import settings from "@/settings";
+import useMatchHeight from "@/hooks/useMatchHeight";
 
 function Films({ feed, error }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
@@ -21,12 +21,13 @@ function Films({ feed, error }) {
           <h1 className="">Film Diary</h1>
           <p>
             I love film. I love making films and I love watching films.
-            Unfortunately I don't have much time to make films these days, but
-            below are a few I watched recently.
+            Unfortunately I don&apos;t have much time to make films these days,
+            but below are a few I watched recently.
           </p>
           <a
             href="https://letterboxd.com/evanagee/"
             target="_blank"
+            rel="noopener noreferrer"
             className="w-auto flex items-center mx-auto font-display font-bold tracking-tighter text-lg justify-center not-prose decoration-transparent border-none"
           >
             <img
@@ -47,7 +48,13 @@ function Films({ feed, error }) {
         className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-6 p-6 text-center"
       >
         {feed.map((f, i) => (
-          <a href={f.link} key={i} target="_blank" className="text-black">
+          <a
+            href={f.link}
+            key={i}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black"
+          >
             <div
               className={css`
                 *:not(:first-child) {

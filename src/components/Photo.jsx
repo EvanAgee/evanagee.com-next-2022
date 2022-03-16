@@ -62,7 +62,7 @@ function Photos({
     });
   };
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     let interval;
     if (!isLoading && !error && data && "data" in data) {
       loadNewImage();

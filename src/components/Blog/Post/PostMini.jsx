@@ -35,7 +35,7 @@ function PostMini({ data, showImage, side }) {
           })}
         >
           <time className="text-sm">{helpers.formatDate(data.date)}</time>
-          <h3 className="lg:line-clamp-2 up-title post-title my-0 group-hover:text-secondary-500 dark:group-hover:text-primary-500" title={data.title.rendered}>
+          <h3 className="lg:line-clamp-2 up-title post-title my-0 group-hover:text-secondary-500 dark:group-hover:text-primary-500" title={helpers.decodeHtml(data.title.rendered)}>
             <WpApiContent content={data.title.rendered} />
           </h3>
         </div>

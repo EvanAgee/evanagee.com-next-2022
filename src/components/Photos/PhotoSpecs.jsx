@@ -1,13 +1,12 @@
-import React from "react";
-import Link from "next/link";
-import moment from "moment";
-import helpers from "@/helpers";
-import TagList from "@/components/TagList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import React from "react";
+import TagList from "@/components/TagList";
+import helpers from "@/helpers";
+import moment from "moment";
 import useBreakpoints from "@/hooks/useBreakpoints";
 
 function PhotoSpecs({ photo }) {
-  if (!photo) return null;
   const { breakpoint } = useBreakpoints();
   const photoMeta = React.useMemo(() => {
     return photo?.better_featured_image?.media_details?.image_meta
@@ -17,6 +16,7 @@ function PhotoSpecs({ photo }) {
   const shutterSpeed = photoMeta
     ? helpers.toFraction(photoMeta.shutter_speed)
     : false;
+
   if (!photo) return;
 
   return (
