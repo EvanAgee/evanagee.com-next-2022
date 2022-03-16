@@ -1,4 +1,4 @@
-import parse, { attributesToProps } from "html-react-parser";
+import parse, { attributesToProps, domToReact } from "html-react-parser";
 
 import React from "react";
 import { css } from "@emotion/css";
@@ -7,6 +7,12 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 const options = {
   replace: (domNode) => {
     if (!domNode.attribs) return;
+
+    if (domNode.attribs.style) {
+      const props = attributesToProps(domNode.attribs);
+      const Component = domNode.name;
+      return <Component {...props} />;
+    }
 
     if (domNode.name === "img" && domNode?.attribs['data-public-id']) {
       const newNode = {
@@ -21,6 +27,7 @@ const options = {
       delete newNode?.attribs?.class;
       return <img {...newNode.attribs} />;
     }
+
     if (domNode.name === "iframe") {
       const props = attributesToProps(domNode.attribs);
       return (

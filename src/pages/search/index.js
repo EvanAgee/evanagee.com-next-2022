@@ -5,7 +5,7 @@ function Search({ term }) {
   return (
     <div>
       <Meta title={term ? `Search results for "${term}"` : "Search"} />
-      <SearchForm term={term} />
+      <SearchForm term={term ? term : null} />
     </div>
   );
 }
