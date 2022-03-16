@@ -1,9 +1,9 @@
-import React from "react";
-import helpers from "@/helpers";
 import Link from "next/link";
-import classNames from "classnames";
-import WpApiContent from "@/components/WpApiContent";
 import PostImage from "./shared/PostImage";
+import React from "react";
+import WpApiContent from "@/components/WpApiContent";
+import classNames from "classnames";
+import helpers from "@/helpers";
 
 function PostMini({ data, showImage, side }) {
   const image = helpers.postImage(data, "thumbnail");
@@ -24,7 +24,7 @@ function PostMini({ data, showImage, side }) {
             width={image[1]}
             height={image[2]}
             alt={data.title}
-            className={classNames("h-full w-auto", {
+            className={classNames("h-full w-auto flex-shrink [max-width:150px]", {
               "order-1": side === "next",
             })}
           />
@@ -35,7 +35,7 @@ function PostMini({ data, showImage, side }) {
           })}
         >
           <time className="text-sm">{helpers.formatDate(data.date)}</time>
-          <h3 className="up-title post-title my-0 group-hover:text-secondary-500 dark:group-hover:text-primary-500">
+          <h3 className="lg:line-clamp-2 up-title post-title my-0 group-hover:text-secondary-500 dark:group-hover:text-primary-500" title={data.title.rendered}>
             <WpApiContent content={data.title.rendered} />
           </h3>
         </div>
