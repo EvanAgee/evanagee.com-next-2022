@@ -26,6 +26,7 @@ function Discussion({ post, postID, className }) {
   );
 
   React.useEffect(async () => {
+    if (!post) return;
     let comments = await axios.get(
       `${settings.apiBase}/comments?post=${post.id}&per_page=100`
     );
@@ -56,7 +57,7 @@ function Discussion({ post, postID, className }) {
     }
   };
 
-  if (filteredComments.length < 1 && post.comment_status === "closed")
+  if (filteredComments.length < 1 && post?.comment_status === "closed")
     return null;
 
   if (!settings.enableComments || !post) return null;
@@ -109,7 +110,7 @@ function Discussion({ post, postID, className }) {
         </div>
       )}
 
-      {post.comment_status !== "closed" ? (
+      {post?.comment_status !== "closed" ? (
         <>
           <h3 className="up-title">Leave a Comment</h3>
           <form
