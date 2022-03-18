@@ -136,28 +136,52 @@ export default function PostFull({ data, image, showImage, side }) {
               }
 
               .wp-block-gallery {
+                margin: var(--p-16) calc(-1 * var(--p-16));
+
                 &.columns-3 {
-                  @apply grid-cols-3;
-                }
-
-                &.columns-3 .blocks-gallery-grid {
-                  grid-template-columns: 1fr 1fr 1fr;
-
-                  .blocks-gallery-item {
-                  }
+                  columns: unset;
                 }
 
                 .blocks-gallery-grid {
                   display: grid;
-                  grid-gap: 1rem;
+                  grid-gap: 0;
                   margin: 0;
+                  padding: 0;
                   list-style: none !important;
+                  grid-template-columns: 1fr 1fr;
+
+                  ${mediaQueries.md} {
+                    grid-template-columns: repeat(3, 1fr);
+                  }
+
+                  ${mediaQueries.lg} {
+                    grid-template-columns: repeat(4, 1fr);
+                  }
+
+                  figure {
+                    margin: 0 !important;
+                  }
 
                   .blocks-gallery-item {
                     position: relative;
                     margin: 0;
-                    padding: 0;
+                    padding: 0 0 100% 0;
                     list-style: none !important;
+
+                    figure {
+                      display: block;
+                      position: absolute !important;
+                      inset: 0;
+
+                      img {
+                        position: absolute;
+                        inset: 0;
+                        object-fit: cover;
+                        height: 100%;
+                        width: 100%;
+                        object-position: center center;
+                      }
+                    }
 
                     &:before {
                       content: unset;

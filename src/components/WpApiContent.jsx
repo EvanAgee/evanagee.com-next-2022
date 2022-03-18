@@ -8,12 +8,20 @@ const options = {
   replace: (domNode) => {
     if (!domNode.attribs) return;
 
+    // Correct inline style attributes
     if (domNode.attribs.style) {
       const props = attributesToProps(domNode.attribs);
       const Component = domNode.name;
       return <Component {...props} />;
     }
 
+    // External cloudinary links (galleries on posts)
+    if (domNode.name === "a" && domNode.attribs.href.indexOf("res.cloudinary.com")) {
+      const props = attributesToProps(domNode.attribs);
+      return <a {...props} target="_blank">{domToReact(domNode.children, options)}</a>
+    }
+
+    // External links to cloudinary images
     if (domNode.name === "img" && domNode?.attribs['data-public-id']) {
       const newNode = {
         ...domNode,
