@@ -85,7 +85,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
                 <strong className="font-semibold font-display">
                   Hey, I&apos;m Evan Agee (pronounced A.G.) and I&apos;m a full-stack web
                   developer. My wife Crys our daughter Liliana and I{" "}
-                  <Link href="/blog/were-moving-into-a-5th-wheel">
+                  <Link href="/rv-travels">
                     <a className="text-primary-500">
                       live full-time in a fifth wheel trailer
                     </a>

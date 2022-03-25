@@ -1,12 +1,12 @@
-import React from "react";
-import classNames from "classnames";
-import { css } from "@emotion/css";
-import Link from "next/link";
-import WpApiContent from "@/components/WpApiContent";
-import Categories from "@/components/Blog/Meta/Categories";
 import Button from "@/components/Button";
+import Categories from "@/components/Blog/Meta/Categories";
+import Link from "next/link";
 import PostDate from "./shared/PostDate";
 import PostImage from "./shared/PostImage";
+import React from "react";
+import WpApiContent from "@/components/WpApiContent";
+import classNames from "classnames";
+import { css } from "@emotion/css";
 
 function PostSmall({ data, image, showImage, side }) {
   return (
@@ -16,7 +16,7 @@ function PostSmall({ data, image, showImage, side }) {
           <PostDate data={data} />
           <h3
             className={classNames(
-              "up-title post-title mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500"
+              "up-title post-title dark:text-white mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500"
             )}
           >
             <WpApiContent content={data.title.rendered} />
@@ -27,7 +27,7 @@ function PostSmall({ data, image, showImage, side }) {
         <main className={classNames("mt-6 lg:mt-12 lg:mb-4 matchHeight")}>
           <div
             className={classNames(
-              "text-base lg:text-lg mb-6",
+              "text-base lg:text-lg mb-6 dark:text-gray-400",
               css`
                 .link-more {
                   display: none;

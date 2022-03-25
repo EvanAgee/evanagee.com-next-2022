@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "next/link";
 import CurrentLocation from "@/components/CurrentLocation";
+import Link from "next/link";
+import React from "react";
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
             ❤️
           </span>{" "}
           from{" "}
-          <Link className="underline" href="/blog/were-moving-into-a-5th-wheel">
+          <Link className="underline" href="/rv-travels">
             wherever our RV is parked
           </Link>
           . <br />

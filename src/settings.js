@@ -67,6 +67,13 @@ const settings = {
       title: "My Videos",
     },
     {
+      path: "/rv-travels",
+      component: "Map",
+      linkText: "RV Living",
+      title: "RV Living",
+      theme: "dark",
+    },
+    {
       path: "/photos/[slug]",
       component: "Photo",
       title: "My Photos",

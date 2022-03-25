@@ -125,7 +125,7 @@ export default function HeaderHome() {
               </a>
               , a training resource for devs. My family and I{" "}
               <Link
-                href="/blog/were-moving-into-a-5th-wheel"
+                href="/rv-travels"
                 className="text-primary-500"
               >
                 live in a fifth wheel
