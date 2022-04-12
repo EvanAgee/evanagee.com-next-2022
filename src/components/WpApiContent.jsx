@@ -59,7 +59,14 @@ const options = {
 
     // If we want to manipulate the layout of post image galleries
     if (domNode?.attribs?.class?.split(' ')?.includes('wp-block-gallery')) {
-      // console.log(domNode)
+      // Default Columns
+      // const galleryImages = domNode?.children.filter(c => c.type === 'tag');
+      // if (domNode?.attribs?.class?.split(' ')?.includes('columns-default')) {
+      //   console.log({galleryImages, math: galleryImages.length % 4})
+      //   galleryImages.map(i => {
+      //     i.attribs.class === 'border border-primary-500'
+      //   })
+      // }
     }
 
   },

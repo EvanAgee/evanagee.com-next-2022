@@ -11,12 +11,38 @@ import classNames from "classnames";
 import { css } from "@emotion/css";
 import useBreakpoints from "@/hooks/useBreakpoints";
 
+const galleryTouchup = (breakpoint) => {
+  const galleries = Array.from(document.querySelectorAll('.wp-block-gallery.columns-default'));
+
+  galleries.map(g => {
+    const children = Array.from(g.children);
+    const divider = breakpoint.isLgUp ? 4 : 3;
+    children.map(c => c.classList = 'wp-block-image')
+
+    if (children.length % divider === 1) {
+      children[children.length-1].classList.add('lg:row-span-2', 'lg:row-start-1', 'lg:col-span-2', 'lg:col-start-3', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+    }
+
+    if (children.length % divider === 2) {
+      children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+    }
+
+    if (children.length % divider === 3) {
+      children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]');
+    }
+  });
+}
+
 export default function PostFull({ data, image, showImage, side }) {
-  const { mediaQueries } = useBreakpoints();
+  const { breakpoint, mediaQueries } = useBreakpoints();
 
   const hasLocation = React.useMemo(() => {
     return data["x_metadata"].geo_longitude && data["x_metadata"].geo_latitude;
   }, [data]);
+
+  React.useEffect(() => {
+    galleryTouchup(breakpoint);
+  }, [data, breakpoint, mediaQueries]);
 
   return (
     <article
@@ -141,14 +167,12 @@ export default function PostFull({ data, image, showImage, side }) {
                 grid-gap: 0;
                 padding: 0;
                 list-style: none !important;
+                grid-template-columns: 1fr 1fr;
 
                 &.columns-2 {
-                  grid-template-columns: 1fr 1fr;
                 }
 
                 &.columns-default {
-                  grid-template-columns: 1fr 1fr;
-
                   ${mediaQueries.md} {
                     grid-template-columns: repeat(3, 1fr);
                   }
