@@ -137,11 +137,52 @@ export default function PostFull({ data, image, showImage, side }) {
 
               .wp-block-gallery {
                 margin: var(--p-16) calc(-1 * var(--p-16));
+                display: grid;
+                grid-gap: 0;
+                padding: 0;
+                list-style: none !important;
+
+                &.columns-2 {
+                  grid-template-columns: 1fr 1fr;
+                }
+
+                &.columns-default {
+                  grid-template-columns: 1fr 1fr;
+
+                  ${mediaQueries.md} {
+                    grid-template-columns: repeat(3, 1fr);
+                  }
+
+                  ${mediaQueries.lg} {
+                    grid-template-columns: repeat(4, 1fr);
+                  }
+                }
 
                 &.columns-3 {
                   columns: unset;
                 }
 
+                .wp-block-image {
+                  position: relative;
+                  padding: 0 0 100% 0;
+                  margin: 0;
+
+                  a {
+                    display: block;
+                    position: absolute !important;
+                    inset: 0;
+                  }
+
+                  img {
+                    position: absolute;
+                    inset: 0;
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                    object-position: center center;
+                  }
+                }
+                
                 .blocks-gallery-grid {
                   display: grid;
                   grid-gap: 0;

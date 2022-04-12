@@ -23,8 +23,6 @@ export default function BlogIndex({ posts, filterType }) {
     resultCount,
     isLoading,
     data,
-    isFetchingNextPage,
-    hasNextPage,
     error,
   } = useInfiniteScroller({
     initialFilters: {
@@ -41,6 +39,7 @@ export default function BlogIndex({ posts, filterType }) {
       per_page: { value: settings.apiSettings.perPageInfinite },
       post_type: { value: "post" },
     },
+    initialData: [],
     queryID: "blogIndex",
     apiPath: "/posts",
   });
@@ -87,7 +86,7 @@ export default function BlogIndex({ posts, filterType }) {
             <Loader key={ii} className={ii === 0 ? "lg:pt-32" : "lg:py-32"} />
           ))}
         </GridWrapper>
-      ) : resultCount > 0 ? (
+      ) : resultCount > 0 && data?.pages ? (
         <>
           {data.pages.map((group, i) => (
             <GridWrapper

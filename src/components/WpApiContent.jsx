@@ -56,6 +56,12 @@ const options = {
         </div>
       );
     }
+
+    // If we want to manipulate the layout of post image galleries
+    if (domNode?.attribs?.class?.split(' ')?.includes('wp-block-gallery')) {
+      // console.log(domNode)
+    }
+
   },
 };
 

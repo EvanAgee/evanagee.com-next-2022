@@ -57,7 +57,6 @@ export const getStaticProps = async () => {
     `${settings.apiBase}/posts?categories=185&per_page=50`
   );
   posts = await posts.json();
-  console.log(posts);
 
   return {
     props: {
