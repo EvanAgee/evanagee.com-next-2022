@@ -36,15 +36,7 @@ export default function HeaderNav() {
   return (
     <nav
       className={classNames(
-        "backdrop-filter relative backdrop-blur-md bg-gray-400 bg-opacity-20 text-white border-t border-r dark:border-t-0 dark:border-r-0 border-gray-500  border-opacity-10 select-none flex items-center overflow-hidden whitespace-nowrap",
-        css`
-          --navHeight: 50px;
-          height: var(--navHeight);
-
-          ${mediaQueries.lg} {
-            --navHeight: 70px;
-          }
-        `
+        "backdrop-filter relative backdrop-blur-md bg-gray-400 bg-opacity-20 text-white border-t border-r dark:border-t-0 dark:border-r-0 border-gray-500  border-opacity-10 select-none flex items-center overflow-hidden whitespace-nowrap h-[50px] lg:h-[70px]"
       )}
     >
       <div className="px-4 lg:hidden lg:px-8 text-2xl order-1">
@@ -62,7 +54,6 @@ export default function HeaderNav() {
               "h-full flex flex-1 w-full items-center justify-start font-display font-black uppercase tracking-widest text-sm overflow-hidden transition order-0 lg:order-1",
               { "overflow-x-auto": navVisible },
               css`
-                min-height: var(--navHeight);
                 will-change: transform;
                 transform: ${navVisible ? "translateY(0)" : "translateY(100%)"};
               `
@@ -179,12 +170,7 @@ export default function HeaderNav() {
           {breakpoint.isMdDown && navVisible && (
             <div
               className={classNames(
-                "pointer-events-none absolute top-0 z-index-2 bg-gradient-to-l from-black opacity-30",
-                css`
-                  height: var(--navHeight);
-                  width: 50px;
-                  right: 53px;
-                `
+                "pointer-events-none absolute top-0 z-index-2 bg-gradient-to-l from-black opacity-30 h-full w-[50px] right-[53px]"
               )}
             ></div>
           )}
