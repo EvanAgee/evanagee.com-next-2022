@@ -23,6 +23,7 @@
     "@tailwindcss/forms": "^0.4.0",
     "@testing-library/cypress": "^8.0.0",
     "axios": "^0.24.0",
+    "babel-plugin-emotion": "^11.0.0",
     "classnames": "^2.3.1",
     "cypress": "^8.3.0",
     "dateformat": "^4.5.1",
