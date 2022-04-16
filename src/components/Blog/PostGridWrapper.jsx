@@ -8,18 +8,13 @@ function PostGrid({ children, counter, largeFirst, className }) {
   return (
     <div
       className={classNames(
-        "p-6",
+        "p-6 -mt-[1px]",
         {
           "lg:col-span-2 xl:p-32 xl:pt-8": counter === 0 && largeFirst,
           "": counter % offsetCounter === 0,
           "xl:p-16": !className,
+          "-ml-[1px]": counter > 0 && counter % offsetCounter === 0
         },
-        css`
-          margin-left: ${counter > 0 && counter % offsetCounter === 0
-            ? "-1px"
-            : 0};
-          margin-top: -1px;
-        `,
         className
       )}
     >

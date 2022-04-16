@@ -91,7 +91,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
                     </a>
                   </Link>{" "}
                   and travel the country. Currently we&apos;re camping in{" "}
-                  <span className="text-primary-500">{currentLocation}</span>.
+                  <span className="text-primary-500">{currentLocation}</span>. I love films, music (especially the odd-metered djent variety) and computers.
                 </strong>
               </p>
 
@@ -160,7 +160,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
                 <PhotoTeaser
                   key={i}
                   data={helpers.getPhotoMeta(c)}
-                  showDetails={true}
+                  showDetails={false}
                 />
               ))}
             </Carousel>

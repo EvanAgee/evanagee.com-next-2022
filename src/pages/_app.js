@@ -1,7 +1,6 @@
 import React from "react";
 import "@/css/index.css";
 import "@/icons.js";
-import { css } from "@emotion/css";
 import settings from "@/settings";
 import { ThemeProvider } from "@/context/ThemeContext";
 import ReactGA from "react-ga4";

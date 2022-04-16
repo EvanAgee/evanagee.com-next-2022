@@ -37,8 +37,8 @@ function Filter({
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
     isLoading,
+    isFetchingNextPage
   } = useInfiniteQuery(["filterData", querySlug, showCounts], fetchTerms, {
     getNextPageParam: (lastPage, pages) => {
       return parseInt(lastPage.headers["x-wp-totalpages"]) >=

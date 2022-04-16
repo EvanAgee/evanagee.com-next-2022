@@ -1,6 +1,7 @@
 import parse, { attributesToProps, domToReact } from "html-react-parser";
 
 import React from "react";
+import classNames from "classnames";
 import { css } from "@emotion/css";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 
@@ -40,17 +41,13 @@ const options = {
       const props = attributesToProps(domNode.attribs);
       return (
         <div
-          className={css`
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-
+          className={classNames("relative w-full aspect-video", css`
             iframe {
               position: absolute;
               width: 100%;
               height: 100%;
             }
-          `}
+          `)}
         >
           <iframe {...props} />
         </div>

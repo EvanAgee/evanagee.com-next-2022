@@ -9,11 +9,7 @@ function Loader({ type, color, className }) {
       case "pageLoader":
         return (
           <div
-            className={css`
-              margin: 0 auto 0;
-              width: 70px;
-              text-align: center;
-
+            className={classNames("mx-auto w-[70px] text-center", css`
               & > div {
                 width: 18px;
                 height: 18px;
@@ -58,7 +54,7 @@ function Loader({ type, color, className }) {
                   transform: scale(1);
                 }
               }
-            `}
+            `)}
           >
             <div className="bounce1"></div>
             <div className="bounce2"></div>

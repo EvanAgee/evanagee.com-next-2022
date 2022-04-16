@@ -20,7 +20,7 @@ function Photos({ posts, filterType }) {
     filterTerm,
     setFilters,
     resultCount,
-    isLoading,
+    isFetching,
     data,
     isFetchingNextPage,
     hasNextPage,
@@ -68,19 +68,16 @@ function Photos({ posts, filterType }) {
           results={resultCount}
           className="sticky top-0 z-10"
         />
-        {isLoading ? (
+        {isFetching ? (
           <div className="grid lg:grid-cols-4 gap-0 divide-x divide-y divide-gray-800">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((d, ii) => (
               <div
                 key={ii}
                 className={classNames(
-                  "relative",
+                  "relative aspect-square",
                   {
                     "col-span-2 row-span-2": ii === 4,
-                  },
-                  css`
-                    padding-bottom: 100%;
-                  `
+                  }
                 )}
               >
                 <Loader

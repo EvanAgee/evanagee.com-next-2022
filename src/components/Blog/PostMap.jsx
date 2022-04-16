@@ -69,9 +69,8 @@ function PostMap({ lat, lng, zoom, title, className }) {
           closeOnClick={false}
           offsetTop={5}
           className={
-            ("text-gray-500 ",
+            ("text-gray-500 pointer-events-none",
             css`
-              pointer-events: none;
               .mapboxgl-popup-content {
                 border-radius: 0.5rem;
                 padding: 1.5rem;

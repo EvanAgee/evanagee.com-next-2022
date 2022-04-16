@@ -24,12 +24,7 @@ export default function HeaderHome() {
       </div>
       <div
         className={classNames(
-          "flex w-full items-center flex-col justify-between text-center",
-          css`
-            ${mediaQueries.lg} {
-              min-height: 80vh;
-            }
-          `
+          "flex w-full items-center flex-col justify-between text-center lg:min-h-[80vh]"
         )}
       >
         <div className="hidden relative w-full lg:flex justify-center">
@@ -98,11 +93,11 @@ export default function HeaderHome() {
               className="mt-8 lg:text-2xl text-gray-300"
             >
               I've{" "}
-              <Link className="text-primary-500" href="/portfolio">
+              <Link href="/portfolio">
                 worked
               </Link>{" "}
               with clients from around the world during my{" "}
-              <Link className="text-primary-500" href="/resume">
+              <Link href="/resume">
                 20 years of professional experience
               </Link>
               . I'm also the creator of the{" "}
@@ -124,14 +119,12 @@ export default function HeaderHome() {
                 VueWordPress
               </a>
               , a training resource for devs. My family and I{" "}
-              <Link
-                href="/rv-travels"
-                className="text-primary-500"
-              >
-                live in a fifth wheel
+              <Link href="/rv-travels">
+                <a className="bg-primary-500 transition bg-opacity-30 hover:bg-opacity-100 text-white px-3 rounded-xl decoration-clone text-shadow py-0">
+                  live in a fifth wheel
+                </a>
               </Link>{" "}
-              and are slowly working towards our goal of visiting every state in
-              the continental United States!
+              and are slowly working towards our goal of visiting all 48 contiguous states!
             </motion.p>
           </div>
         </div>

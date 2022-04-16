@@ -6,9 +6,9 @@ import Link from "next/link";
 import Meta from "@/components/Meta";
 import Post from "@/components/Blog/Post";
 import React from "react";
-import TravelMap from "@/components/TravelMap";
 import { css } from "@emotion/css";
 import settings from "@/settings";
+import TravelMap from "@/components/TravelMap";
 
 function Map({ posts }) {
   return (

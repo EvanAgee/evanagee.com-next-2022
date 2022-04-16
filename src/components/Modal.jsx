@@ -45,16 +45,7 @@ function Modal({ isOpen, setIsOpen, children, title }) {
             <button
               ref={completeButtonRef}
               className={classNames(
-                "fixed focus:outline-none z-25",
-                css`
-                  bottom: 2rem;
-                  right: 2rem;
-
-                  ${mediaQueries.lg} {
-                    top: 2rem;
-                    bottom: auto;
-                  }
-                `
+                "fixed focus:outline-none z-25 bottom-[2rem] right-[2rem] lg:bottom-auto lg:top-[2rem]"
               )}
               onClick={() => setIsOpen(false)}
             >

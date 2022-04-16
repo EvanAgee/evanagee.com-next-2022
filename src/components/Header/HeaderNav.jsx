@@ -52,11 +52,10 @@ export default function HeaderNav() {
             ref={navRef}
             className={classNames(
               "h-full flex flex-1 w-full items-center justify-start font-display font-black uppercase tracking-widest text-sm overflow-hidden transition order-0 lg:order-1",
-              { "overflow-x-auto": navVisible },
-              css`
-                will-change: transform;
-                transform: ${navVisible ? "translateY(0)" : "translateY(100%)"};
-              `
+              {
+                "overflow-x-auto transform translate-y-0": navVisible,
+                "overflow-x-auto transform translate-y-full": !navVisible,
+              }
             )}
           >
             <li className={classNames("flex min-h-full")}>

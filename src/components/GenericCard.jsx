@@ -24,10 +24,7 @@ function GenericCard({
             height="100"
             width="auto"
             className={classNames(
-              "mx-auto h-auto",
-              css`
-                max-width: 50%;
-              `
+              "mx-auto h-auto max-w-[50%]"
             )}
             style={imageStyle}
           />

@@ -39,11 +39,8 @@ function Filters({ filters, onChange, results, className }) {
   return (
     <div
       className={classNames(
-        "bg-gradient-to-t from-secondary-50 dark:from-secondary-900 to-white dark:to-gray-900 p-4 flex flex-col xl:flex-row w-full items-start xl:items-center text-sm whitespace-nowrap overflow-x-auto overflow-y-visible scroll-smooth dark:text-gray-300",
-        className,
-        css`
-          min-height: 70px;
-        `
+        "bg-gradient-to-t from-secondary-50 dark:from-secondary-900 to-white dark:to-gray-900 p-4 flex flex-col xl:flex-row w-full items-start xl:items-center text-sm whitespace-nowrap overflow-x-auto overflow-y-visible scroll-smooth dark:text-gray-300 min-h-[70px]",
+        className
       )}
     >
       <button
@@ -54,14 +51,9 @@ function Filters({ filters, onChange, results, className }) {
       </button>
       <div
         className={classNames(
-          "overflow-hidden flex flex-col xl:flex-row items-center transition-all duration-300 flex-grow",
-          css`
-            max-height: ${filtersVisible ? "200px" : "0px"};
-            ${mediaQueries.xl} {
-              max-height: 200px;
-              max-width: ${filtersVisible ? "2000px" : 0};
-            }
-          `
+          "overflow-hidden flex flex-col xl:flex-row items-center transition-all duration-300 flex-grow max-h-0 xl:max-w-0",{
+            "max-h-[200px] xl:max-w-[2000px]": filtersVisible,
+          }
         )}
       >
         {Object.keys(filters)

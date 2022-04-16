@@ -45,13 +45,6 @@ function App({ children }) {
             className={classNames(
               "bg-white dark:bg-gray-900 rounded-b-3xl text-lg mb-6 lg:mb-16 leading-relaxed shadow-2xl overflow-hidden relative",
               css`
-                ul,
-                hr,
-                ol,
-                p:not(:last-child) {
-                  // margin-bottom: 1.25rem;
-                }
-
                 a:not([class]) {
                   color: var(--color-primary-500);
                 }

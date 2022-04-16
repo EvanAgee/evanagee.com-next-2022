@@ -22,7 +22,7 @@ const RecentPosts = ({
   columns,
 }) => {
   let history = useRouter();
-  const { isLoading, error, data } = useQuery(
+  const { isFetching, error, data } = useQuery(
     ["recentPostData", postType, count],
     () =>
       axios.get(`${settings.apiBase}/${postType}`, {
@@ -52,7 +52,7 @@ const RecentPosts = ({
             </li>
           ))}
         </ul>
-      ) : isLoading ? (
+      ) : isFetching ? (
         <GridWrapper
           className={containerClassName}
           wrapItems={postType === "photos" ? false : true}

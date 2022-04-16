@@ -23,11 +23,8 @@ export default function CurrentLocation({ className, dark }) {
     <Link href="/rv-travels" className="">
       <a
         className={classNames(
-          "w-auto border-2 border-white dark:border-gray-500 border-opacity-50 text-white hover:bg-primary-500 hover:bg-opacity-30 rounded-md font-display inline-flex justify-center items-center py-2 px-4 gap-4 text-left uppercase tracking-widest whitespace-nowrap no-underline",
+          "w-auto border-2 border-white dark:border-gray-500 border-opacity-50 text-white hover:bg-primary-500 hover:bg-opacity-30 rounded-md font-display inline-flex justify-center items-center py-2 px-4 gap-4 text-left uppercase tracking-widest whitespace-nowrap no-underline text-[0.7rem]",
           className,
-          css`
-            font-size: 0.7rem;
-          `
         )}
       >
         <FontAwesomeIcon size="2x" icon={["fas", "caravan"]} />

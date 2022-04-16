@@ -1,6 +1,5 @@
-import React, { Suspense, useContext } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 import Post from "@/components/Blog/Post";
 import classNames from "classnames";
 import useBreakpoints from "@/hooks/useBreakpoints";
@@ -11,6 +10,7 @@ import GridWrapper from "@/components/GridWrapper";
 import Meta from "@/components/Meta";
 import settings from "@/settings";
 import helpers from "@/helpers";
+import axios from "axios";
 const Filters = dynamic(() => import("@/components/Filters"));
 
 export default function BlogIndex({ posts, filterType }) {
@@ -39,7 +39,7 @@ export default function BlogIndex({ posts, filterType }) {
       per_page: { value: settings.apiSettings.perPageInfinite },
       post_type: { value: "post" },
     },
-    initialData: [],
+    initialData: posts,
     queryID: "blogIndex",
     apiPath: "/posts",
   });
@@ -112,4 +112,26 @@ export default function BlogIndex({ posts, filterType }) {
       <LoadMoreButton />
     </div>
   );
+}
+
+
+export async function getStaticProps(context) {
+  const posts = await axios.get(`${settings.apiBase}/posts`, {
+    params: {
+      order: "desc",
+      orderby: "date",
+      per_page: settings.apiSettings.perPageInfinite,
+      post_type: "post",
+    },
+  });
+
+  return {
+    props: {
+      posts: {
+        data: posts.data,
+        pages: posts?.pages || []
+      }
+    },
+    revalidate: settings.ISRrevalidate,
+  };
 }
