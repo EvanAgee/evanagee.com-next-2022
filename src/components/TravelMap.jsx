@@ -51,7 +51,7 @@ function Map({}) {
         viewBox="0 0 1000 589"
         width="1000px"
         id="svg"
-        className="mx-auto max-w-full -translate-x-[5%]"
+        className="mx-auto max-w-full -translate-x-[5%] h-auto"
       >
         <path
           id="MA"
