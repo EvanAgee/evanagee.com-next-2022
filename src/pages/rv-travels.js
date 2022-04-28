@@ -62,5 +62,6 @@ export const getStaticProps = async () => {
     props: {
       posts,
     },
+    revalidate: settings.ISRrevalidate,
   };
 };
