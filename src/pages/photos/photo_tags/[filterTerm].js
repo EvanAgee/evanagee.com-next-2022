@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
   while (keepGoing) {
     const res = await fetch(
-      `${settings.apiBase}/photo_tags?per_page=5&page=${page}`
+      `${settings.apiBase}/photo_tags?page=${page}`
     );
     const posts = await res.json();
 

@@ -2,6 +2,7 @@ const settings = {
   apiBase: "https://blog.evanagee.com/wp-json/wp/v2",
   apiSettings: {
     perPageInfinite: 11,
+    perPageStaticPaths: 25
   },
   ISRrevalidate: 100,
   functionBase:
