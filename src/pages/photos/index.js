@@ -21,6 +21,7 @@ function Photos({ posts, filterType }) {
     setFilters,
     resultCount,
     isFetching,
+    isLoading,
     data,
     isFetchingNextPage,
     hasNextPage,
@@ -68,26 +69,8 @@ function Photos({ posts, filterType }) {
           results={resultCount}
           className="sticky top-0 z-10"
         />
-        {isFetching ? (
-          <div className="grid lg:grid-cols-4 gap-0 divide-x divide-y divide-gray-800">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((d, ii) => (
-              <div
-                key={ii}
-                className={classNames(
-                  "relative aspect-square",
-                  {
-                    "col-span-2 row-span-2": ii === 4,
-                  }
-                )}
-              >
-                <Loader
-                  className="absolute top-1/2 transform -translate-y-1/2 left-1/2 -translate-x-1/2"
-                  color="var(--color-gray-600)"
-                />
-              </div>
-            ))}
-          </div>
-        ) : resultCount > 0 ? (
+
+        {resultCount > 0 && data?.pages ? (
           <>
             <div
               data-test-id="photo-index-grid-wrapper"
@@ -109,13 +92,29 @@ function Photos({ posts, filterType }) {
                 </React.Fragment>
               ))}
             </div>
+            <LoadMoreButton />
           </>
+        ) : isFetching || isLoading ? (
+          <div className="grid lg:grid-cols-4 gap-0 divide-x divide-y divide-gray-800">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((d, ii) => (
+              <div
+                key={ii}
+                className={classNames("relative aspect-square", {
+                  "col-span-2 row-span-2": ii === 4,
+                })}
+              >
+                <Loader
+                  className="absolute top-1/2 transform -translate-y-1/2 left-1/2 -translate-x-1/2"
+                  color="var(--color-gray-600)"
+                />
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="flex justify-center items-center h-96">
             No posts found...
           </div>
         )}
-        <LoadMoreButton />
       </div>
     </>
   );

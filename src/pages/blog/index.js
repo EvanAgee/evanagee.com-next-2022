@@ -22,6 +22,7 @@ export default function BlogIndex({ posts, filterType }) {
     setFilters,
     resultCount,
     isLoading,
+    isFetching,
     data,
     error,
   } = useInfiniteScroller({
@@ -80,13 +81,8 @@ export default function BlogIndex({ posts, filterType }) {
         </GridWrapper>
       )}
 
-      {isLoading ? (
-        <GridWrapper largeFirst={true}>
-          {[1, 2, 3].map((d, ii) => (
-            <Loader key={ii} className={ii === 0 ? "lg:pt-32" : "lg:py-32"} />
-          ))}
-        </GridWrapper>
-      ) : resultCount > 0 && data?.pages ? (
+      {/* We have results */}
+      {resultCount > 0 && data?.pages ? (
         <>
           {data.pages.map((group, i) => (
             <GridWrapper
@@ -103,17 +99,22 @@ export default function BlogIndex({ posts, filterType }) {
               ))}
             </GridWrapper>
           ))}
+          <LoadMoreButton />
         </>
+      ) : isFetching || isLoading ? (
+        <GridWrapper largeFirst={true}>
+          {[1, 2, 3].map((d, ii) => (
+            <Loader key={ii} className={ii === 0 ? "lg:pt-32" : "lg:py-32"} />
+          ))}
+        </GridWrapper>
       ) : (
         <div className="flex justify-center items-center h-96">
           No posts found...
         </div>
       )}
-      <LoadMoreButton />
     </div>
   );
 }
-
 
 export async function getStaticProps(context) {
   const posts = await axios.get(`${settings.apiBase}/posts`, {
@@ -129,8 +130,8 @@ export async function getStaticProps(context) {
     props: {
       posts: {
         data: posts.data,
-        pages: posts?.pages || []
-      }
+        pages: posts?.pages || [],
+      },
     },
     revalidate: settings.ISRrevalidate,
   };
