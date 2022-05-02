@@ -20,7 +20,7 @@ function PostTeaser({ data, image, showImage, side }) {
           <PostDate data={data} />
           <h3
             className={classNames(
-              "up-title post-title mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500"
+              "up-title post-title mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500 dark:text-white"
             )}
           >
             <WpApiContent content={data.title.rendered} />

@@ -2,15 +2,21 @@ import Badge from "@/components/Badge";
 import BadgeWrapper from "@/components/BadgeWrapper";
 import CurrentLocation from "@/components/CurrentLocation";
 import GridWrapper from "@/components/GridWrapper";
+import Carousel from "@/components/Carousel";
 import Link from "next/link";
 import Meta from "@/components/Meta";
+import PostDetail from "@/components/Blog/Post";
 import Post from "@/components/Blog/Post";
 import React from "react";
 import { css } from "@emotion/css";
 import settings from "@/settings";
 import TravelMap from "@/components/TravelMap";
-
-function Map({ posts }) {
+import PostGridWrapper from "@/components/Blog/PostGridWrapper";
+import useBreakpoints from "@/hooks/useBreakpoints";
+import PhotoTeaser from "@/components/Photos/PhotoTeaser";
+import helpers from "@/helpers";
+function Map({ posts, photos }) {
+  const { breakpoint } = useBreakpoints();
   return (
     <>
       <Meta />
@@ -35,17 +41,43 @@ function Map({ posts }) {
       </div>
       {posts && (
         <BadgeWrapper title="RV Living Blog Posts">
-          <GridWrapper
-            data-test-id="blog-index-grid-wrapper"
-            largeFirst={false}
-            className="bg-gray-800"
-          >
-            {posts.map((d, ii) => (
-              <Post key={ii} data={d} style="small" />
-            ))}
-          </GridWrapper>
+          <Carousel
+              slidesToShow={breakpoint.isLgUp ? 3 : 1}
+              className=" bg-opacity-0 border-b-0"
+              separated
+            >
+              {posts.map((c, i) => (
+                <PostGridWrapper
+                  key={i}
+                  className="pt-16 pb-20 w-full"
+                  counter={i}
+                  largeFirst={false}
+                >
+                  <PostDetail data={c} style="teaser" />
+                </PostGridWrapper>
+              ))}
+            </Carousel>
         </BadgeWrapper>
       )}
+
+      {photos && <section>
+          <BadgeWrapper title="Recent Travel Photos">
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 4 : 2}
+              className="!border-b-0"
+              showDots={false}
+              separated={false}
+            >
+              {photos?.map((c, i) => (
+                <PhotoTeaser
+                  key={i}
+                  data={helpers.getPhotoMeta(c)}
+                  showDetails={false}
+                />
+              ))}
+            </Carousel>
+          </BadgeWrapper>
+        </section>}
     </>
   );
 }
@@ -58,9 +90,13 @@ export const getStaticProps = async () => {
   );
   posts = await posts.json();
 
+  let photos = await fetch(`${settings.apiBase}/photos?photo_album=1889&per_page=50`);
+  photos = await photos.json();
+
   return {
     props: {
       posts,
+      photos
     },
     revalidate: settings.ISRrevalidate,
   };
