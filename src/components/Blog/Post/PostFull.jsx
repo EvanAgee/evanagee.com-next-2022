@@ -19,16 +19,18 @@ const galleryTouchup = (breakpoint) => {
     const divider = breakpoint.isLgUp ? 4 : 3;
     children.map(c => c.classList = 'wp-block-image')
 
-    if (children.length % divider === 1) {
-      children[children.length-1].classList.add('lg:row-span-2', 'lg:row-start-1', 'lg:col-span-2', 'lg:col-start-3', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
-    }
-
-    if (children.length % divider === 2) {
-      children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
-    }
-
-    if (children.length % divider === 3) {
-      children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]');
+    if (children.length > 2) {
+      if (children.length % divider === 1) {
+        children[children.length-1].classList.add('lg:row-span-2', 'lg:row-start-1', 'lg:col-span-2', 'lg:col-start-3', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+      }
+  
+      if (children.length % divider === 2) {
+        children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+      }
+  
+      if (children.length % divider === 3) {
+        children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]');
+      }
     }
   });
 }
@@ -170,6 +172,9 @@ export default function PostFull({ data, image, showImage, side }) {
                 grid-template-columns: 1fr 1fr;
 
                 &.columns-2 {
+                  ${mediaQueries.md} {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                  }
                 }
 
                 &.columns-default {
