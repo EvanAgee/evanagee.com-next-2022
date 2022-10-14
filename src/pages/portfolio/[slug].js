@@ -220,7 +220,7 @@ function Project({ project, relatedProjects }) {
           {breakpoint.isLgUp && process.env.NODE_ENV !== "production" && (
             <Button
               variant="secondary"
-              href={`https://blog.evanagee.com/wp-admin/post.php?post=${project.id}&action=edit`}
+              href={`${settings.backendBase}/wp-admin/post.php?post=${project.id}&action=edit`}
               target="_blank"
             >
               Edit Project

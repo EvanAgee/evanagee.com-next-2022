@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="text-white font-display mb-6 lg:mb-16 flex flex-col justify-center gap-6 px-6 relative">
+    <div className="text-white font-display mb-6 lg:mb-16 flex flex-col justify-center gap-6 px-6 relative print:hidden">
       <div className="flex flex-col lg:flex-row items-center mx-auto gap-6">
         <CurrentLocation />
         <div>
@@ -13,12 +13,10 @@ export default function Footer() {
             ❤️
           </span>{" "}
           from{" "}
-          <Link className="underline" href="/rv-travels">
-            wherever our RV is parked
-          </Link>
+          Dallas/Fort Worth Texas
           . <br />
           <small className="font-bold">
-            Headless WordPress with NextJS + TailwindCSS
+            Headless WordPress + NextJS + TailwindCSS
           </small>
         </div>
       </div>

@@ -112,7 +112,7 @@ export async function getStaticProps(context) {
     for (const t of post[0].ea_tags) {
       // Get the corresponding photo tag that matches the post tag
       let photoTag = await fetch(
-        `https://blog.evanagee.com/wp-json/wp/v2/photo_tags?slug=${t.slug}`
+        `${settings.acfApiBase}/photo_tags?slug=${t.slug}`
       );
       photoTag = await photoTag.json();
 

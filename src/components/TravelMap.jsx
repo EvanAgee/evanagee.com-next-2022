@@ -16,7 +16,7 @@ function Map({}) {
 
   React.useEffect(async () => {
     const options = await axios.get(
-      `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+      `${settings.acfApiBase}/options/options`
     );
     if (options?.data?.acf?.current_location)
       setCurrentLocation(options.data.acf.current_location.slice(-2));

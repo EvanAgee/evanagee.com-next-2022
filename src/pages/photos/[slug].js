@@ -92,7 +92,7 @@ export default function Photo({ photo, catPosts }) {
         {process.env.NODE_ENV === "development" && (
           <div className="flex items-center justify-center space-x-6 pt-6">
             <Button
-              href={`https://blog.evanagee.com/wp-admin/post.php?post=${photo.id}&action=edit`}
+              href={`${settings.backendBase}/wp-admin/post.php?post=${photo.id}&action=edit`}
               target="_blank"
             >
               Edit Photo

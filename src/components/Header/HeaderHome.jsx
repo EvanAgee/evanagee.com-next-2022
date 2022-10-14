@@ -92,7 +92,7 @@ export default function HeaderHome() {
               }}
               className="mt-8 lg:text-2xl text-gray-300"
             >
-              I've{" "}
+              I'm a front-end web developer who loves JavaScript, especially React. I've{" "}
               <Link href="/portfolio">
                 worked
               </Link>{" "}
@@ -118,13 +118,7 @@ export default function HeaderHome() {
               >
                 VueWordPress
               </a>
-              , a training resource for devs. My family and I{" "}
-              <Link href="/rv-travels">
-                <a className="bg-primary-500 transition bg-opacity-30 hover:bg-opacity-100 text-white px-3 rounded-xl decoration-clone text-shadow py-0">
-                  live in a fifth wheel
-                </a>
-              </Link>{" "}
-              and are slowly working towards our goal of visiting all 48 contiguous states!
+              , a training resource for devs.
             </motion.p>
           </div>
         </div>

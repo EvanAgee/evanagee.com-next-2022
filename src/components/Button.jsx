@@ -13,14 +13,14 @@ function Button({
   type,
 }) {
   const Tag = React.useMemo(() => {
-    if (type === "submit") {
+    if (type === "submit" || type === "button") {
       return "button";
     }
     if (target || smooth) {
       return "a";
     }
     return Link;
-  }, [target]);
+  }, [target, type, smooth]);
 
   return (
     <Tag

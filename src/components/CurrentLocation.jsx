@@ -4,13 +4,14 @@ import React from "react";
 import axios from "axios";
 import classNames from "classnames";
 import { css } from "@emotion/css";
+import settings from "@/settings";
 
 export default function CurrentLocation({ className, dark }) {
   const [location, setLocation] = React.useState(false);
 
   React.useEffect(async () => {
     const options = await axios.get(
-      `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+      `${settings.acfApiBase}/options/options`
     );
     if (options?.data?.acf?.current_location)
       return setLocation(options.data.acf.current_location);

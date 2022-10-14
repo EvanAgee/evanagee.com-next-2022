@@ -1,16 +1,12 @@
 import * as Scroll from "react-scroll";
-
-import React, { useRef } from "react";
-
+import React from "react";
 import BadgeWrapper from "@/components/BadgeWrapper";
 import Button from "@/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GenericCard from "@/components/GenericCard";
 import GridWrapper from "@/components/GridWrapper";
-import Link from "next/link";
 import Meta from "@/components/Meta";
 import RecentPosts from "@/components/RecentPosts";
-import Skillz from "@/components/Skillz";
 import WpApiContent from "@/components/WpApiContent";
 import classNames from "classnames";
 import content from "@/content";
@@ -27,11 +23,11 @@ function Resume({ siteSettings }) {
         <section className="max-w-screen-md mx-auto">
           <h1 className="text-3xl lg:text-5xl text-center mb-4">Evan Agee</h1>
           <h2 className="uppercase tracking-widest lg:text-2xl text-center text-primary-500 mb-2 leading-tight">
-            <WpApiContent content={siteSettings.headline} />
+            <WpApiContent content={siteSettings.headline.toString()} />
           </h2>
 
           <div className="text-center text-sm lg:text-lg">
-            <WpApiContent content={siteSettings.intro} />
+            <WpApiContent content={siteSettings.intro.toString()} />
 
             <div className="flex flex-wrap gap-4 justify-center py-6">
               <Button href="/portfolio" className="mr-2">
@@ -76,7 +72,7 @@ function Resume({ siteSettings }) {
             <ul className="">
               {siteSettings.awards_achievements.map((a, i) => (
                 <li key={i}>
-                  <WpApiContent content={a.award} />
+                  <WpApiContent content={a.award.toString()} />
                 </li>
               ))}
             </ul>
@@ -265,7 +261,7 @@ export default Resume;
 
 export async function getStaticProps() {
   let siteSettings = await fetch(
-    `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+    `${settings.acfApiBase}/options/options`
   );
   siteSettings = await siteSettings.json();
 

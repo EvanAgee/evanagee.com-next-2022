@@ -182,7 +182,7 @@ export async function getStaticProps() {
   photos = await photos.json();
 
   let options = await fetch(
-    `https://blog.evanagee.com/wp-json/acf/v3/options/options`
+    `${settings.acfApiBase}/options/options`
   );
   options = await options.json();
 

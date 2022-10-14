@@ -51,7 +51,7 @@ export default function Header() {
   return (
     <>
       <div
-        className={classNames("fixed inset-0 bg-gray-900 z-0", {
+        className={classNames("print:hidden fixed inset-0 bg-gray-900 z-0", {
           dark: pageTheme === "dark",
         })}
       >

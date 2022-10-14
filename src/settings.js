@@ -1,5 +1,7 @@
 const settings = {
+  backendBase: "https://blog.evanagee.com",
   apiBase: "https://blog.evanagee.com/wp-json/wp/v2",
+  acfApiBase: "https://blog.evanagee.com/wp-json/acf/v3",
   apiSettings: {
     perPageInfinite: 11,
     perPageStaticPaths: 25

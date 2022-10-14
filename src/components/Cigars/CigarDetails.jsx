@@ -3,6 +3,7 @@ import TagList from "@/components/TagList";
 import classNames from "classnames";
 import { css } from "@emotion/css";
 import helpers from "@/helpers";
+import settings from "@/settings";
 
 function CigarDetails({ cigar }) {
   return (
@@ -38,7 +39,7 @@ function CigarDetails({ cigar }) {
         <div className="flex items-center justify-center">
           <a
             className="mt-16 button button-reversed button-white"
-            href={`https://blog.evanagee.com/wp-admin/post.php?post=${cigar.id}&action=edit`}
+            href={`${settings.backendBase}/wp-admin/post.php?post=${cigar.id}&action=edit`}
             target="_blank"
           >
             Edit Cigar

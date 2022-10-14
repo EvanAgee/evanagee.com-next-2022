@@ -10,6 +10,7 @@ import WpApiContent from "@/components/WpApiContent";
 import classNames from "classnames";
 import { css } from "@emotion/css";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import settings from "@/settings";
 
 const galleryTouchup = (breakpoint) => {
   const galleries = Array.from(document.querySelectorAll('.wp-block-gallery.columns-default'));
@@ -294,7 +295,7 @@ export default function PostFull({ data, image, showImage, side }) {
         {process.env.NODE_ENV === "development" && (
           <div className="my-16">
             <Button
-              href={`https://blog.evanagee.com/wp-admin/post.php?post=${data.id}&action=edit`}
+              href={`${settings.backendBase}/wp-admin/post.php?post=${data.id}&action=edit`}
               target="_blank"
               variant="secondary"
             >

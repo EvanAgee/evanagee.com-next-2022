@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { css } from "@emotion/css";
 import classNames from "classnames";
 import helpers from "@/helpers";
+import settings from "@/settings";
 
 const SidebarRow = ({ cigar }) => {
   const image = helpers.postImage(cigar, "thumbnail") || false;
@@ -11,7 +12,7 @@ const SidebarRow = ({ cigar }) => {
     <li className="">
       <NavLink
         activeClassName="active bg-primary-600 hover:bg-primary-600"
-        to={cigar.link.replace("https://blog.evanagee.com/cigar", "/cigars")}
+        to={cigar.link.replace(`${settings.backendBase}/cigar`, "/cigars")}
         className={classNames(
           "relative px-6 py-5 flex items-center space-x-3 hover:bg-primary-600 focus:outline-none",
           css`
