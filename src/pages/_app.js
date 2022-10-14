@@ -7,6 +7,7 @@ import ReactGA from "react-ga4";
 import TagManager from "react-gtm-module";
 import LogRocket from "logrocket";
 import App from "@/layouts/App";
+import NextNProgress from 'nextjs-progressbar';
 
 const tagManagerArgs = {
   gtmId: settings.gtmID,
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }) {
     <React.StrictMode>
       <ThemeProvider>
         <App>
+          <NextNProgress color="var(--color-primary)" />
           <Component {...pageProps} />
         </App>
       </ThemeProvider>

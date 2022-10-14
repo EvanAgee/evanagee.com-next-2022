@@ -23,6 +23,69 @@ const randomColors = Object.keys(colors).filter(
 const rando = Math.floor(Math.random() * randomColors.length);
 let primaryColor = colors[randomColors[rando]];
 
+const colorThemes = {
+  default: {
+    primary: colors.rose,
+    secondary: colors.cyan,
+  },
+  halloween: {
+    primary: {
+      DEFAULT: "#FF6C00",
+      50: "#FFD6B8",
+      100: "#FFCAA3",
+      200: "#FFB37A",
+      300: "#FF9B52",
+      400: "#FF8429",
+      500: "#FF6C00",
+      600: "#C75400",
+      700: "#8F3C00",
+      800: "#572500",
+      900: "#1F0D00",
+    },
+    secondary: {
+      DEFAULT: "#9700F8",
+      50: "#E0B1FF",
+      100: "#D89CFF",
+      200: "#C873FF",
+      300: "#B84BFF",
+      400: "#A822FF",
+      500: "#9700F8",
+      600: "#7500C0",
+      700: "#530088",
+      800: "#310050",
+      900: "#0E0018",
+    },
+  },
+  christmas: {
+    primary: {
+      DEFAULT: "#CC231E",
+      50: "#F3B0AE",
+      100: "#F19F9D",
+      200: "#EB7C79",
+      300: "#E65A56",
+      400: "#E13732",
+      500: "#CC231E",
+      600: "#9B1B17",
+      700: "#6A1210",
+      800: "#390A08",
+      900: "#080101",
+    },
+    secondary: {
+      DEFAULT: "#0F8A5F",
+      50: "#63EEBD",
+      100: "#50ECB6",
+      200: "#2BE8A6",
+      300: "#17D492",
+      400: "#13AF78",
+      500: "#0F8A5F",
+      600: "#09573C",
+      700: "#042519",
+      800: "#000000",
+      900: "#000000",
+    },
+  },
+};
+
 module.exports = {
   content: [
     "src/pages/**/*.{js,ts,jsx,tsx}",
@@ -41,21 +104,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: {
-          100: "#FFEDED",
-          200: "#FED3D3",
-          300: "#FEB9B9",
-          400: "#FD8484",
-          500: "#FC4F4F",
-          600: "#E34747",
-          700: "#972F2F",
-          800: "#712424",
-          900: "#4C1818",
-        },
-        // primary: primaryColor,
-        primary: colors.rose,
-        secondary: colors.cyan,
         gray: colors.neutral,
+        ...colorThemes.halloween,
       },
       typography: {
         xl: {
@@ -72,7 +122,7 @@ module.exports = {
             },
           },
         },
-      }
+      },
     },
   },
   variants: {
@@ -87,7 +137,7 @@ module.exports = {
       strategy: "class",
     }),
     require("@tailwindcss/typography"),
-    require('@tailwindcss/line-clamp'),
+    require("@tailwindcss/line-clamp"),
     require("tailwind-css-variables")(
       {
         // modules
