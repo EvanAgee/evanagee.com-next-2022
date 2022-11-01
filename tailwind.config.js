@@ -56,6 +56,34 @@ const colorThemes = {
       900: "#0E0018",
     },
   },
+  fall: {
+    primary: {
+      DEFAULT: '#F7B42C',
+  '50': '#FBEA9B',
+  '100': '#FBE58E',
+  '200': '#FADB76',
+  '300': '#F9D05D',
+  '400': '#F8C345',
+  '500': '#F7B42C',
+  '600': '#E79609',
+  '700': '#B67107',
+  '800': '#854E05',
+  '900': '#542E03'
+    },
+    secondary: {
+      DEFAULT: '#FF0A0A',
+      '50': '#FF907D',
+      '100': '#FF8370',
+      '200': '#FF6857',
+      '300': '#FF4A3D',
+      '400': '#FF2B24',
+      '500': '#FF0A0A',
+      '600': '#D60007',
+      '700': '#A3000B',
+      '800': '#70000B',
+      '900': '#3D0008'
+    },
+  },
   christmas: {
     primary: {
       DEFAULT: "#CC231E",
@@ -105,7 +133,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.neutral,
-        ...colorThemes.halloween,
+        ...colorThemes.fall,
       },
       typography: {
         xl: {
