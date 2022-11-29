@@ -36,9 +36,9 @@ function Map({ posts, photos }) {
         </header>
       </div>
       <TravelMap />
-      <div className="text-center mb-16">
+      {/* <div className="text-center mb-16">
         <CurrentLocation />
-      </div>
+      </div> */}
       {posts && (
         <BadgeWrapper title="RV Living Blog Posts">
           <Carousel

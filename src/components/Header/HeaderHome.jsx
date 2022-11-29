@@ -28,7 +28,7 @@ export default function HeaderHome() {
         )}
       >
         <div className="hidden relative w-full lg:flex justify-center">
-          <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" />
+          {/* <CurrentLocation className="lg:absolute top-4 right-4 mt-8 lg:mt-0 z-20" /> */}
         </div>
         <div
           className={classNames(
@@ -121,9 +121,6 @@ export default function HeaderHome() {
               , a training resource for devs.
             </motion.p>
           </div>
-        </div>
-        <div className="flex lg:hidden justify-center pb-8 relative">
-          <CurrentLocation />
         </div>
       </div>
     </>
