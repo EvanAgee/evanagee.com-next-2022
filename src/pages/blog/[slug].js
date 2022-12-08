@@ -146,6 +146,8 @@ export async function getStaticProps(context) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
+  if (process.env.NODE_ENV === "development") return { paths: [], fallback: "blocking" };
+
   console.time("Getting static paths for posts");
   const allPosts = [];
   let page = 1;

@@ -27,6 +27,8 @@ const galleryTouchup = (breakpoint) => {
   
       if (children.length % divider === 2) {
         children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+        children[children.length-2].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+        
       }
   
       if (children.length % divider === 3) {
