@@ -133,7 +133,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.neutral,
-        ...colorThemes.christmas,
+        ...colorThemes.default,
       },
       typography: {
         xl: {
