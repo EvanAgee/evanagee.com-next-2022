@@ -8,6 +8,7 @@ import TagManager from "react-gtm-module";
 import LogRocket from "logrocket";
 import App from "@/layouts/App";
 import NextNProgress from 'nextjs-progressbar';
+const colors = require("tailwindcss/colors");
 
 const tagManagerArgs = {
   gtmId: settings.gtmID,
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }) {
     <React.StrictMode>
       <ThemeProvider>
         <App>
-          <NextNProgress color="var(--color-primary)" />
+          <NextNProgress color={colors.rose['500']} />
           <Component {...pageProps} />
         </App>
       </ThemeProvider>

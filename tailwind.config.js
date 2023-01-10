@@ -114,6 +114,8 @@ const colorThemes = {
   },
 };
 
+const currentTheme = colorThemes.default
+
 module.exports = {
   content: [
     "src/pages/**/*.{js,ts,jsx,tsx}",
@@ -133,7 +135,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.neutral,
-        ...colorThemes.default,
+        ...currentTheme,
       },
       typography: {
         xl: {

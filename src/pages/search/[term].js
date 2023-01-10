@@ -3,15 +3,15 @@ import settings from "@/settings";
 
 export default Search;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   return {
     props: {
       term: context.params.term,
     },
-    revalidate: settings.ISRrevalidate,
+    // revalidate: settings.ISRrevalidate,
   };
 }
-
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for search terms");
   const allPosts = [];
@@ -42,3 +42,4 @@ export async function getStaticPaths() {
   // on-demand if the path doesn't exist.
   return { paths, fallback: "blocking" };
 }
+*/

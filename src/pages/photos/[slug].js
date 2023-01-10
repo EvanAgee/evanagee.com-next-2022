@@ -126,47 +126,56 @@ export default function Photo({ photo, catPosts }) {
   );
 }
 
-export async function getStaticProps(context) {
-  const photo = await fetch(
-    `${settings.apiBase}/photos?slug=${context.params.slug}&per_page=1`
-  );
-  const res = await photo.json();
+export async function getServerSideProps(context) {
+  try {
+    const photo = await fetch(
+      `${settings.apiBase}/photos?slug=${context.params.slug}&per_page=1`
+    );
+    const res = await photo.json();
+  
+    if (!res || res.length < 1) {
+      return {
+        notFound: true,
+      };
+    }
+  
+    // Get photos that are in the same album
+    let catPosts = false;
+    if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
+      const posts = await fetch(
+        `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=10`
+      );
+      catPosts = await posts.json();
+    }
+  
+    let relatedBlogPosts = false;
+    if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
+      const posts = await fetch(
+        `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=100`
+      );
+      relatedBlogPosts = await posts.json();
+    }
+  
+    return {
+      props: {
+        photo: res[0],
+        catPosts,
+      },
+      // revalidate: settings.ISRrevalidate,
+    };
 
-  if (!res || res.length < 1) {
+  } catch (e) {
+    console.log(e);
     return {
       notFound: true,
     };
   }
-
-  // Get photos that are in the same album
-  let catPosts = false;
-  if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
-    const posts = await fetch(
-      `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=10`
-    );
-    catPosts = await posts.json();
-  }
-
-  let relatedBlogPosts = false;
-  if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
-    const posts = await fetch(
-      `${settings.apiBase}/photos?photo_album=${res[0]?.ea_photo_albums[0].term_id}&per_page=100`
-    );
-    relatedBlogPosts = await posts.json();
-  }
-
-  return {
-    props: {
-      photo: res[0],
-      catPosts,
-    },
-    revalidate: settings.ISRrevalidate,
-  };
 }
 
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // the path has not been generated.
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for photos");
   const allPosts = [];
@@ -194,3 +203,4 @@ export async function getStaticPaths() {
   console.timeEnd("Getting static paths for photos");
   return { paths, fallback: "blocking" };
 }
+*/

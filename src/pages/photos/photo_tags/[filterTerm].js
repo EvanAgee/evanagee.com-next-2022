@@ -3,7 +3,7 @@ import settings from "@/settings";
 import axios from "axios";
 export default PhotoIndex;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let posts = await axios.get(`${settings.apiBase}/photos`, {
     params: {
       photo_tag: parseInt(context.params.filterTerm.split("|")[0]),
@@ -16,10 +16,10 @@ export async function getStaticProps(context) {
       posts: posts.data,
       filterType: "photo_tag",
     },
-    revalidate: settings.ISRrevalidate,
+    // revalidate: settings.ISRrevalidate,
   };
 }
-
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for photo tags");
   const allPosts = [];
@@ -55,3 +55,4 @@ export async function getStaticPaths() {
   console.timeEnd("Getting static paths for photo tags");
   return { paths, fallback: "blocking" };
 }
+*/

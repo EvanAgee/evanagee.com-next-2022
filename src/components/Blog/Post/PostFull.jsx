@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { css } from "@emotion/css";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import settings from "@/settings";
+import Modal from "@/components/Modal";
 
 const galleryTouchup = (breakpoint) => {
   const galleries = Array.from(document.querySelectorAll('.wp-block-gallery.columns-default'));
@@ -40,6 +41,8 @@ const galleryTouchup = (breakpoint) => {
 
 export default function PostFull({ data, image, showImage, side }) {
   const { breakpoint, mediaQueries } = useBreakpoints();
+  const [galleryModalOpen, setGalleryModalOpen] = React.useState(false);
+  const [galleryImage, setGalleryImage] = React.useState(null);
 
   const hasLocation = React.useMemo(() => {
     return data["x_metadata"].geo_longitude && data["x_metadata"].geo_latitude;
@@ -273,7 +276,10 @@ export default function PostFull({ data, image, showImage, side }) {
             `
           )}
         >
-          <WpApiContent content={data.content.rendered} />
+          <WpApiContent content={data.content.rendered} onGalleryPhotoSelect={(e) => { 
+            setGalleryImage(e)
+            setGalleryModalOpen(true)
+          }} />
         </div>
 
         {data.ea_tags && data.ea_tags.length > 0 && (
@@ -329,6 +335,7 @@ export default function PostFull({ data, image, showImage, side }) {
           />
         )}
       </main>
+      <Modal  isOpen={galleryModalOpen} setIsOpen={setGalleryModalOpen}><img src={galleryImage} /></Modal>
     </article>
   );
 }
