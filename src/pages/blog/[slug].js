@@ -100,7 +100,7 @@ export async function getStaticProps(context) {
   let catPosts = false;
   if (post[0]?.categories && post[0]?.categories?.length > 0) {
     let posts = await fetch(
-      `${settings.apiBase}/posts?categories=${post[0]?.categories[0]}&per_page=12`
+      `${settings.apiBase}/posts?categories=${post[0]?.categories[0]}&per_page=6`
     );
     catPosts = await posts.json();
   }
@@ -159,6 +159,7 @@ export async function getStaticPaths() {
       `${settings.apiBase}/posts?page=${page}`
     );
     const posts = await res.json();
+
     if (posts.length > 0) {
       posts.map((p) => allPosts.push(p.slug));
       page++;
@@ -167,10 +168,12 @@ export async function getStaticPaths() {
     }
   }
 
+  console.log("All posts", allPosts.length)
+
   // Get the paths we want to pre-render based on posts
-  const paths = allPosts.map((slug) => ({
-    params: { slug: `${slug}` },
-  }));
+  const paths = allPosts.map((slug) => {
+    return { params: { slug: `${slug}` } };
+  });
 
   console.timeEnd("Getting static paths for posts");
   // We'll pre-render only these paths at build time.

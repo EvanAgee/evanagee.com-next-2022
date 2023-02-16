@@ -34,14 +34,13 @@ export default function Photo({ photo, catPosts }) {
         <Breadcrumbs title={helpers.decodeHtml(photo?.title?.rendered)} />
       </div>
       <div className="bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 lg:py-16">
-        <figure className="lg:px-16">
+        <figure className="lg:px-16 flex items-center justify-center relative">
+          <a href={helpers.postImage(photo, "full")[0]} target="_blank">
           <img
-            loading="lazy"
-            src={helpers.postImage(photo, "large")[0]}
-            width={helpers.postImage(photo, "large")[1]}
-            height={helpers.postImage(photo, "large")[2]}
-            className="mx-auto shadow-lg w-auto h-auto"
+            src={helpers.postImage(photo, "post-thumbnail")[0]}
+            className="block object-contain shadow-lg max-w-[80%] mx-auto w-auto h-auto"
           />
+          </a>
         </figure>
 
         <header className="p-6 lg:p-16 lg:pb-0 font-display flex flex-col lg:flex-row lg:justify-between text-right lg:text-left lg:items-baseline gap-6">
