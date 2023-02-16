@@ -6,7 +6,7 @@ const settings = {
     perPageInfinite: 11,
     perPageStaticPaths: 25
   },
-  ISRrevalidate: 100,
+  ISRrevalidate: 10,
   functionBase:
     process.env.NODE_ENV !== "development" ? "/.netlify/functions" : "/api",
   googleAnalyticsID: "G-9Y1P8VDZWB",

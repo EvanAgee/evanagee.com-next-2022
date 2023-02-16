@@ -92,6 +92,7 @@ export async function getStaticProps(context) {
   if (!post || post.length < 1) {
     return {
       notFound: true,
+      revalidate: settings.ISRrevalidate,
     };
   }
 
