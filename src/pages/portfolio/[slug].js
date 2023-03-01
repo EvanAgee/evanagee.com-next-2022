@@ -81,7 +81,7 @@ function Project({ project, relatedProjects }) {
               width={featuredImage[1]}
               height={featuredImage[2]}
               src={featuredImage[0]}
-              className="mx-auto shadow-xl rounded-lg"
+              className="mx-auto shadow-xl rounded-lg max-w-full w-full h-auto"
             />
           ) : (
             <Loader />
