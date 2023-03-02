@@ -267,7 +267,7 @@ function Project({ project, relatedProjects }) {
 
 export default Project;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let project = await fetch(
     `${settings.apiBase}/projects?slug=${context.params.slug}&per_page=1`
   );
@@ -296,7 +296,7 @@ export async function getStaticProps(context) {
     revalidate: settings.ISRrevalidate,
   };
 }
-
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for projects");
   const allPosts = [];
@@ -327,3 +327,4 @@ export async function getStaticPaths() {
   // on-demand if the path doesn't exist.
   return { paths, fallback: "blocking" };
 }
+*/

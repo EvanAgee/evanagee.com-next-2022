@@ -3,7 +3,7 @@ import settings from "@/settings";
 import axios from "axios";
 export default BlogIndex;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let posts = await axios.get(`${settings.apiBase}/posts`, {
     params: {
       tags: parseInt(context.params.filterTerm.split("|")[0]),
@@ -23,6 +23,7 @@ export async function getStaticProps(context) {
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // the path has not been generated.
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for blog tags");
   const allPosts = [];
@@ -57,3 +58,4 @@ export async function getStaticPaths() {
   console.timeEnd("Getting static paths for blog tags");
   return { paths, fallback: "blocking" };
 }
+*/

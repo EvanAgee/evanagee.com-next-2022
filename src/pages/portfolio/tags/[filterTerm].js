@@ -3,7 +3,7 @@ export default Portfolio;
 import settings from "@/settings";
 import axios from "axios";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let posts = await axios.get(`${settings.apiBase}/projects`, {
     params: {
       tags: parseInt(context.params.filterTerm.split("%7C")[0]),
@@ -19,7 +19,7 @@ export async function getStaticProps(context) {
     revalidate: settings.ISRrevalidate,
   };
 }
-
+/*
 export async function getStaticPaths() {
   console.time("Getting static paths for project tags");
   const allPosts = [];
@@ -55,3 +55,4 @@ export async function getStaticPaths() {
   console.timeEnd("Getting static paths for project tags");
   return { paths, fallback: "blocking" };
 }
+*/
