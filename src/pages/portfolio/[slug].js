@@ -293,7 +293,7 @@ export async function getServerSideProps(context) {
       project: project[0],
       relatedProjects,
     },
-    revalidate: settings.ISRrevalidate,
+    // revalidate: settings.ISRrevalidate,
   };
 }
 /*

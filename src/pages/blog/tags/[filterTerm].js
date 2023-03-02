@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
       posts: posts.data,
       filterType: "tags",
     },
-    revalidate: settings.ISRrevalidate,
+    // revalidate: settings.ISRrevalidate,
   };
 }
 
