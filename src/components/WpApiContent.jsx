@@ -37,15 +37,31 @@ function WpApiContent({ content, onGalleryPhotoSelect }) {
       // External cloudinary links (galleries on posts)
       if (
         domNode.name === "a" &&
-        domNode.attribs.href.indexOf("res.cloudinary.com")
+        domNode.attribs.href.indexOf("res.cloudinary.com") > 0
       ) {
-        const props = attributesToProps(domNode.attribs);
         return (
           <a onClick={(e) => {
             e.preventDefault();
             onGalleryPhotoSelect(domNode.attribs.href);
           }} href={null}>
             {domToReact(domNode.children, options)}
+          </a>
+        );
+      }
+      
+      if (
+        domNode.name === "img" &&
+        domNode.attribs.src.indexOf("res.cloudinary.com") > 0
+      ) {
+        const props = attributesToProps(domNode.attribs);
+        const src = props.src.replace('w_0', 'w_400').replace('h_0', 'h_400')
+        const lgSrc = props.src.replace('w_0', 'w_800').replace('h_0,', '').replace('c_fill', '').replace('w_800,', 'w_800')
+        return (
+          <a href={lgSrc} onClick={(e) => {
+            e.preventDefault();
+            onGalleryPhotoSelect(lgSrc);
+          }}>
+            <img {...props} loading="lazy" src={src} />
           </a>
         );
       }
