@@ -6,7 +6,7 @@ import Image from "next/image";
 import helpers from "@/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function PostImage({ data, image, hoverable }) {
+function PostImage({ data, image, hoverable, className }) {
   const boxClasses = React.useMemo(() => {
     return `inset-0 absolute object-cover w-full h-full object-center rounded-2xl shadow-lg ${
       hoverable
@@ -25,7 +25,7 @@ function PostImage({ data, image, hoverable }) {
           src={image[0]}
           width={image[1]}
           height={image[2]}
-          className={classNames(`${boxClasses} max-w-full absolute`)}
+          className={classNames(`${boxClasses} max-w-full absolute`, className)}
         />
       ) : (
         <div

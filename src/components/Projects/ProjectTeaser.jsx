@@ -14,7 +14,7 @@ function ProjectTeaser({ data, showDescription }) {
   }, [data]);
 
   return (
-    <Link href={`/portfolio/${data.slug}`}>
+    <Link data-component-name="ProjectTeaser" href={`/portfolio/${data.slug}`}>
       <a
         className={classNames(
           "text-inherit block group",
@@ -25,7 +25,7 @@ function ProjectTeaser({ data, showDescription }) {
           `
         )}
       >
-        <PostImage data={data} image={image} />
+        <PostImage data={data} image={image} className="object-top" />
         <div className="pt-6 mx-auto max-w-xl text-center px-4">
           <div className={classNames({ matchHeight: data.content.rendered })}>
             <h3 className="post-title uppercase mx-auto flex items-center justify-center text-xl lg:text-2xl leading-none lg:leading-tight xl:max-w-sm lg:max-w-xs cursor-pointer group-hover:text-secondary-500">
@@ -52,16 +52,18 @@ function ProjectTeaser({ data, showDescription }) {
             </div>
           )}
 
-          {false && "project_url" in data.acf && data.acf.project_url !== "" && (
-            <a
-              className="button button-xs button-reversed"
-              rel="noopener noreferrer"
-              href={data.acf.project_url}
-              target="_blank"
-            >
-              Visit Project
-            </a>
-          )}
+          {false &&
+            "project_url" in data.acf &&
+            data.acf.project_url !== "" && (
+              <a
+                className="button button-xs button-reversed"
+                rel="noopener noreferrer"
+                href={data.acf.project_url}
+                target="_blank"
+              >
+                Visit Project
+              </a>
+            )}
         </div>
       </a>
     </Link>
