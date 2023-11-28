@@ -1,10 +1,12 @@
+const apiBase = `https://blog.evanagee.com`;
+
 const settings = {
-  backendBase: "https://blog.evanagee.com",
-  apiBase: "https://blog.evanagee.com/wp-json/wp/v2",
-  acfApiBase: "https://blog.evanagee.com/wp-json/acf/v3",
+  backendBase: apiBase,
+  apiBase: `${apiBase}/wp-json/wp/v2`,
+  acfApiBase: `${apiBase}/wp-json/acf/v3`,
   apiSettings: {
     perPageInfinite: 11,
-    perPageStaticPaths: 25
+    perPageStaticPaths: 25,
   },
   ISRrevalidate: 10,
   functionBase:
