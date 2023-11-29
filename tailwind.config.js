@@ -23,6 +23,12 @@ const randomColors = Object.keys(colors).filter(
 const rando = Math.floor(Math.random() * randomColors.length);
 let primaryColor = colors[randomColors[rando]];
 
+const generateShade = (step, colorVar, lighter = true) => {
+  return `color-mix(in srgb, var(${colorVar}), ${
+    lighter ? "#fff" : "#000"
+  } ${step}%)`;
+};
+
 const colorThemes = {
   default: {
     primary: colors.rose,
@@ -58,30 +64,30 @@ const colorThemes = {
   },
   fall: {
     primary: {
-      DEFAULT: '#F7B42C',
-  '50': '#FBEA9B',
-  '100': '#FBE58E',
-  '200': '#FADB76',
-  '300': '#F9D05D',
-  '400': '#F8C345',
-  '500': '#F7B42C',
-  '600': '#E79609',
-  '700': '#B67107',
-  '800': '#854E05',
-  '900': '#542E03'
+      DEFAULT: "#F7B42C",
+      50: "#FBEA9B",
+      100: "#FBE58E",
+      200: "#FADB76",
+      300: "#F9D05D",
+      400: "#F8C345",
+      500: "#F7B42C",
+      600: "#E79609",
+      700: "#B67107",
+      800: "#854E05",
+      900: "#542E03",
     },
     secondary: {
-      DEFAULT: '#FF0A0A',
-      '50': '#FF907D',
-      '100': '#FF8370',
-      '200': '#FF6857',
-      '300': '#FF4A3D',
-      '400': '#FF2B24',
-      '500': '#FF0A0A',
-      '600': '#D60007',
-      '700': '#A3000B',
-      '800': '#70000B',
-      '900': '#3D0008'
+      DEFAULT: "#FF0A0A",
+      50: "#FF907D",
+      100: "#FF8370",
+      200: "#FF6857",
+      300: "#FF4A3D",
+      400: "#FF2B24",
+      500: "#FF0A0A",
+      600: "#D60007",
+      700: "#A3000B",
+      800: "#70000B",
+      900: "#3D0008",
     },
   },
   christmas: {
@@ -112,9 +118,37 @@ const colorThemes = {
       900: "#000000",
     },
   },
+  vars: {
+    primary: {
+      DEFAULT: "var(--color-primary)",
+      50: "var(--color-primary-50)",
+      100: "var(--color-primary-100)",
+      200: "var(--color-primary-200)",
+      300: "var(--color-primary-300)",
+      400: "var(--color-primary-400)",
+      500: "var(--color-primary-500)",
+      600: "var(--color-primary-600)",
+      700: "var(--color-primary-700)",
+      800: "var(--color-primary-800)",
+      900: "var(--color-primary-900)",
+    },
+    secondary: {
+      DEFAULT: "var(--color-secondary)",
+      50: "var(--color-secondary-50)",
+      100: "var(--color-secondary-100)",
+      200: "var(--color-secondary-200)",
+      300: "var(--color-secondary-300)",
+      400: "var(--color-secondary-400)",
+      500: "var(--color-secondary-500)",
+      600: "var(--color-secondary-600)",
+      700: "var(--color-secondary-700)",
+      800: "var(--color-secondary-800)",
+      900: "var(--color-secondary-900)",
+    },
+  },
 };
 
-const currentTheme = colorThemes.default
+const currentTheme = colorThemes.vars;
 
 module.exports = {
   content: [
@@ -168,13 +202,13 @@ module.exports = {
     }),
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
-    require("tailwind-css-variables")(
-      {
-        // modules
-      },
-      {
-        // options
-      }
-    ),
+    // require("tailwind-css-variables")(
+    //   {
+    //     // modules
+    //   },
+    //   {
+    //     // options
+    //   }
+    // ),
   ],
 };

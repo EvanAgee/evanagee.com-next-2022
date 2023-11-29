@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
     <React.StrictMode>
       <ThemeProvider>
         <App>
-          <NextNProgress color={colors.rose['500']} />
+          <NextNProgress color="var(--color-primary)" />
           <Component {...pageProps} />
         </App>
       </ThemeProvider>

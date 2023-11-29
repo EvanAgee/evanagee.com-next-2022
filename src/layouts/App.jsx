@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import classNames from "classnames";
 import Header from "@/components/Header/Header";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { HeaderProvider } from "@/context/HeaderContext";
 import { ThemeContext } from "@/context/ThemeContext";
 import Footer from "@/components/Footer";
