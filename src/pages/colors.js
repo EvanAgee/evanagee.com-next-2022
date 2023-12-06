@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import React from "react";
 
 const classes = [
@@ -23,19 +24,42 @@ const classes = [
   "bg-secondary-900",
 ];
 
+function Section({ render }) {
+  return (
+    <div>
+      {["primary", "secondary"].map((color) => render({ color, shade: 50 }))}
+    </div>
+  );
+}
+
 function Colors() {
   return (
-    <>
-      {["primary", "secondary"].map((color) => (
-        <div className="flex">
-          {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((shade) => (
-            <div className={`bg-${color}-${shade} flex-grow aspect-square`}>
-              {color} {shade}
-            </div>
-          ))}
-        </div>
-      ))}
-    </>
+    <div className="space-y-6">
+      <Section
+        render={({ color, shade }) => (
+          <div className="flex">
+            {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((shade) => (
+              <div className={`bg-${color}-${shade} flex-grow aspect-square`}>
+                {color} {shade}
+              </div>
+            ))}
+          </div>
+        )}
+      />
+
+      <Section
+        render={({ color, shade }) => (
+          <>
+            <Button href="#" variant={color}>
+              I'm a Button
+            </Button>
+            <Button href="#" hollow variant={color}>
+              I'm a Button
+            </Button>
+          </>
+        )}
+      />
+    </div>
   );
 }
 

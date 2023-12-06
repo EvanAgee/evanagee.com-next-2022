@@ -7,6 +7,12 @@
   --color-primary-default: 	hsl(350, 89%, 60%);
   --color-secondary-default: hsl(189, 94%, 43%);
 
+  --color-primary-default2: 	#2cd4f7;
+  --color-secondary-default2: #b1ff0a;
+  
+  --color-primary-default3: 	#f7e22c;
+  --color-secondary-default3: #ff0a64;
+  
   --color-primary-fall: 	#F7B42C;
   --color-secondary-fall: #FF0A0A;
 
@@ -55,7 +61,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      @apply bg-primary-500;
+      @apply bg-gray-800;
     }
   }
 

@@ -18,12 +18,12 @@ export const ThemeProvider = ({ children }) => {
   // Check if it's between 12/1 and 12/25
   const isChristmas = month === 11 && day >= 1 && day <= 25;
 
-  const currentTheme = isFall
-    ? "fall"
+  let currentTheme = isChristmas
+    ? "christmas"
     : isHalloween
     ? "halloween"
-    : isChristmas
-    ? "christmas"
+    : isFall
+    ? "fall"
     : "default";
 
   return (
