@@ -83,15 +83,9 @@ export default function Home({ posts, projects, photos, currentLocation }) {
               <div className="up-title">A little about me...</div>
               <p>
                 <strong className="font-semibold font-display">
-                  Hey, I&apos;m Evan Agee (pronounced A.G.) and I&apos;m a full-stack web
-                  developer. My wife Crys our daughter Liliana and I{" "}
-                  <Link href="/rv-travels">
-                    <a className="text-primary-500">
-                      live full-time in a fifth wheel trailer
-                    </a>
-                  </Link>{" "}
-                  and travel the country. Currently we&apos;re camping in{" "}
-                  <span className="text-primary-500">{currentLocation}</span>. I love films, music (especially the odd-metered djent variety) and computers.
+                  Hey, I&apos;m Evan Agee (pronounced A.G.) and I&apos;m a
+                  full-stack web developer. I love films, music (especially the
+                  odd-metered djent variety) and computers.
                 </strong>
               </p>
 

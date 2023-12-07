@@ -199,7 +199,7 @@ export default {
     className="mx-auto my-5 lg:float-right lg:ml-10 lg:mb-5"
     alt="I was a 2016 Webby Award Honoree!"
   />
-  I've been developing web applications professionally since 2000 (Geocities anyone?). In that span of time I've worked with agencies and clients all over the world. <strong>I've built applications with the likes of Gateway Church, Memory.net, Carb Manager, Facebook, Disney, PeiWei, Bethel Church and Koch Industries.</strong>
+  I've been developing web applications professionally since 2000 (Geocities anyone?). In that span of time I've worked with agencies and clients all over the world. <strong>I've built applications with the likes of Facebook, Disney, FedEx, Carb Manager, PeiWei and Memory.net.</strong>
 </p>
 
 <p>
