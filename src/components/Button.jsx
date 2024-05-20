@@ -30,7 +30,7 @@ function Button({
       type={type ? type : null}
     >
       <div
-        className={`relative inline-flex w-auto px-4 py-3 text-white font-extrabold tracking-widest uppercase text-center justify-center font-display text-sm no-underline rounded-full lg:w-auto lg:px-6 shadow-lg group overflow-hidden hover:transition-shadow duration-300 items-center justify-center bg-${variant}-500 shadow-${variant}-500/40 hover:shadow-${variant}-600/40 cursor-pointer ${
+        className={`relative inline-flex w-auto px-4 py-3 text-white font-extrabold tracking-widest uppercase text-center justify-center font-display text-sm no-underline rounded-full lg:w-auto lg:px-6 shadow-lg group overflow-hidden hover:transition-shadow duration-300 items-center bg-${variant}-500 shadow-${variant}-500/40 hover:shadow-${variant}-600/40 cursor-pointer ${
           hollow &&
           `ring-2 ring-inset ring-${variant}-500 bg-transparent !text-${variant}-500`
         }`}

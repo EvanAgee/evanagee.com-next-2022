@@ -24,7 +24,7 @@ export const ThemeProvider = ({ children }) => {
     ? "halloween"
     : isFall
     ? "fall"
-    : "default";
+    : "default4";
 
   return (
     <ThemeContext.Provider
