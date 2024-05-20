@@ -67,11 +67,28 @@ const helpers = {
 
   getPhotoDateTaken: function (photo) {
     if (!photo) return null;
+
+    process.env.NODE_ENV === "development" &&
+      console.log({
+        date_taken: photo.acf?.date_taken,
+        created_timestamp: photo.photoMeta?.created_timestamp,
+        date: photo.date,
+      });
+
+    /**
+     * Value can be one of:
+     * - photo.acf.date_taken
+     * - photo.photoMeta.created_timestamp
+     * - photo.date
+     */
+
     return photo?.acf?.date_taken
       ? moment(moment(photo.acf.date_taken).toDate())
       : photo.photoMeta.created_timestamp &&
         photo.photoMeta.created_timestamp !== "0"
-      ? moment(photo.photoMeta.created_timestamp)
+      ? isNaN(photo.photoMeta.created_timestamp)
+        ? moment(photo.photoMeta.created_timestamp)
+        : moment.unix(photo.photoMeta.created_timestamp)
       : moment(moment(photo.date));
   },
 

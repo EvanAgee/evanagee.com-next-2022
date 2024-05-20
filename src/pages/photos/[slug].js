@@ -20,47 +20,50 @@ import Button from "@/components/Button";
 
 export default function Photo({ photo, catPosts }) {
   const { breakpoint } = useBreakpoints();
+  const photoWithMeta = helpers.getPhotoMeta(photo);
 
   return (
     <>
       <Meta
-        title={`${helpers.decodeHtml(photo?.title?.rendered)}`}
+        title={`${helpers.decodeHtml(photoWithMeta?.title?.rendered)}`}
         ogData={{
-          ...photo?.yoast_head_json,
+          ...photoWithMeta?.yoast_head_json,
           ogImage: helpers.postImage(photo, "large")[0],
         }}
       />
       <div className="pl-6 pt-6">
-        <Breadcrumbs title={helpers.decodeHtml(photo?.title?.rendered)} />
+        <Breadcrumbs
+          title={helpers.decodeHtml(photoWithMeta?.title?.rendered)}
+        />
       </div>
       <div className="bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 lg:py-16">
         <figure className="lg:px-16 flex items-center justify-center relative">
           <a href={helpers.postImage(photo, "full")[0]} target="_blank">
-          <img
-            src={helpers.postImage(photo, "post-thumbnail")[0]}
-            className="block object-contain shadow-lg max-w-[80%] mx-auto w-auto h-auto"
-          />
+            <img
+              src={helpers.postImage(photo, "post-thumbnail")[0]}
+              className="block object-contain shadow-lg max-w-[80%] mx-auto w-auto h-auto"
+            />
           </a>
         </figure>
 
         <header className="p-6 lg:p-16 lg:pb-0 font-display flex flex-col lg:flex-row lg:justify-between text-right lg:text-left lg:items-baseline gap-6">
           <div>
             <h1 className="text-3xl lg:text-6xl text-white mb-4">
-              {photo?.title?.rendered && (
-                <WpApiContent content={photo?.title?.rendered} />
+              {photoWithMeta?.title?.rendered && (
+                <WpApiContent content={photoWithMeta?.title?.rendered} />
               )}
             </h1>
             <ul className="flex flex-col lg:flex-row text-gray-300 text-sm lg:gap-6 mb-0">
               <li>
                 Taken{" "}
                 <strong className="">
-                  {moment(photo.dateTaken).fromNow()}
+                  {moment(photoWithMeta.dateTaken).fromNow()}
                 </strong>
               </li>
               <li>
                 Uploaded{" "}
                 <strong className="">
-                  {moment(moment(photo.date).toDate()).format(
+                  {moment(moment(photoWithMeta.date).toDate()).format(
                     "dddd, MMMM Do YYYY"
                   )}
                 </strong>
@@ -75,13 +78,13 @@ export default function Photo({ photo, catPosts }) {
       <div className="dark:bg-gray-900 dark:text-gray-300 p-6 pb-12 lg:p-16">
         <div className="flex space-x-9 justify-center">
           <div className="flex-shrink">
-            {photo?.content?.rendered && (
-              <WpApiContent content={photo?.content?.rendered} />
+            {photoWithMeta?.content?.rendered && (
+              <WpApiContent content={photoWithMeta?.content?.rendered} />
             )}
           </div>
           <div
             className={classNames("lg:[min-width:900px]", {
-              "mx-auto": !photo?.content?.rendered,
+              "mx-auto": !photoWithMeta?.content?.rendered,
             })}
           >
             <PhotoSpecs photo={photo} />
@@ -91,7 +94,7 @@ export default function Photo({ photo, catPosts }) {
         {process.env.NODE_ENV === "development" && (
           <div className="flex items-center justify-center space-x-6 pt-6">
             <Button
-              href={`${settings.backendBase}/wp-admin/post.php?post=${photo.id}&action=edit`}
+              href={`${settings.backendBase}/wp-admin/post.php?post=${photoWithMeta.id}&action=edit`}
               target="_blank"
             >
               Edit Photo
@@ -103,24 +106,25 @@ export default function Photo({ photo, catPosts }) {
         <Discussion post={photo} />
       </div>
       <PrevNext data={photo} />
-      {catPosts && catPosts.filter((c) => c.id !== photo.id).length > 0 && (
-        <BadgeWrapper
-          title={`More Photos in <span className="text-primary-500">${photo?.ea_photo_albums[0]?.name}</span>`}
-        >
-          <Carousel
-            slidesToShow={breakpoint.isLgUp ? 4 : 1}
-            theme="dark"
-            showDots={false}
-            className="!border-b-0"
+      {catPosts &&
+        catPosts.filter((c) => c.id !== photoWithMeta.id).length > 0 && (
+          <BadgeWrapper
+            title={`More Photos in <span className="text-primary-500">${photoWithMeta?.ea_photo_albums[0]?.name}</span>`}
           >
-            {catPosts
-              .filter((c) => c.id !== photo.id)
-              .map((c, i) => (
-                <PhotoTeaser key={i} data={helpers.getPhotoMeta(c)} />
-              ))}
-          </Carousel>
-        </BadgeWrapper>
-      )}
+            <Carousel
+              slidesToShow={breakpoint.isLgUp ? 4 : 1}
+              theme="dark"
+              showDots={false}
+              className="!border-b-0"
+            >
+              {catPosts
+                .filter((c) => c.id !== photoWithMeta.id)
+                .map((c, i) => (
+                  <PhotoTeaser key={i} data={helpers.getPhotoMeta(c)} />
+                ))}
+            </Carousel>
+          </BadgeWrapper>
+        )}
     </>
   );
 }
@@ -131,13 +135,13 @@ export async function getServerSideProps(context) {
       `${settings.apiBase}/photos?slug=${context.params.slug}&per_page=1`
     );
     const res = await photo.json();
-  
+
     if (!res || res.length < 1) {
       return {
         notFound: true,
       };
     }
-  
+
     // Get photos that are in the same album
     let catPosts = false;
     if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
@@ -146,7 +150,7 @@ export async function getServerSideProps(context) {
       );
       catPosts = await posts.json();
     }
-  
+
     let relatedBlogPosts = false;
     if (res[0]?.ea_photo_albums && res[0]?.ea_photo_albums?.length > 0) {
       const posts = await fetch(
@@ -154,7 +158,7 @@ export async function getServerSideProps(context) {
       );
       relatedBlogPosts = await posts.json();
     }
-  
+
     return {
       props: {
         photo: res[0],
@@ -162,7 +166,6 @@ export async function getServerSideProps(context) {
       },
       // revalidate: settings.ISRrevalidate,
     };
-
   } catch (e) {
     console.log(e);
     return {
