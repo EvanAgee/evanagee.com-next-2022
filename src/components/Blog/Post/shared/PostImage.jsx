@@ -10,12 +10,12 @@ function PostImage({ data, image, hoverable, className }) {
   const boxClasses = React.useMemo(() => {
     return `inset-0 absolute object-cover w-full h-full object-center rounded-2xl shadow-lg ${
       hoverable
-        ? "group-hover:ring-secondary-500 group-hover:ring-offset-4 ring-offset-inherit dark:ring-offset-gray-800 group-hover:ring-4 cursor-pointer"
+        ? "group-hover:ring-primary-500 group-hover:ring-offset-4 ring-offset-inherit dark:ring-offset-gray-800 group-hover:ring-4 cursor-pointer"
         : ""
     }`;
   }, [image, hoverable]);
   const hoverClasses =
-    "group-hover:ring-secondary-500 group-hover:ring-offset-4 group-hover:ring-4 cursor-pointer";
+    "group-hover:ring-primary-500 group-hover:ring-offset-4 group-hover:ring-4 cursor-pointer";
   return (
     <div className={classNames("bg-no-repeat bg-center relative aspect-video")}>
       {image ? (

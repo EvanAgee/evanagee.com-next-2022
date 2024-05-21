@@ -49,7 +49,7 @@ function PostLarge({ data, image, showImage, side }) {
         {showImage && <PostImage data={data} image={image} />}
 
         <div className={classNames("flex justify-center pt-8 mt-16")}>
-          <Button href={`/blog/${data.slug}`} variant="secondary" hollow>
+          <Button href={`/blog/${data.slug}`} variant="primary" hollow>
             READ MORE
           </Button>
         </div>

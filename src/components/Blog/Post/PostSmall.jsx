@@ -16,7 +16,7 @@ function PostSmall({ data, image, showImage, side }) {
           <PostDate data={data} />
           <h3
             className={classNames(
-              "up-title post-title dark:text-white mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-secondary-500 cursor-pointer"
+              "up-title post-title dark:text-white mx-auto flex items-center justify-center matchHeight xl:max-w-sm lg:max-w-xs group-hover:text-primary-500 cursor-pointer"
             )}
           >
             <WpApiContent content={data.title.rendered} />
@@ -42,7 +42,7 @@ function PostSmall({ data, image, showImage, side }) {
         </main>
 
         <footer className={classNames("flex justify-center pt-8")}>
-          <Button href={`/blog/${data.slug}`} variant="secondary" hollow>
+          <Button href={`/blog/${data.slug}`} variant="primary" hollow>
             READ MORE
           </Button>
         </footer>
