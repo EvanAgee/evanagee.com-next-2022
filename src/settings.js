@@ -8,7 +8,9 @@ const settings = {
     perPageInfinite: 11,
     perPageStaticPaths: 25,
   },
-  ISRrevalidate: process?.env?.NEXT_PUBLIC_REVALIDATE || 60 * 60 * 24, // 24 hours
+  ISRrevalidate: process?.env?.NEXT_PUBLIC_REVALIDATE
+    ? parseInt(process?.env?.NEXT_PUBLIC_REVALIDATE)
+    : 60 * 60 * 24,
   functionBase:
     process.env.NODE_ENV !== "development" ? "/.netlify/functions" : "/api",
   googleAnalyticsID: "G-9Y1P8VDZWB",
