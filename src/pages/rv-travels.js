@@ -89,12 +89,12 @@ export default Map;
 
 export const getStaticProps = async () => {
   let posts = await fetch(
-    `${settings.apiBase}/posts?categories=185&per_page=50`
+    `${settings.apiBase}/posts?categories=185&per_page=25`
   );
   posts = await posts.json();
 
   let photos = await fetch(
-    `${settings.apiBase}/photos?photo_album=1889&per_page=50`
+    `${settings.apiBase}/photos?photo_album=1889&per_page=25`
   );
   photos = await photos.json();
 

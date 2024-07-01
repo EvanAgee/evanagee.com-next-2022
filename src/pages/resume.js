@@ -13,8 +13,6 @@ import Carousel from "@/components/Carousel";
 import { css } from "@emotion/css";
 
 function Resume({ siteSettings }) {
-  console.log({ siteSettings });
-
   return (
     <div>
       <Meta />
