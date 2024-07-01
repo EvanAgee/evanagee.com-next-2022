@@ -158,7 +158,7 @@ module.exports = {
     "src/context/**/*.{js,ts,jsx,tsx}",
     "src/layouts/**/*.{js,ts,jsx,tsx}",
     "src/hooks/**/*.{js,ts,jsx,tsx}",
-    "src/css/*.{css}",
+    "src/css/*.css",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -201,7 +201,6 @@ module.exports = {
       strategy: "class",
     }),
     require("@tailwindcss/typography"),
-    require("@tailwindcss/line-clamp"),
     // require("tailwind-css-variables")(
     //   {
     //     // modules

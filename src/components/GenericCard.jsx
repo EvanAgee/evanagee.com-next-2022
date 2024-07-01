@@ -13,19 +13,18 @@ function GenericCard({
   subtitle,
   content,
   tags,
+  collapseContent = false,
 }) {
   return (
     <article>
-      <div className="relative matchHeight flex flex-col justify-end items-center pt-4">
+      <div className="relative matchHeight flex flex-col justify-end items-center pt-12">
         {image && (
           <img
             src={image}
             alt={`${helpers.decodeHtml(title)}`}
             height="100"
             width="auto"
-            className={classNames(
-              "mx-auto h-auto max-w-[50%]"
-            )}
+            className={classNames("mx-auto h-auto max-w-[50%]")}
             style={imageStyle}
           />
         )}
@@ -51,17 +50,14 @@ function GenericCard({
             </div>
           )}
 
-          <div
-            className={classNames(
-              "prose",
-              css`
-                ul {
-                  text-align: left;
-                }
-              `
+          <div className={classNames("prose text-left")}>
+            {collapseContent ? (
+              <ExpandingContent>
+                <WpApiContent content={content} />
+              </ExpandingContent>
+            ) : (
+              <WpApiContent content={content} />
             )}
-          >
-            <WpApiContent content={content} />
           </div>
         </div>
       </div>
@@ -70,3 +66,35 @@ function GenericCard({
 }
 
 export default React.memo(GenericCard);
+
+const ExpandingContent = ({ children, className }) => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  return (
+    <div>
+      <div
+        className={classNames("overflow-hidden relative transition-all", {
+          "max-h-[20000px]": expanded,
+          "max-h-[200px]": !expanded,
+        })}
+      >
+        {children}
+
+        <div
+          className={classNames(
+            "absolute w-full bottom-0 bg-gradient-to-b from-transparent to-white h-[100px] transition-opacity",
+            {
+              "opacity-0": expanded,
+            }
+          )}
+        />
+      </div>
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="text-primary text-sm underline text-center mx-auto flex"
+      >
+        Show {expanded ? "less" : "more"}
+      </button>
+    </div>
+  );
+};

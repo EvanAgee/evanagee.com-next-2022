@@ -42,25 +42,27 @@ function Map({ posts, photos }) {
       {posts && (
         <BadgeWrapper title="RV Living Blog Posts">
           <Carousel
-              slidesToShow={breakpoint.isLgUp ? 3 : 1}
-              className=" bg-opacity-0 border-b-0"
-              separated
-            >
-              {posts.map((c, i) => (
-                <PostGridWrapper
-                  key={i}
-                  className="pt-16 pb-20 w-full"
-                  counter={i}
-                  largeFirst={false}
-                >
-                  <PostDetail data={c} style="teaser" />
-                </PostGridWrapper>
-              ))}
-            </Carousel>
+            slidesToShow={breakpoint.isLgUp ? 3 : 1}
+            className=" bg-opacity-0 border-b-0"
+            separated
+            autoplay
+          >
+            {posts.map((c, i) => (
+              <PostGridWrapper
+                key={i}
+                className="pt-16 pb-20 w-full"
+                counter={i}
+                largeFirst={false}
+              >
+                <PostDetail data={c} style="teaser" />
+              </PostGridWrapper>
+            ))}
+          </Carousel>
         </BadgeWrapper>
       )}
 
-      {photos && <section>
+      {photos && (
+        <section>
           <BadgeWrapper title="Recent Travel Photos">
             <Carousel
               slidesToShow={breakpoint.isLgUp ? 4 : 2}
@@ -77,7 +79,8 @@ function Map({ posts, photos }) {
               ))}
             </Carousel>
           </BadgeWrapper>
-        </section>}
+        </section>
+      )}
     </>
   );
 }
@@ -90,13 +93,15 @@ export const getStaticProps = async () => {
   );
   posts = await posts.json();
 
-  let photos = await fetch(`${settings.apiBase}/photos?photo_album=1889&per_page=50`);
+  let photos = await fetch(
+    `${settings.apiBase}/photos?photo_album=1889&per_page=50`
+  );
   photos = await photos.json();
 
   return {
     props: {
       posts,
-      photos
+      photos,
     },
     revalidate: settings.ISRrevalidate,
   };

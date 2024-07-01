@@ -14,30 +14,57 @@ import settings from "@/settings";
 import Modal from "@/components/Modal";
 
 const galleryTouchup = (breakpoint) => {
-  const galleries = Array.from(document.querySelectorAll('.wp-block-gallery.columns-default'));
+  const galleries = Array.from(
+    document.querySelectorAll(".wp-block-gallery.columns-default")
+  );
 
-  galleries.map(g => {
+  galleries.map((g) => {
     const children = Array.from(g.children);
     const divider = breakpoint.isLgUp ? 4 : 3;
-    children.map(c => c.classList = 'wp-block-image')
+    children.map((c) => (c.classList = "wp-block-image"));
 
     if (children.length > 2) {
       if (children.length % divider === 1) {
-        children[children.length-1].classList.add('lg:row-span-2', 'lg:row-start-1', 'lg:col-span-2', 'lg:col-start-3', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
+        children[children.length - 1].classList.add(
+          "lg:row-span-2",
+          "lg:row-start-1",
+          "lg:col-span-2",
+          "lg:col-start-3",
+          "md:col-span-2",
+          "md:row-span-1",
+          "md:!pb-[50%]"
+        );
       }
-  
+
       if (children.length % divider === 2) {
-        children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
-        children[children.length-2].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]', 'md:col-span-2', 'md:row-span-1', 'md:!pb-[50%]');
-        
+        children[children.length - 1].classList.add(
+          "lg:col-span-2",
+          "lg:row-span-1",
+          "lg:!pb-[50%]",
+          "md:col-span-2",
+          "md:row-span-1",
+          "md:!pb-[50%]"
+        );
+        children[children.length - 2].classList.add(
+          "lg:col-span-2",
+          "lg:row-span-1",
+          "lg:!pb-[50%]",
+          "md:col-span-2",
+          "md:row-span-1",
+          "md:!pb-[50%]"
+        );
       }
-  
+
       if (children.length % divider === 3) {
-        children[children.length-1].classList.add('lg:col-span-2', 'lg:row-span-1', 'lg:!pb-[50%]');
+        children[children.length - 1].classList.add(
+          "lg:col-span-2",
+          "lg:row-span-1",
+          "lg:!pb-[50%]"
+        );
       }
     }
   });
-}
+};
 
 export default function PostFull({ data, image, showImage, side }) {
   const { breakpoint, mediaQueries } = useBreakpoints();
@@ -74,7 +101,7 @@ export default function PostFull({ data, image, showImage, side }) {
       <main className="mt-6 lg:mt-12">
         <div
           className={classNames(
-            "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none",
+            "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none [&_p]:max-w-screen-lg flex flex-col items-center [&_*]:w-full",
             css`
               h2,
               h3,
@@ -105,6 +132,10 @@ export default function PostFull({ data, image, showImage, side }) {
                   padding: 0.5rem 0;
                   border-bottom: 1px solid var(--color-secondary-300);
                   margin-top: 0;
+                }
+
+                img {
+                  margin: 0 !important;
                 }
 
                 .alignleft {
@@ -170,12 +201,12 @@ export default function PostFull({ data, image, showImage, side }) {
               }
 
               .wp-block-gallery {
-                margin: var(--p-16) calc(-1 * var(--p-16));
                 display: grid;
                 grid-gap: 0;
                 padding: 0;
                 list-style: none !important;
                 grid-template-columns: 1fr 1fr;
+                overflow: hidden;
 
                 &.columns-2 {
                   ${mediaQueries.md} {
@@ -201,6 +232,7 @@ export default function PostFull({ data, image, showImage, side }) {
                   position: relative;
                   padding: 0 0 100% 0;
                   margin: 0;
+                  overflow: hidden;
 
                   a {
                     display: block;
@@ -217,7 +249,7 @@ export default function PostFull({ data, image, showImage, side }) {
                     object-position: center center;
                   }
                 }
-                
+
                 .blocks-gallery-grid {
                   display: grid;
                   grid-gap: 0;
@@ -276,10 +308,13 @@ export default function PostFull({ data, image, showImage, side }) {
             `
           )}
         >
-          <WpApiContent content={data.content.rendered} onGalleryPhotoSelect={(e) => { 
-            setGalleryImage(e)
-            setGalleryModalOpen(true)
-          }} />
+          <WpApiContent
+            content={data.content.rendered}
+            onGalleryPhotoSelect={(e) => {
+              setGalleryImage(e);
+              setGalleryModalOpen(true);
+            }}
+          />
         </div>
 
         {data.ea_tags && data.ea_tags.length > 0 && (
@@ -335,7 +370,9 @@ export default function PostFull({ data, image, showImage, side }) {
           />
         )}
       </main>
-      <Modal  isOpen={galleryModalOpen} setIsOpen={setGalleryModalOpen}><img src={galleryImage} /></Modal>
+      <Modal isOpen={galleryModalOpen} setIsOpen={setGalleryModalOpen}>
+        <img src={galleryImage} />
+      </Modal>
     </article>
   );
 }

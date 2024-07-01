@@ -5,6 +5,7 @@ import React from "react";
 import { css } from "@emotion/css";
 import settings from "@/settings";
 import useMatchHeight from "@/hooks/useMatchHeight";
+import Carousel from "@/components/Carousel";
 
 function Films({ feed, error }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
@@ -43,17 +44,15 @@ function Films({ feed, error }) {
           {error && <p>{error}</p>}
         </header>
       </div>
-      <div
-        ref={ref}
-        className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-6 p-6 text-center"
-      >
+
+      <Carousel slidesToShow={6} className="px-6">
         {feed.map((f, i) => (
           <a
             href={f.link}
             key={i}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black"
+            className="block text-black pb-12"
           >
             <div
               className={css`
@@ -64,15 +63,13 @@ function Films({ feed, error }) {
             >
               <ParseHTML content={f.content} />
             </div>
-            <h6 className="matchHeight flex items-center justify-center">
-              {f.title}
-            </h6>
-            <div className="text-xs">
+            <h6 className="flex items-center justify-center">{f.title}</h6>
+            <div className="hidden text-xs">
               <ParseHTML content={f.contentSnippet} />
             </div>
           </a>
         ))}
-      </div>
+      </Carousel>
       <Discussion />
     </>
   );

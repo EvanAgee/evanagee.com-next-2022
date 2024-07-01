@@ -1,13 +1,14 @@
 import React from "react";
 import { css } from "@emotion/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Navigation } from "swiper/core";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core";
 import classNames from "classnames";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import useMatchHeight from "@/hooks/useMatchHeight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
@@ -40,8 +41,10 @@ function Carousel({
   "data-cy": dataCy,
   useScrim,
   className,
+  swiperClassName,
   showDots,
   separated,
+  autoplay = false,
 }) {
   const { ref, updateMatchedHeights } = useMatchHeight();
   const [showLeftScrim, setShowLeftScrim] = React.useState(false);
@@ -67,7 +70,13 @@ function Carousel({
       ref={ref}
     >
       <Swiper
+        modules={[Autoplay, Navigation, Pagination]}
         loop={false}
+        autoplay={
+          autoplay && {
+            delay: 5000,
+          }
+        }
         slidesPerView={slidesToShow}
         slidesPerGroup={slidesToShow}
         spaceBetween={0}
@@ -143,11 +152,12 @@ function Carousel({
             }
 
             .swiper-pagination {
-              bottom: 1.75rem !important;
+              bottom: 1.75rem;
 
               .swiper-pagination-bullet {
-                width: 10px;
-                height: 10px;
+                border-radius: 0;
+                width: 20px;
+                height: 5px;
                 background-color: ${theme === "light"
                   ? "var(--color-primary-500)"
                   : "var(--color-primary-800)"};
@@ -159,9 +169,10 @@ function Carousel({
               .swiper-pagination-bullet,
             .swiper-pagination-horizontal.swiper-pagination-bullets
               .swiper-pagination-bullet {
-              margin: 0 8px;
+              ${"" /* margin: 0 8px; */}
             }
-          `
+          `,
+          swiperClassName
         )}
       >
         {children.map((c, i) => (

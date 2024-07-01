@@ -105,6 +105,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
         <section className="bg-gray-100">
           <BadgeWrapper title="Recent Blog Posts">
             <Carousel
+              autoplay
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
               separated
@@ -125,6 +126,7 @@ export default function Home({ posts, projects, photos, currentLocation }) {
         <section className="bg-gray-100">
           <BadgeWrapper title="Recent Projects" className="">
             <Carousel
+              autoplay
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
               separated
@@ -175,9 +177,7 @@ export async function getStaticProps() {
   let photos = await fetch(`${settings.apiBase}/photos?per_page=12`);
   photos = await photos.json();
 
-  let options = await fetch(
-    `${settings.acfApiBase}/options/options`
-  );
+  let options = await fetch(`${settings.acfApiBase}/options/options`);
   options = await options.json();
 
   return {

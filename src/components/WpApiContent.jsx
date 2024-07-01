@@ -28,10 +28,10 @@ function WpApiContent({ content, onGalleryPhotoSelect }) {
       if (!domNode.attribs) return;
 
       // Correct inline style attributes
-      if (domNode.attribs.style) {
+      if (false && domNode.attribs.style) {
         const props = attributesToProps(domNode.attribs);
         const Component = domNode.name;
-        return <Component {...props} />;
+        return <Component {...props} style={props.style} />;
       }
 
       // External cloudinary links (galleries on posts)
@@ -40,27 +40,37 @@ function WpApiContent({ content, onGalleryPhotoSelect }) {
         domNode.attribs.href.indexOf("res.cloudinary.com") > 0
       ) {
         return (
-          <a onClick={(e) => {
-            e.preventDefault();
-            onGalleryPhotoSelect(domNode.attribs.href);
-          }} href={null}>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              onGalleryPhotoSelect(domNode.attribs.href);
+            }}
+            href={null}
+          >
             {domToReact(domNode.children, options)}
           </a>
         );
       }
-      
+
       if (
         domNode.name === "img" &&
         domNode.attribs.src.indexOf("res.cloudinary.com") > 0
       ) {
         const props = attributesToProps(domNode.attribs);
-        const src = props.src.replace('w_0', 'w_400').replace('h_0', 'h_400')
-        const lgSrc = props.src.replace('w_0', 'w_800').replace('h_0,', '').replace('c_fill', '').replace('w_800,', 'w_800')
+        const src = props.src.replace("w_0", "w_400").replace("h_0", "h_400");
+        const lgSrc = props.src
+          .replace("w_0", "w_800")
+          .replace("h_0,", "")
+          .replace("c_fill", "")
+          .replace("w_800,", "w_800");
         return (
-          <a href={lgSrc} onClick={(e) => {
-            e.preventDefault();
-            onGalleryPhotoSelect(lgSrc);
-          }}>
+          <a
+            href={lgSrc}
+            onClick={(e) => {
+              e.preventDefault();
+              onGalleryPhotoSelect(lgSrc);
+            }}
+          >
             <img {...props} loading="lazy" src={src} />
           </a>
         );
