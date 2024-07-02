@@ -236,7 +236,7 @@ function Project({ project, relatedProjects }) {
         </div>
       </div>
       <Discussion />
-      <PrevNext data={project} />
+      <PrevNext data={project} key={project.slug} />
       {relatedProjects &&
         relatedProjects.filter((c) => c.id !== project.id).length > 0 && (
           <div className="">

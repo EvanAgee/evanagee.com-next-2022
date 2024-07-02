@@ -40,7 +40,7 @@ export default function Photo({ photo, catPosts }) {
         <figure className="lg:px-16 flex items-center justify-center relative">
           <a href={helpers.postImage(photo, "full")[0]} target="_blank">
             <img
-              src={helpers.postImage(photo, "post-thumbnail")[0]}
+              src={helpers.postImage(photo, "large")?.[0]}
               className="block object-contain shadow-lg max-w-[80%] mx-auto w-auto h-auto"
             />
           </a>
@@ -105,7 +105,7 @@ export default function Photo({ photo, catPosts }) {
       <div className="bg-black text-white">
         <Discussion post={photo} />
       </div>
-      <PrevNext data={photo} />
+      <PrevNext data={photo} key={photo?.slug} />
       {catPosts &&
         catPosts.filter((c) => c.id !== photoWithMeta.id).length > 0 && (
           <BadgeWrapper

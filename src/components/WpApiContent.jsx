@@ -27,6 +27,41 @@ function WpApiContent({ content, onGalleryPhotoSelect }) {
     replace: (domNode) => {
       if (!domNode.attribs) return;
 
+      // Old YouTube block div includes the class of `is-provider-youtube` and NONE of the children should be an ifrae
+      if (
+        domNode.name === "figure" &&
+        domNode?.attribs?.class?.split(" ")?.includes("is-provider-youtube") &&
+        !domNode.children.find((c) => c.name === "iframe")
+      ) {
+        // Recursively look through the children to find the the child with type "text" which contains the YouTube URL
+        let youtubeUrl = "";
+        const findYoutubeUrl = (node) => {
+          if (node.type === "text" && node?.data?.match(/youtube.com/)) {
+            youtubeUrl = node?.data;
+          } else if (node.children) {
+            node.children.forEach((child) => findYoutubeUrl(child));
+          }
+        };
+
+        findYoutubeUrl(domNode);
+
+        if (youtubeUrl != "") {
+          const youtubeId = youtubeUrl.split("v=")[1];
+          return (
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${youtubeId}`}
+              title="YouTube video player"
+              frameBorder="0"
+              className="aspect-video w-full h-auto"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          );
+        }
+      }
+
       // Correct inline style attributes
       if (false && domNode.attribs.style) {
         const props = attributesToProps(domNode.attribs);

@@ -101,7 +101,7 @@ export default function PostFull({ data, image, showImage, side }) {
       <main className="mt-6 lg:mt-12">
         <div
           className={classNames(
-            "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none [&_p]:max-w-screen-lg flex flex-col items-center [&_*]:w-full",
+            "text-left lg:leading-loose prose lg:prose-xl lg:mx-auto max-w-none [&_p]:max-w-screen-lg [&_h1]:max-w-screen-lg [&_h2]:max-w-screen-lg [&_h3]:max-w-screen-lg [&_h4]:max-w-screen-lg [&_ul]:max-w-screen-lg [&_ol]:max-w-screen-lg [&_blockquote]:max-w-screen-lg [&_.wp-block-audio]:max-w-screen-lg flex flex-col items-center [&_*]:w-full",
             css`
               h2,
               h3,
@@ -167,6 +167,10 @@ export default function PostFull({ data, image, showImage, side }) {
                     border-top-left-radius: var(--rounded-3xl);
                     border-bottom-left-radius: var(--rounded-3xl);
                   }
+
+                  &.size-large {
+                    max-width: 40%;
+                  }
                 }
 
                 .aligncenter {
@@ -179,6 +183,10 @@ export default function PostFull({ data, image, showImage, side }) {
                 &.alignfull {
                   img {
                   }
+                }
+
+                &.size-medium {
+                  max-width: 500px;
                 }
 
                 &.size-large {
@@ -207,6 +215,7 @@ export default function PostFull({ data, image, showImage, side }) {
                 list-style: none !important;
                 grid-template-columns: 1fr 1fr;
                 overflow: hidden;
+                border-radius: 1rem;
 
                 &.columns-2 {
                   ${mediaQueries.md} {

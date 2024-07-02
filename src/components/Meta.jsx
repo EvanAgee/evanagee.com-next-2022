@@ -9,7 +9,11 @@ function Meta({ title, ogData }) {
 
   return (
     <Head>
-      <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.ico" />
+      <link
+        rel="icon"
+        type="image/svg+xml"
+        href={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE}/static/favicon.ico`}
+      />
       <meta
         property="og:type"
         content={ogData?.og_type ? ogData?.og_type?.toString() : "website"}

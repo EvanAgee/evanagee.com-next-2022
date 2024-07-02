@@ -32,7 +32,7 @@ function Films({ feed, error }) {
             className="w-auto flex items-center mx-auto font-display font-bold tracking-tighter text-lg justify-center not-prose decoration-transparent border-none"
           >
             <img
-              src="assets/images/letterboxd-mac-icon.png"
+              src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE}/static/letterboxd-mac-icon.png`}
               className="mr-4"
               style={{ width: "64px", height: "auto" }}
               width="64"

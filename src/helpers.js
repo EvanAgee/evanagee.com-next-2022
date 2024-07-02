@@ -3,13 +3,7 @@ import moment from "moment";
 
 const helpers = {
   postImage: function (p, size) {
-    if (
-      !p ||
-      !(`uagb_featured_image_src` in p) ||
-      !(size in p[`uagb_featured_image_src`])
-    )
-      return false;
-    return p[`uagb_featured_image_src`][size];
+    return p?.[`uagb_featured_image_src`]?.[size] || false;
   },
 
   formatDate: function (date, format = "mmm dS, yyyy") {
@@ -67,13 +61,6 @@ const helpers = {
 
   getPhotoDateTaken: function (photo) {
     if (!photo) return null;
-
-    process.env.NODE_ENV === "development" &&
-      console.log({
-        date_taken: photo.acf?.date_taken,
-        created_timestamp: photo.photoMeta?.created_timestamp,
-        date: photo.date,
-      });
 
     /**
      * Value can be one of:
@@ -151,6 +138,17 @@ const helpers = {
     }
 
     return words.join(" ");
+  },
+
+  generatePostURL: function (post) {
+    const path =
+      post.type === "post"
+        ? "blog"
+        : post.type === "photo"
+        ? "photos"
+        : "portfolio";
+    if (!post) return "";
+    return `/${path}/${post.slug}`;
   },
 };
 

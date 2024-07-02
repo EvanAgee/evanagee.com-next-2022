@@ -51,7 +51,7 @@ export default function Post({ post, catPosts, relatedPhotos }) {
         <Discussion post={post} postID={post.id} />
       </div>
 
-      <PrevNext data={post} />
+      <PrevNext data={post} key={post?.slug} />
 
       {catPosts && catPosts.filter((c) => c.id !== post.id).length > 0 && (
         <div className="">
@@ -147,7 +147,8 @@ export async function getStaticProps(context) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  if (process.env.NODE_ENV === "development") return { paths: [], fallback: "blocking" };
+  if (process.env.NODE_ENV === "development")
+    return { paths: [], fallback: "blocking" };
 
   console.time("Getting static paths for posts");
   const allPosts = [];
@@ -155,9 +156,7 @@ export async function getStaticPaths() {
   let keepGoing = true;
 
   while (keepGoing) {
-    const res = await fetch(
-      `${settings.apiBase}/posts?page=${page}`
-    );
+    const res = await fetch(`${settings.apiBase}/posts?page=${page}`);
     const posts = await res.json();
 
     if (posts.length > 0) {
@@ -167,8 +166,6 @@ export async function getStaticPaths() {
       keepGoing = false;
     }
   }
-
-  console.log("All posts", allPosts.length)
 
   // Get the paths we want to pre-render based on posts
   const paths = allPosts.map((slug) => {

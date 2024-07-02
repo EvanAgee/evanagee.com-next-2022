@@ -8,8 +8,28 @@ import GridWrapper from "@/components/GridWrapper";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import Badge from "@/components/Badge";
 import helpers from "@/helpers";
-function PrevNext({ type, data }) {
-  const { breakpoint } = useBreakpoints();
+import { useRouter } from "next/router";
+
+function PrevNext({ data }) {
+  const router = useRouter();
+
+  // When the left and right arrow keys are pushed navigate to the previous or next post
+  const handleKeyDown = React.useCallback(
+    (e) => {
+      if (e.key === "ArrowLeft" && data?.previous) {
+        router.push(helpers.generatePostURL(data.previous));
+      } else if (e.key === "ArrowRight" && data?.next) {
+        router.push(helpers.generatePostURL(data.next));
+      }
+    },
+    [data?.previous?.slug, data?.next?.slug, router.pathname]
+  );
+
+  React.useEffect(() => {
+    window.addEventListener("keyup", handleKeyDown);
+    return () => window.removeEventListener("keyup", handleKeyDown);
+  }, []);
+
   return (
     <footer className="select-none">
       <GridWrapper wrapItems={false}>
