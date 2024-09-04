@@ -9,11 +9,12 @@ export const ThemeProvider = ({ children }) => {
   const date = new Date();
   const month = date.getMonth();
   const day = date.getDate();
-  // Check it date is between 10/1 and 10/31
-  const isHalloween = month === 9 && date.getDate() >= 1 && day <= 31;
 
-  // Check if it's fall
-  const isFall = !isHalloween && month >= 8 && month <= 11;
+  // From 9/1 to 10/31
+  const isHalloween = month === 8 || month === 9;
+
+  // From 11/1 to 11/30
+  const isFall = month === 10;
 
   // Check if it's between 12/1 and 12/25
   const isChristmas = month === 11 && day >= 1 && day <= 25;

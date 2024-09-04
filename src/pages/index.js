@@ -105,7 +105,6 @@ export default function Home({ posts, projects, photos, currentLocation }) {
         <section className="bg-gray-100">
           <BadgeWrapper title="Recent Blog Posts">
             <Carousel
-              autoplay
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
               separated
@@ -126,7 +125,6 @@ export default function Home({ posts, projects, photos, currentLocation }) {
         <section className="bg-gray-100">
           <BadgeWrapper title="Recent Projects" className="">
             <Carousel
-              autoplay
               slidesToShow={breakpoint.isLgUp ? 3 : 1}
               className=" bg-opacity-0 border-b-0"
               separated
