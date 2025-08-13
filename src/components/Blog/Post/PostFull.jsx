@@ -70,9 +70,10 @@ export default function PostFull({ data, image, showImage, side }) {
   const { breakpoint, mediaQueries } = useBreakpoints();
   const [galleryModalOpen, setGalleryModalOpen] = React.useState(false);
   const [galleryImage, setGalleryImage] = React.useState(null);
-
   const hasLocation = React.useMemo(() => {
-    return data["x_metadata"].geo_longitude && data["x_metadata"].geo_latitude;
+    return (
+      data?.["x_metadata"]?.geo_longitude && data?.["x_metadata"]?.geo_latitude
+    );
   }, [data]);
 
   React.useEffect(() => {
@@ -372,10 +373,10 @@ export default function PostFull({ data, image, showImage, side }) {
         {hasLocation && (
           <PostMap
             className="-mx-6 lg:-mx-16 -mb-6 lg:-mb-16"
-            lng={data["x_metadata"].geo_longitude}
-            lat={data["x_metadata"].geo_latitude}
-            zoom={data["x_metadata"].geo_zoom}
-            title={data["x_metadata"].geo_address}
+            lng={data?.["x_metadata"]?.geo_longitude}
+            lat={data?.["x_metadata"]?.geo_latitude}
+            zoom={data?.["x_metadata"]?.geo_zoom}
+            title={data?.["x_metadata"]?.geo_address}
           />
         )}
       </main>
